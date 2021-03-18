@@ -1,4 +1,4 @@
-// This is a basic Flutter integration test.
+// This is a basic Flutter widget test.
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
 // utility that Flutter provides. For example, you can send tap and scroll
@@ -7,19 +7,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
 
-import 'package:aula_01_dart/main.dart' as app;
+import 'package:estudo_mobile/main.dart';
 
-void main() => run(_testMain);
-
-void _testMain() {
+void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    app.main();
-
-    // Trigger a frame.
-    await tester.pumpAndSettle();
+    await tester.pumpWidget(MyApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
