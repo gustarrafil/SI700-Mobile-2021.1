@@ -1,32 +1,28 @@
 /*atividade 01
-
-A entrega será um vídeo da sua tela com o seguinte roteiro:
-- Apresente integrante 1.
-- Apresente integrante 2.
-- Mostre todos os códigos brevemente, avisando se você conseguiu resolver o problema facilmente ou se teve dificuldade. Os códigos são provavelmente curtos.
-- Mostre para cada problema uma das saídas que eu coloquei de exemplo acima.
-
-Tente falar rápido para dar um vídeo de dois minutos.*/
-
+Autores:
+Gustavo Tarrafil Sousa Pereira RA: 159740
+g159740@dac.unicamp.br
+Arthur Briganti Gini RA: 213253
+a213253@dac.unicamp.br
+*/
 main() {
   // 1 - leastDifference(a,b,c): receberá três argumentos numéricos e computará a menor diferença em módulo entre quaisquer pares desses argumentos.
 
   int leastDifference(int a, int b, int c) {
-
     List respostas = [
       (a - b > 0 ? a - b : -(a - b)),
       (a - c > 0 ? a - c : -(a - c)),
-      (b - c > 0 ? b - c : -(b - c)),
+      (b - c > 0 ? b - c : -(b - c))
     ];
 
     int menor = respostas.reduce((atual, prox) => atual < prox ? atual : prox);
     return menor;
   }
 
-  // print(leastDifference(1,5,9)); // 4
-  // print(leastDifference(-1,15,3)); // 4
-  // print(leastDifference(-101,15,99)); // 84
-  // print(leastDifference(21,35,19)); // 2
+  // print(leastDifference(1, 5, 9)); // 4
+  // print(leastDifference(-1, 15, 3)); // 4
+  // print(leastDifference(-101, 15, 99)); // 84
+  // print(leastDifference(21, 35, 19)); // 2
 
   /////////////////////////////////////////////////////
 
@@ -44,74 +40,39 @@ main() {
 
   // 3 - marteloThor(thor, martelo): receberá duas listas com dois elementos, representando a posição de thor e a posição do seu martelo em um plano bidimensional. Ao final, deverá imprimir uma lista de coordenadas que o thor deverá visitar até chegar no seu martelo. O thor só pode se mover para norte, sul, leste ou oeste.
 
+  void chegaPerto(List<int> thor, int eixo, int novo) {
+    thor.removeAt(eixo);
+    thor.insert(eixo, novo);
+    print(thor);
+  }
+
   void marteloThor(List<int> thor, List<int> martelo) {
+    int thorX = thor[0];
+    int thorY = thor[1];
+    int marteloX = martelo[0];
+    int marteloY = martelo[1];
 
-    int pX = thor[0];
-    int pY = thor[1];
-    int dX = martelo[0];
-    int dY = martelo[1];
-
-    while (pX < dX) {
-      pX += 1;
-      thor.removeAt(0);
-      thor.insert(0, pX);
-      print(thor);
+    while (thorX < marteloX) {
+      thorX += 1;
+      chegaPerto(thor, 0, thorX);
     }
-    while (pX > dX) {
-      pX -= 1;
-      thor.removeAt(0);
-      thor.insert(0, pX);
-      print(thor);
+    while (thorX > marteloX) {
+      thorX -= 1;
+      chegaPerto(thor, 0, thorX);
     }
-    while (pY < dY) {
-      pY += 1;
-      thor.removeAt(1);
-      thor.insert(1, pY);
-      print(thor);
+    while (thorY < marteloY) {
+      thorY += 1;
+      chegaPerto(thor, 1, thorY);
     }
-    while (pY > dY) {
-      pY -= 1;
-      thor.removeAt(1);
-      thor.insert(1, pY);
-      print(thor);
+    while (thorY > marteloY) {
+      thorY -= 1;
+      chegaPerto(thor, 1, thorY);
     }
   }
 
   // marteloThor([5, 2], [4, 7]);
-  // [4, 2]
-  // [4, 3]
-  // [4, 4]
-  // [4, 5]
-  // [4, 6]
-  // [4, 7]
 
-  // marteloThor([9,7], [11,3]);
-  // [10, 7]
-  // [10, 6]
-  // [11, 6]
-  // [11, 5]
-  // [11, 4]
-  // [11, 3]
+  // marteloThor([9, 7], [11, 3]);
 
-  // marteloThor([5,7], [-5,-3]);
-  // [4, 7]
-  // [4, 6]
-  // [3, 6]
-  // [3, 5]
-  // [2, 5]
-  // [2, 4]
-  // [1, 4]
-  // [1, 3]
-  // [0, 3]
-  // [0, 2]
-  // [-1, 2]
-  // [-1, 1]
-  // [-2, 1]
-  // [-2, 0]
-  // [-3, 0]
-  // [-3, -1]
-  // [-4, -1]
-  // [-4, -2]
-  // [-5, -2]
-  // [-5, -3]
+  // marteloThor([5, 7], [-5, -3]);
 }
