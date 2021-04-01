@@ -45,53 +45,31 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: retornaCompleto([5, 2], [4, 7]),
+              children: caminho([9, 7], [11, 3]),
             ),
           ],
         ));
   }
 }
 //////////////////////////////////////////
-
-List<int> chegaPerto(List<int> thor, int eixo, int novo) {
-  thor.removeAt(eixo);
-  thor.insert(eixo, novo);
-  return thor;
-}
-
 // marteloThor([5, 2], [4, 7]);
-
 // marteloThor([9, 7], [11, 3]);
-
 // marteloThor([5, 7], [-5, -3]);
 
-List<int> marteloThor(List<int> thor, List<int> martelo) {
-  int thorX = thor[0];
-  int thorY = thor[1];
-  int marteloX = martelo[0];
-  int marteloY = martelo[1];
+caminho (List<int> thor, List<int> martelo) {
+  var pronto_volta = retornaCompleto(thor, martelo);
 
-  var local_final;
+  return pronto_volta
+      .map(
+        (columns) => Column(
+          children: columns.map((nr) => nr).toList(),
+        ),
+      )
+      .toList();
 
-  while (thorX < marteloX) {
-    thorX += 1;
-    return local_final = chegaPerto(thor, 0, thorX);
-  }
-  while (thorX > marteloX) {
-    thorX -= 1;
-    return local_final = chegaPerto(thor, 0, thorX);
-  }
-  while (thorY < marteloY) {
-    thorY += 1;
-    return local_final = chegaPerto(thor, 1, thorY);
-  }
-  while (thorY > marteloY) {
-    thorY -= 1;
-    return local_final = chegaPerto(thor, 1, thorY);
-  }
 }
 
-List<Widget> retornaCompleto(List<int> thor, List<int> martelo) {
+List<List<Widget>> retornaCompleto(List<int> thor, List<int> martelo) {
   List<Color> cores = [Colors.yellow, Colors.grey, Colors.black];
 
   List<Widget> linha_geral;
@@ -100,11 +78,10 @@ List<Widget> retornaCompleto(List<int> thor, List<int> martelo) {
 
   for (int l = 0; l < (thor[1] > martelo[1] ? thor[1] : martelo[1]); l++) {
     for (int c = 0; c < (thor[0] > martelo[0] ? thor[0] : martelo[0]); c++) {
-      print(marteloThor(thor, martelo));
-      int x = marteloThor(thor, martelo) != null ? marteloThor(thor, martelo)[0] : 0;
-      int y = marteloThor(thor, martelo) != null ? marteloThor(thor, martelo)[1] : 0;
-      if (l == x &&
-          c == y) {
+      List<int> local_final = marteloThor(thor, martelo);
+      int x = local_final[0];
+      int y = local_final[1];
+      if (l == x || c == y) {
         celulas.add(Container(
           margin: EdgeInsets.all(2),
           child: Icon(
@@ -128,22 +105,43 @@ List<Widget> retornaCompleto(List<int> thor, List<int> martelo) {
     celulas = [];
   }
 
-  linha_geral = colunas
-      .map(
-        (columns) => Column(
-          children: columns.map((nr) {
-            return Container(
-              margin: EdgeInsets.all(2),
-              color: Colors.white,
-              child: Icon(
-                Icons.stop_rounded,
-                color: cores[1],
-                size: 30.0,
-              ),
-            );
-          }).toList(),
-        ),
-      )
-      .toList();
-  return linha_geral;
+
+  return colunas; 
 }
+
+List<int> marteloThor(List<int> thor, List<int> martelo) {
+  int thorX = thor[0];
+  int thorY = thor[1];
+  int marteloX = martelo[0];
+  int marteloY = martelo[1];
+
+  if (thorX == marteloX && thorY == marteloY) {
+    return thor;
+  }
+  while (thorX < marteloX) {
+    thorX += 1;
+    return chegaPerto(thor, 0, thorX);
+  }
+  while (thorX > marteloX) {
+    thorX -= 1;
+    return chegaPerto(thor, 0, thorX);
+  }
+  while (thorY < marteloY) {
+    thorY += 1;
+    return chegaPerto(thor, 1, thorY);
+  }
+  while (thorY > marteloY) {
+    thorY -= 1;
+    return chegaPerto(thor, 1, thorY);
+  }
+  
+}
+
+List<int> chegaPerto(List<int> thor, int eixo, int novo) {
+  thor.removeAt(eixo);
+  thor.insert(eixo, novo);
+  return thor;
+}
+
+
+
