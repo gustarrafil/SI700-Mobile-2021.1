@@ -19,7 +19,7 @@ main() {
     return menor;
   }
 
-  // print(leastDifference(1, 5, 9)); // 4
+  print(leastDifference(1, 5, 9)); // 4
   // print(leastDifference(-1, 15, 3)); // 4
   // print(leastDifference(-101, 15, 99)); // 84
   // print(leastDifference(21, 35, 19)); // 2
