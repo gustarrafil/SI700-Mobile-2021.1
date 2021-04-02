@@ -51,97 +51,125 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
+
 //////////////////////////////////////////
-// marteloThor([5, 2], [4, 7]);
-// marteloThor([9, 7], [11, 3]);
-// marteloThor([5, 7], [-5, -3]);
+// caminho([5, 2], [4, 7]);
+// caminho([9, 7], [11, 3]);
+// caminho([5, 7], [-5, -3]);
+//
+//FLUXO:
+// caminhoThor([9, 7], [11, 3]);
+// class MAtriz
+//      Verificar a cor
+// criaMatriz
 
-caminho (List<int> thor, List<int> martelo) {
-  var pronto_volta = retornaCompleto(thor, martelo);
+caminho(List<int> thor, List<int> martelo) {
+  Matriz matriz = Matriz();
+  var pronto_volta = matriz.caminhoThor(thor, martelo);
 
-  return pronto_volta
-      .map(
-        (columns) => Column(
-          children: columns.map((nr) => nr).toList(),
-        ),
-      )
-      .toList();
-
-}
-
-List<List<Widget>> retornaCompleto(List<int> thor, List<int> martelo) {
-  List<Color> cores = [Colors.yellow, Colors.grey, Colors.black];
-
-  List<Widget> linha_geral;
-  List<Widget> celulas = [];
-  List<List<Widget>> colunas = [];
-
-  for (int l = 0; l < (thor[1] > martelo[1] ? thor[1] : martelo[1]); l++) {
-    for (int c = 0; c < (thor[0] > martelo[0] ? thor[0] : martelo[0]); c++) {
-      List<int> local_final = marteloThor(thor, martelo);
-      int x = local_final[0];
-      int y = local_final[1];
-      if (l == x || c == y) {
-        celulas.add(Container(
-          margin: EdgeInsets.all(2),
-          child: Icon(
-            Icons.stop_rounded,
-            color: cores[0],
-            size: 30.0,
+  /*  return Matriz.linha
+        .map(
+          (columns) => Column(
+            children: columns.map((nr) => nr).toList(),
           ),
-        ));
-      } else {
-        celulas.add(Container(
-          margin: EdgeInsets.all(2),
-          child: Icon(
-            Icons.stop_rounded,
-            color: cores[2],
-            size: 30.0,
-          ),
-        ));
-      }
-    }
-    colunas.add(celulas);
-    celulas = [];
-  }
-
-
-  return colunas; 
-}
-
-List<int> marteloThor(List<int> thor, List<int> martelo) {
-  int thorX = thor[0];
-  int thorY = thor[1];
-  int marteloX = martelo[0];
-  int marteloY = martelo[1];
-
-  if (thorX == marteloX && thorY == marteloY) {
-    return thor;
-  }
-  while (thorX < marteloX) {
-    thorX += 1;
-    return chegaPerto(thor, 0, thorX);
-  }
-  while (thorX > marteloX) {
-    thorX -= 1;
-    return chegaPerto(thor, 0, thorX);
-  }
-  while (thorY < marteloY) {
-    thorY += 1;
-    return chegaPerto(thor, 1, thorY);
-  }
-  while (thorY > marteloY) {
-    thorY -= 1;
-    return chegaPerto(thor, 1, thorY);
-  }
-  
+        )
+        .toList();
+  */
+  List<Widget> teste = [
+    Icon(
+      Icons.stop_rounded,
+      color: Colors.black,
+      size: 40.0,
+    ),
+    Icon(
+      Icons.stop_rounded,
+      color: Colors.black,
+      size: 40.0,
+    ),
+  ];
+  return teste;
 }
 
 List<int> chegaPerto(List<int> thor, int eixo, int novo) {
   thor.removeAt(eixo);
   thor.insert(eixo, novo);
-  return thor;
+  if (thor != null) return thor;
 }
 
+class Matriz {
+  List<Widget> coluna;
+  List<List<Widget>> linha = [];
 
+  // Primeira chamada = Gera o caminho que o Thor Percorrera
+  List<List<int>> caminhoThor(List<int> thor, List<int> martelo) {
+    // int thorX = thor[0];
+    // int thorY = thor[1];
+    // int marteloX = martelo[0];
+    // int marteloY = martelo[1];
 
+    List<List<int>> lista_caminho = [];
+
+    if (thor[0] == martelo[0] && thor[1] == martelo[1]) {
+      List<List<int>> local_igual = [];
+      return local_igual = [
+        [thor[0], thor[1]],
+        [martelo[0], martelo[1]]
+      ];
+    } else {
+      while (thor[0] < martelo[0]) {
+        thor[0] += 1;
+        lista_caminho.add(chegaPerto(thor, 0, thor[0]));
+        print(lista_caminho);
+      }
+      while (thor[0] > martelo[0]) {
+        thor[0] -= 1;
+        lista_caminho.add(chegaPerto(thor, 0, thor[0]));
+        print(lista_caminho);
+      }
+      while (thor[1] < martelo[1]) {
+        thor[1] += 1;
+        lista_caminho.add(chegaPerto(thor, 0, thor[1]));
+        print(lista_caminho);
+      }
+      while (thor[1] > martelo[1]) {
+        thor[1] -= 1;
+        lista_caminho.add(chegaPerto(thor, 0, thor[1]));
+        print(lista_caminho);
+      }
+    }
+
+    print(lista_caminho);
+    return lista_caminho;
+  }
+
+  criaMatriz(List<int> thor, List<int> martelo, List<List<int>> lista_caminho) {
+    int tamanhoC = thor[0] > martelo[0] ? thor[0] : martelo[0];
+    int tamanhoL = thor[1] > martelo[1] ? thor[1] : martelo[1];
+
+    for (int c = 0; c < tamanhoC; c++) {
+      for (int l = 0; l < tamanhoL; l++) {
+        coluna = [];
+        List<List<int>> localThor = caminhoThor(thor, martelo);
+        coluna.add(Container(
+          margin: EdgeInsets.all(4),
+          child: Icon(
+            Icons.stop_rounded,
+            color: verificaCor(lista_caminho, c + 1, l + 1),
+            size: 40.0,
+          ),
+        ));
+      }
+      linha.add(coluna);
+    }
+  }
+
+  Object verificaCor(List<List<int>> lista_caminho, int c, int l) {
+    for (var item in lista_caminho) {
+      if (item[0] == c && item[1] == l) {
+        return Colors.black;
+      } else {
+        return Colors.blue;
+      }
+    }
+  }
+}
