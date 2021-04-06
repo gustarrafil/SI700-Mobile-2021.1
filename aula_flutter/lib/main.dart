@@ -1,5 +1,8 @@
-import 'dart:io';
+// Authores:
+// Arthur Briganti Gini RA: 213253
+// Gustavo Tarrafil     RA: 159740
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -122,7 +125,7 @@ class Matriz {
         Widget celula;
         List<int> lugar = [c, l];
         for (var item in listaModelo) {
-          print("${item[POSICAO_X]} $c ${item[POSICAO_Y]} $l");
+          // print("${item[POSICAO_X]} $c ${item[POSICAO_Y]} $l");
           if (item[POSICAO_X] == c && item[POSICAO_Y] == l) {
             celula = Container(
               margin: EdgeInsets.all(4),
@@ -162,14 +165,11 @@ class Matriz {
   }
 }
 
-
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-
-
 
 // caminho([5, 2], [4, 7]);
 // caminho([9, 7], [11, 3]);
