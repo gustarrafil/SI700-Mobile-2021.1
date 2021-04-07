@@ -32,11 +32,11 @@ class MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.cake), title: Text("Tela 1")),
+                icon: Icon(Icons.person), title: Text("Gustavo Tarrafil")),
             BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle), title: Text("Tela 2")),
+                icon: Icon(Icons.person_outline), title: Text("Arthur Gini")),
             BottomNavigationBarItem(
-                icon: Icon(Icons.zoom_in), title: Text("Tela 2")),
+                icon: Icon(Icons.zoom_in), title: Text("Projeto")),
           ],
           currentIndex: _currentPage,
           // Funcao anonima que usa outra funcao gatilho como parametro para mudar a tela

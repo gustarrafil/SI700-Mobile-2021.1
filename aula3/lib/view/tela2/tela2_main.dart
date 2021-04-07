@@ -19,8 +19,9 @@ Widget presentationScreen() {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(49),
               child: Image.asset(
-                'assets/images/img.jpg',
-                height: 150,
+                'assets/images/arthur.jpeg',
+                height: 200,
+                width: 200,
               ),
             )),
         Text(
@@ -29,11 +30,15 @@ Widget presentationScreen() {
               fontSize: 30,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
-              color: Colors.blueAccent),
+              color: Colors.black87),
         ),
         Text(
-          "Eu sou arthur gini dshduahudshaudhau",
-          style: TextStyle(fontSize: 20, color: Colors.blue),
+          """Poeta estudioso e analista do mundo, músico e produtor de Hip-Hop.
+           Somos o presente e o futuro, aprendendo a cada instante transformando dados em informação e gerando conhecimento, transmitindo nossa filosofia e vivência elevamos a nossa consciência sobre o que podemos fazer para fazer do mundo um lugar melhor para viver.""",
+          style: TextStyle(
+              fontSize: 20,
+              color: Colors.black87,
+              backgroundColor: Colors.grey.shade50),
         )
       ],
     ),
