@@ -1,6 +1,7 @@
 import 'package:aula3/view/tela1/tela1_main.dart';
 import 'package:aula3/view/tela2/tela2_main.dart';
 import 'package:aula3/view/tela3/tela3_main.dart';
+import 'package:aula3/view/tela4/tela4_main.dart';
 import 'package:flutter/material.dart';
 
 class MyTabBarLayout extends StatelessWidget {
@@ -9,19 +10,18 @@ class MyTabBarLayout extends StatelessWidget {
     return MaterialApp(
         theme: ThemeData(primarySwatch: Colors.deepPurple),
         home: DefaultTabController(
-          length: 3,
+          length: 4,
           initialIndex: 0,
           child: Scaffold(
             appBar: AppBar(
               title: Text("TabBarLayout"),
               bottom: TabBar(
+                isScrollable: true,
                 tabs: [
-                  Tab(
-                    child: Text("Primeira Tela"),
-                    icon: Icon(Icons.access_alarm),
-                  ),
+                  Tab(text: "Primeira Tela", icon: Icon(Icons.access_alarm)),
                   Tab(text: "Segunda Tela", icon: Icon(Icons.account_box)),
-                  Tab(icon: Icon(Icons.cake), child: Text("Terceira Tela")),
+                  Tab(text: "Terceira Tela", icon: Icon(Icons.cake)),
+                  Tab(text: "Quarta Tela", icon: Icon(Icons.account_box)),
                 ],
               ),
             ),
@@ -31,6 +31,7 @@ class MyTabBarLayout extends StatelessWidget {
                 MainTela1(),
                 MainTela2(),
                 MainTela3(),
+                MainTela4()
               ],
             ),
           ),
