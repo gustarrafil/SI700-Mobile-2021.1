@@ -1,4 +1,6 @@
-import 'package:aula3/view/bottom_navigation_bar.dart';
+// Parei na tela 9
+
+// import 'package:aula3/view/bottom_navigation_bar.dart';
 import 'package:aula3/view/tab_bar_layout.dart';
 import 'package:flutter/material.dart';
 
