@@ -4,28 +4,28 @@ import 'tela1.dart';
 import 'tela2.dart';
 import 'tela3.dart';
 
-class MyTabBarLayout extends StatelessWidget {
+class TabBarCripose extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
-            theme: ThemeData(primarySwatch: Colors.deepPurple),
+            // colocar tema preto com icones amarelos?
             home: DefaultTabController(
                 length: 3,
                 initialIndex: 0,
                 child: Scaffold(
+                    resizeToAvoidBottomInset: false,
                     appBar: AppBar(
-                        title: Text("TabBarLayout"),
+                        title: Text("Cripose"),
                         bottom: TabBar(
-                            // isScrollable: true,
                             tabs: [
-                            Tab(child: Text("User"),icon: Icon(Icons.access_alarm),),
-                            Tab(text: "Trade", icon: Icon(Icons.account_box)),
-                            Tab(icon: Icon(Icons.cake), child: Text("History")),
+                                Tab(icon: Icon(Icons.account_box),text: "User"),
+                                Tab(icon: Icon(Icons.arrow_drop_down_outlined),text: "Trade"),
+                                Tab(icon: Icon(Icons.lock_clock),text: "History"),
                             ],
                         ),
                     ),
                     body: TabBarView(
-                        children: [Tela1(), Tela2(), Tela3()],
+                        children: [TelaUser(), TelaTrade(), TelaHistory()],
                     ),
                 ),
             )

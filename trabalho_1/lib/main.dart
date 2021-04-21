@@ -21,12 +21,12 @@ import 'package:flutter/material.dart';
 import 'trab1/tab.dart';
 
 void main() {
-    runApp(MyApp());
+    runApp(AppCripose());
 }
 
-class MyApp extends StatelessWidget {
+class AppCripose extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
-        return MyTabBarLayout();
+        return TabBarCripose();
     }
 }

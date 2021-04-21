@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
 
-class Tela3 extends StatelessWidget {
+class TelaHistory extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
-        return presentationScreen();
+        return screenHistory();
     }
 }
 
-Widget presentationScreen() {
+Widget screenHistory() {
     return SingleChildScrollView(
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                    Row(
-                        children: [
-                            Text("Histórico"),
-                        ],
-                    ),
-                    Row(
-                        children: [
-                            Text("btc/usdt 61000"),
-                        ],
-                    ),
-                ],
+                    Text("Histórico"),
+                    Text("btc/usdt 61000"),
+                ]
             ),
         ),
     );

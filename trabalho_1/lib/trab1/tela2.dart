@@ -1,67 +1,69 @@
 import 'package:flutter/material.dart';
 
-class Tela2 extends StatelessWidget {
+class TelaTrade extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return presentationScreen();
+        return screenTrade();
     }
 }
 
-Widget presentationScreen() {
+Widget screenTrade() {
     final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-                Row(
-                    children: [
-                        Text("\$100"),
-                    ],
-                ),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                                Text("Compra"),
-                                Switch(
-                                    value: true,
-                                    onChanged: (on) {}
-                                ),
-                                Text("Venda"),
-                            ],
+                        Text(
+                            "\$100",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30
+                            ),
                         ),
                     ],
                 ),
                 Form(
                     key: formKey,
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                            Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 50),
-                                child: Column(
-                                    children: [
-                                        parmoedaFormField(),
-                                        precoFormField(),
-                                        qtdFormField(),
-                                        Slider(value: 1, onChanged: (double) {}),
-                                    ],
-                                ),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                    Text("Compra"),
+                                    mySwitch(),
+                                    Text("Venda"),
+                                ],
                             ),
-                            ElevatedButton(
-                                onPressed: () {},
-                                child: Text("GATILHO")
-                            ),
-                            ElevatedButton(
-                                onPressed: () {},
-                                child: Text("FINALIZAR")
-                            ),
+                            parmoedaFormField(),
+                            precoFormField(),
+                            qtdFormField(),
+                            mySlider()
                         ],
-                    )
-                )
+                    ),
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                        ElevatedButton(
+                            onPressed: () {},
+                            child: Text("GATILHO")
+                        ),
+                    ],
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                        ElevatedButton(
+                            onPressed: () {},
+                            child: Text("FINALIZAR")
+                        ),
+                    ],
+                ),
             ]
         ),
     );
@@ -90,5 +92,21 @@ Widget qtdFormField() {
         decoration: InputDecoration(
             labelText: "Quantidade"
         ),
+    );
+}
+
+
+Widget mySwitch() {
+    return Switch(
+        value: true,
+        onChanged: (bool inValue) {}
+    );
+}
+Widget mySlider() {
+    return Slider(
+        value: 50,
+        onChanged: (double inValue) {},
+        min: 0,
+        max: 100
     );
 }
