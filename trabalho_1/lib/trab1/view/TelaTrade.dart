@@ -1,3 +1,6 @@
+import '../controller/FormTradeClass.dart';
+import '../controller/FormItems.dart';
+import '../controller/UserWallet.dart';
 import 'package:flutter/material.dart';
 
 class TelaTrade extends StatelessWidget {
@@ -10,6 +13,8 @@ class TelaTrade extends StatelessWidget {
 
 Widget screenTrade() {
     final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+    FormTrade formTrade = new FormTrade();
+
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(
@@ -17,15 +22,7 @@ Widget screenTrade() {
             children: [
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                        Text(
-                            "\$100",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30
-                            ),
-                        ),
-                    ],
+                    children: [userWallet()]
                 ),
                 Form(
                     key: formKey,
@@ -35,14 +32,14 @@ Widget screenTrade() {
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                     Text("Compra"),
-                                    mySwitch(),
+                                    compraVendaSwitch(formTrade),
                                     Text("Venda"),
                                 ],
                             ),
                             parmoedaFormField(),
                             precoFormField(),
                             qtdFormField(),
-                            mySlider()
+                            valorSlider(formTrade)
                         ],
                     ),
                 ),
@@ -70,43 +67,3 @@ Widget screenTrade() {
 }
 
 
-Widget parmoedaFormField() {
-    return TextFormField(
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-            labelText: "Par da moeda"
-        ),
-    );
-}
-Widget precoFormField() {
-    return TextFormField(
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-            labelText: "Preço de [compra/venda]"
-        ),
-    );
-}
-Widget qtdFormField() {
-    return TextFormField(
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-            labelText: "Quantidade"
-        ),
-    );
-}
-
-
-Widget mySwitch() {
-    return Switch(
-        value: true,
-        onChanged: (bool inValue) {}
-    );
-}
-Widget mySlider() {
-    return Slider(
-        value: 50,
-        onChanged: (double inValue) {},
-        min: 0,
-        max: 100
-    );
-}

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'tela1.dart';
-import 'tela2.dart';
-import 'tela3.dart';
+import './TelaUser.dart';
+import './TelaTrade.dart';
+import './TelaHistory.dart';
 
 class TabBarCripose extends StatelessWidget {
     @override
@@ -19,13 +19,17 @@ class TabBarCripose extends StatelessWidget {
                         bottom: TabBar(
                             tabs: [
                                 Tab(icon: Icon(Icons.account_box),text: "User"),
-                                Tab(icon: Icon(Icons.arrow_drop_down_outlined),text: "Trade"),
+                                Tab(icon: Icon(Icons.money_off_outlined),text: "Trade"),
                                 Tab(icon: Icon(Icons.lock_clock),text: "History"),
                             ],
                         ),
                     ),
                     body: TabBarView(
-                        children: [TelaUser(), TelaTrade(), TelaHistory()],
+                        children: [
+                            TelaUser(),
+                            TelaTrade(),
+                            TelaHistory()
+                        ],
                     ),
                 ),
             )
