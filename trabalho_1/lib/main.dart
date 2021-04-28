@@ -3,30 +3,13 @@
  * Gustavo Tarrafil Sousa Pereira 159740
  */
 
-// import '13-04/tab_bar.dart';
-// import 'package:flutter/material.dart';
-
-// void main() {
-//     runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//     @override
-//     Widget build(BuildContext context) {
-//         return MyTabBarLayout();
-//     }
-// }
-
+import 'package:aula_flutter/trab1/view/AppCripose.dart';
 import 'package:flutter/material.dart';
-import 'trab1/tab.dart';
 
 void main() {
-    runApp(AppCripose());
+    runApp(MaterialApp(home:AppCripose()));
 }
 
-class AppCripose extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-        return TabBarCripose();
-    }
-}
+
+
+

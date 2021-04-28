@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-
-import './TelaUser.dart';
-import './TelaTrade.dart';
-import './TelaHistory.dart';
+import '../view/TradeView.dart';
+import '../controller/TabItem.dart';
+import 'UserView.dart';
+import 'TradeView.dart';
+import 'HistoryView.dart';
 
 class TabBarCripose extends StatelessWidget {
+    TabBarCripose(BuildContext context);
+
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
@@ -18,17 +21,17 @@ class TabBarCripose extends StatelessWidget {
                         title: Text("Cripose"),
                         bottom: TabBar(
                             tabs: [
-                                Tab(icon: Icon(Icons.account_box),text: "User"),
-                                Tab(icon: Icon(Icons.money_off_outlined),text: "Trade"),
-                                Tab(icon: Icon(Icons.lock_clock),text: "History"),
+                                TabItem("User", Icons.account_box),
+                                TabItem("Trade", Icons.monetization_on_sharp),
+                                TabItem("History", Icons.lock_clock),
                             ],
                         ),
                     ),
                     body: TabBarView(
                         children: [
-                            TelaUser(),
-                            TelaTrade(),
-                            TelaHistory()
+                            UserView(),
+                            TradeView(context),
+                            HistoryView(),
                         ],
                     ),
                 ),
@@ -36,3 +39,4 @@ class TabBarCripose extends StatelessWidget {
         );
     }
 }
+
