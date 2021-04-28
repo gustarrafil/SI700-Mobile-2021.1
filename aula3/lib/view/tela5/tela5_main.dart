@@ -12,30 +12,31 @@ class _MainTela5State extends State<MainTela5> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        generateAnimatedContainer(),
-        Divider(),
-        generatedButton(),
-      ],
-    );
+    return Column(children: [
+      generateAnimatedContainer(),
+      Divider(),
+      generateButton(),
+    ]);
   }
 
   Widget generateAnimatedContainer() {
     return AnimatedContainer(
-      duration: Duration(seconds: 1),
-      color: colors[_index % colors.length],
-      width: size[_index % size.length],
-      height: size[_index % size.length],
-      child: Text("arthur animated"),
-    );
+        duration: Duration(seconds: 1),
+        color: colors[_index % colors.length],
+        width: size[_index % size.length],
+        height: size[_index % size.length],
+        child: Text("Vitoria Sue Imamura"));
   }
 
-  Widget generatedButton() {
-    return RaisedButton(onPressed: () {
-      setState(() {
-        _index += 1;
-      });
-    });
+  Widget generateButton() {
+    return ElevatedButton(
+      child: Text("Click me"),
+      onPressed: () {
+        setState(() {
+          _index += 1;
+          print(_index);
+        });
+      },
+    );
   }
 }

@@ -1,6 +1,5 @@
-import 'package:aula3/model/complete_form.dart';
-import 'package:aula3/view/tela3/tela3_main.dart';
 import 'package:flutter/material.dart';
+import 'package:aula01/model/complete_form.dart';
 
 class MainTela4 extends StatefulWidget {
   @override
@@ -11,7 +10,6 @@ class MainTela4 extends StatefulWidget {
 
 class MainTela4State extends State<MainTela4> {
   GlobalKey<FormState> formKey = new GlobalKey<FormState>();
-  bool checkBoxValue = false;
   CompleteForm completeForm = new CompleteForm();
 
   @override
@@ -21,36 +19,54 @@ class MainTela4State extends State<MainTela4> {
         key: formKey,
         child: Column(
           children: [
-            // Tooltip(
-            // message: "Eu sou um tooltip"
-            // child: Row(
-            // children: [myCheckBox(), Text("Sou um checkbox")],
-            // ),
-            // ),
-            Row(children: [mySwitch(), Text('Switch')]),
-            Row(children: [mySlider(), Text("Slider")]),
-            Row(children: [myRadio(1), Text("Radio 1")]),
-            Row(children: [myRadio(2), Text("Radio 1")]),
-            Row(children: [myRadio(3), Text("Radio 1")]),
-            Divider(),
-            Row(children: [myRadio2(1), Text("Radio 1")]),
-            Row(children: [myRadio2(2), Text("Radio 1")]),
-            Row(children: [myRadio2(3), Text("Radio 1")]),
-            Center(child: Row(children: [myButtonSnackBar(), Text("Radio 1")])),
-            Center(
-                child: Row(children: [myButtonBottomSheet(), Text("Radio 1")])),
+            Tooltip(
+              message: "Eu sou um Tooltip",
+              child: Row(
+                children: [myCheckbox(), Text("Sou um Checkbox")],
+              ),
+            ),
+            Row(
+              children: [mySwitch(), Text("Sou um Switch")],
+            ),
+            Row(
+              children: [
+                Text(" Slider: "),
+                Expanded(child: mySlider()),
+                Text("Valor: ${completeForm.sliderValue}  ")
+              ],
+            ),
+            Row(
+              children: [myRadio(1), Text("Grupo 1: Value 1")],
+            ),
+            Row(
+              children: [myRadio(2), Text("Grupo 1: Value 2")],
+            ),
+            Row(
+              children: [myRadio(3), Text("Grupo 1: Value 3")],
+            ),
+            Row(
+              children: [myRadio2(1), Text("Grupo 2: Value 1")],
+            ),
+            Row(
+              children: [myRadio2(2), Text("Grupo 2: Value 2")],
+            ),
+            Row(
+              children: [myRadio2(3), Text("Grupo 2: Value 3")],
+            ),
+            myButtonSnackBar(),
+            myButtonBottomSheet()
           ],
         ),
       ),
     );
   }
 
-  Widget myCheckBox() {
+  Widget myCheckbox() {
     return Checkbox(
       value: completeForm.checkBoxValue,
-      onChanged: (bool inValue) {
+      onChanged: (bool value) {
         setState(() {
-          completeForm.checkBoxValue = inValue;
+          completeForm.checkBoxValue = value;
         });
       },
     );
@@ -69,15 +85,15 @@ class MainTela4State extends State<MainTela4> {
 
   Widget mySlider() {
     return Slider(
-      value: completeForm.sliderValue,
-      onChanged: (double inValue) {
-        setState(() {
-          completeForm.sliderValue = inValue;
-        });
-      },
-      min: 0,
-      max: 10,
-    );
+        value: completeForm.sliderValue,
+        onChanged: (double inValue) {
+          setState(() {
+            print("inValue: $inValue");
+            completeForm.sliderValue = inValue;
+          });
+        },
+        min: 0,
+        max: 10);
   }
 
   Widget myRadio(int value) {
@@ -105,53 +121,79 @@ class MainTela4State extends State<MainTela4> {
   }
 
   Widget myButtonSnackBar() {
-    return RaisedButton(
-      child: Text("Button to Snack"),
+    return ElevatedButton(
+      child: Text("Coleta Informações"),
       onPressed: () {
-        Scaffold.of(context).showSnackBar(SnackBar(
-            backgroundColor: Colors.purple,
-            action: SnackBarAction(
-                label: "Volte sempre",
-                onPressed: () {
-                  print("funcionou");
-                }),
-            content: Text("Obrigado por ser snack")));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.purple,
+          duration: Duration(seconds: 1),
+          content: Text("Obrigado Carolina Sancho!"),
+          action: SnackBarAction(
+            label: "Volte Sempre",
+            onPressed: () {
+              print("Funcionou");
+            },
+          ),
+        ));
       },
     );
   }
 
   Widget myButtonBottomSheet() {
-    return RaisedButton(
-        child: Text("Abrindo bottom sheet"),
-        onPressed: () {
-          showBottomSheet(
-              context: context,
-              builder: (_) {
-                // Daqui em diante eh a tela do bottom sheet
-                return Container(
-                  color: Colors.grey,
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [Text("Voce tem certeza dessa ordem ?")],
-                        mainAxisSize: MainAxisSize.min,
-                      ),
-                      FlatButton(
-                          child: Text("Biscoito"),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          }),
-                      FlatButton(
-                          child: Text("Bolacha"),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          })
-                    ],
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                  ),
-                );
-              });
-        });
+    return ElevatedButton(
+      child: Text("Coleta Informações - Bottom Sheet"),
+      onPressed: () {
+        showBottomSheet(
+            context: context,
+            builder: (_) {
+              // Daqui em diante é a tela do BottomSheet
+              return Container(
+                color: Colors.purple[50],
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        Text("Biscoito ou Bolacha?"),
+                        TextButton(
+                            child: Text("Biscoito com certeza"),
+                            onPressed: () {
+                              completeForm.bottomSheetChoice = 1;
+                              Navigator.of(context).pop();
+                            }),
+                        TextButton(
+                            child: Text("Biscoito eu acho"),
+                            onPressed: () {
+                              completeForm.bottomSheetChoice = 2;
+                              Navigator.of(context).pop();
+                            }),
+                        TextButton(
+                            child: Text("Bolacha com certeza"),
+                            onPressed: () {
+                              completeForm.bottomSheetChoice = 3;
+                              Navigator.of(context).pop();
+                            }),
+                        TextButton(
+                            child: Text("Bolacha eu acho"),
+                            onPressed: () {
+                              completeForm.bottomSheetChoice = 4;
+                              Navigator.of(context).pop();
+                            }),
+                        TextButton(
+                            child: Text("Nem um e nem outro"),
+                            onPressed: () {
+                              completeForm.bottomSheetChoice = 5;
+                              Navigator.of(context).pop();
+                            }),
+                      ],
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.start,
+                ),
+              );
+            });
+      },
+    );
   }
 }

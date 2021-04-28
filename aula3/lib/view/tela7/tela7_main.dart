@@ -16,28 +16,29 @@ class _MainTela7State extends State<MainTela7> {
       children: [
         generateAnimatedDefaultTextStyle(),
         Divider(),
-        generatedButton(),
+        generateButton()
       ],
     );
   }
 
   Widget generateAnimatedDefaultTextStyle() {
     return AnimatedDefaultTextStyle(
-      duration: Duration(seconds: 1),
-      style: TextStyle(
-        color: colors[_index % colors.length],
-        fontSize: sizes[_index % sizes.length],
-      ),
-      child: null,
-    );
+        duration: Duration(seconds: 1),
+        style: TextStyle(
+            color: colors[_index % colors.length],
+            fontSize: sizes[_index % sizes.length]),
+        child: Text("Carolina da Silva Sancho"));
   }
 
-  Widget generatedButton() {
-    return RaisedButton(onPressed: () {
-      setState(() {
-        _index += 1;
-        print(_index);
-      });
-    });
+  Widget generateButton() {
+    return ElevatedButton(
+      child: Text("Click me"),
+      onPressed: () {
+        setState(() {
+          _index += 1;
+          print(_index);
+        });
+      },
+    );
   }
 }

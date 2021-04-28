@@ -1,6 +1,6 @@
-import 'package:aula3/view/tela1/tela1_main.dart';
-import 'package:aula3/view/tela2/tela2_main.dart';
 import 'package:flutter/material.dart';
+import 'package:aula01/view/tela1/tela1_main.dart';
+import 'package:aula01/view/tela2/tela2_main.dart';
 
 class MainTela6 extends StatefulWidget {
   @override
@@ -8,34 +8,33 @@ class MainTela6 extends StatefulWidget {
 }
 
 class _MainTela6State extends State<MainTela6> {
-  bool crossFaseFirst = true;
+  bool crossFadeFirst = true;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        generateAnimatedCrossFase(),
-        Divider(),
-        generatedButton(),
-      ],
+      children: [generateAnimatedCrossFade(), Divider(), generateButton()],
     );
   }
 
-  Widget generateAnimatedCrossFase() {
+  Widget generateAnimatedCrossFade() {
     return AnimatedCrossFade(
+      duration: Duration(seconds: 1),
       firstChild: MainTela1(),
       secondChild: MainTela2(),
       crossFadeState:
-          crossFaseFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-      duration: Duration(seconds: 1),
+          crossFadeFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
     );
   }
 
-  Widget generatedButton() {
-    return RaisedButton(onPressed: () {
-      setState(() {
-        crossFaseFirst = !crossFaseFirst;
-      });
-    });
+  Widget generateButton() {
+    return ElevatedButton(
+      child: Text("Click me"),
+      onPressed: () {
+        setState(() {
+          crossFadeFirst = !crossFadeFirst;
+        });
+      },
+    );
   }
 }

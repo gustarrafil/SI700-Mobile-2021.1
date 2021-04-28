@@ -1,6 +1,5 @@
-import 'package:aula3/model/login.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:aula01/model/login.dart';
 
 class MainTela3 extends StatelessWidget {
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
@@ -10,6 +9,7 @@ class MainTela3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+        //color: Colors.green,
         child: Form(
           key: formKey,
           child: Column(
@@ -30,7 +30,7 @@ class MainTela3 extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       validator: (String inValue) {
         if (inValue.length == 0) {
-          return "Insira um nome de usuario";
+          return "Insira um nome de usuário";
         }
         return null;
       },
@@ -38,31 +38,29 @@ class MainTela3 extends StatelessWidget {
         loginData.username = inValue;
       },
       decoration: InputDecoration(
-          hintText: "user@domain.br", labelText: "Username/E-mail"),
+          hintText: "user@domain.br", labelText: "Username (E-mail Address)"),
     );
   }
 
   Widget passwordFormField() {
     return TextFormField(
-      // keyboardType: TextInputType.visiblePassword,
       obscureText: true,
       validator: (String inValue) {
-        if (inValue.length <= 6) {
-          return "Minimo de 6 caracteres";
+        if (inValue.length < 10) {
+          return "Mínimo de 10 letras";
         }
         return null;
       },
       onSaved: (String inValue) {
         loginData.password = inValue;
       },
-      decoration: InputDecoration(
-          hintText: "Password", labelText: "Password (6 caracteres)"),
+      decoration: InputDecoration(labelText: "Insira uma senha forte"),
     );
   }
 
   Widget submitButton() {
-    return RaisedButton(
-      child: Text("Login"),
+    return ElevatedButton(
+      child: Text("Log In!"),
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
@@ -73,16 +71,14 @@ class MainTela3 extends StatelessWidget {
   }
 
   Widget submitButtonWithConfirmation() {
-    // Retorna o nome do usuario pq ele salva o nome depois de chamar a tela de confirmação
-    return RaisedButton(
-      child: Text("Longin in With Confirmation"),
+    return ElevatedButton(
+      child: Text("Log In with Confirmation!"),
       onPressed: () async {
         if (formKey.currentState.validate()) {
           await showDialog(
-              // Showdialog se declarou async pq pode levar tempo, dizendo que pode continuar processando
               context: formKey.currentContext,
               builder: (_) => generateConfirmationDialog(),
-              barrierDismissible: true);
+              barrierDismissible: false);
           if (loginData.confirmed) {
             formKey.currentState.save();
             loginData.doSomething();
@@ -95,27 +91,27 @@ class MainTela3 extends StatelessWidget {
 
   Widget generateConfirmationDialog() {
     return AlertDialog(
-      title: Text("Cofirmation required !"),
-      content: Text(
-          "Voce tem certeza de que gostaria de salvar ${loginData.username} ? "),
+      title: Text("Confirmation Required"),
+      content: Text("Você tem certeza de que gostaria de salvar?"),
       actions: [
-        FlatButton(
+        TextButton(
           child: Text("Sim"),
           onPressed: () {
             loginData.confirmed = true;
             Navigator.of(formKey.currentContext).pop();
           },
         ),
-        FlatButton(
-          child: Text("Nao"),
+        TextButton(
+          child: Text("Não"),
           onPressed: () {
             loginData.confirmed = false;
             Navigator.of(formKey.currentContext).pop();
           },
         ),
       ],
-      backgroundColor: Colors.cyan.shade50,
-      elevation: 30, //Coloca sombra
+      backgroundColor: Colors.cyan[100],
+      elevation: 20,
+      //shape: CircleBorder()
     );
   }
 }
