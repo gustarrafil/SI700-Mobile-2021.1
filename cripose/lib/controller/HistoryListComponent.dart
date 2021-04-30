@@ -12,11 +12,8 @@ Widget historyListComponent() {
             color: Colors.amber[100],
             elevation: cardElevation,
             child: ListTile(
-                title: HistoryItem(),
-                onTap: () {
-                  
-                },
-            )
-        );
+              title: HistoryItem(),
+              onTap: () {},
+            ));
       });
 }

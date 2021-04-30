@@ -1,4 +1,6 @@
 
+import 'package:cripose/controller/ButtonComponents.dart';
+
 import '../controller/ConfirmationComponent.dart';
 import 'package:flutter/material.dart';
 import '../view/TabBar.dart';
@@ -18,16 +20,7 @@ class ConfirmationView extends StatelessWidget {
             children: [
 Column(children: [Text("ordem feita com sucesso!")],),
                 ConfirmationComponent(),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => TabBarCripose(context)),
-                );
-              },
-              child: Text('go home'),
-            ),
+            ButtonComponents.homeBtn(context),
             ]
         ),
     )

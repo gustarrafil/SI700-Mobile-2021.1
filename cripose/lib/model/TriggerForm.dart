@@ -8,17 +8,33 @@ class TriggerForm extends StatelessWidget {
       key: triggerForm,
       child: Column(
         children: [
-fazerFuncaoFormField()
+          currencyPair(),
+          triggerType(),
+          triggerValue(),
         ],
       ),
     );
   }
 }
 
-Widget fazerFuncaoFormField() {
+Widget currencyPair() {
   return TextFormField(
     keyboardType: TextInputType.text,
-    decoration: InputDecoration(labelText: "Par da moeda"),
+    decoration: InputDecoration(labelText: "Par de moeda"),
   );
 }
 
+Widget triggerType() {
+  return TextFormField(
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(labelText: "Tipo de gatilho, > < <= >="),
+  );
+}
+
+//
+//
+Widget triggerValue() {
+  return TextFormField(
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(labelText: "Preço Gatilho"));
+}

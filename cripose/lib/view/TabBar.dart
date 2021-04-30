@@ -25,8 +25,8 @@ class TabBarCripose extends StatelessWidget {
                         bottom: TabBar(
                             tabs: [
                                 TabItem("User", Icons.account_box),
-                                TabItem("Trade", Icons.monetization_on_sharp),
-                                TabItem("History", Icons.lock_clock),
+                                TabItem("Trade", Icons.monetization_on_outlined),
+                                TabItem("History", Icons.history),
                             ],
                         ),
                     ),

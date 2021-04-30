@@ -7,14 +7,36 @@ class HistoryItem extends StatelessWidget {
     transaction = Transaction();
   }
   @override
+  // todo: vindo de transaction
+  //        par da moeda
+  //       Quantidade
+  //       Data
+  //
+  // Ao click open new confirmation transaction sem botao de confirmação
+  // só informações de transaction
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text(transaction.fromCurrency),
-        Text(transaction.toCurrency),
-        Text(transaction.fromValue.toString()),
-        Text(transaction.toValue.toString()),
+        Column(
+          children: [
+            Text(transaction.fromCurrency),
+            Text(transaction.fromValue.toString()),
+          ],
+        ),
+        Column(
+          children: [
+            Icon(Icons.arrow_forward),
+            Text("data"),
+            Text("hora"),
+          ],
+        ),
+        Column(
+          children: [
+            Text(transaction.toCurrency),
+            Text(transaction.toValue.toString()),
+          ],
+        ),
       ],
     );
   }

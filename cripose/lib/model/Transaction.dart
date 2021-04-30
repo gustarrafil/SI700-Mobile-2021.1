@@ -5,8 +5,8 @@ class Transaction {
     double _toValue;
 
     Transaction() {
-        _fromCurrency = 'mais';
-        _toCurrency = 'uma';
+        _fromCurrency = 'USD';
+        _toCurrency = 'BTC';
         _fromValue = 0.0;
         _toValue = 20.0;
     }

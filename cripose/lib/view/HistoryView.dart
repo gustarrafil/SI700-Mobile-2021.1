@@ -13,9 +13,9 @@ Widget screenHistory() {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Column(
         children: [
-Row(
-mainAxisAlignment: MainAxisAlignment.spaceAround,
-children: [Text("data"),Text("data"),Text("data"),Text("data"),],),
+// Row(
+// mainAxisAlignment: MainAxisAlignment.spaceAround,
+// children: [Text("Saída"),Text("Entrada"),Text("\$"),Text("\$"),],),
           Expanded(child: Container(child: historyListComponent())),
         ],
       ));

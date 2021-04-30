@@ -24,11 +24,12 @@ class _TradeViewState extends State<TradeView> {
         Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [walletComponent()]),
-        buySellSwitch(),
+        switchComponent(),
         generateAnimatedCrossFade(),
-        ButtonController.triggerBtn(context),
-        ButtonController.finishBtn(context),
-        // myButtonBottomSheet(context)
+        ButtonComponents.triggerBtn(context),
+        // ButtonController.finishBtn(context),
+ButtonComponents.finishBtnBottomSheet(context)
+
       ]),
     );
   }
@@ -47,12 +48,12 @@ class _TradeViewState extends State<TradeView> {
     );
   }
 
-  Widget buySellSwitch() {
+  Widget switchComponent() {
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text("Compra"),
+          Text("Compra",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
           Switch(
             value: crossFadeFirst,
             onChanged: (value) {
@@ -62,9 +63,12 @@ class _TradeViewState extends State<TradeView> {
             },
             activeColor: Colors.orangeAccent,
           ),
-          Text("Venda"),
+          Text("Venda",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
         ],
       )
     ]);
   }
+
+
+
 }
