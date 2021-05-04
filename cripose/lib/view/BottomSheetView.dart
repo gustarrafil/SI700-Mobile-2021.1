@@ -7,14 +7,24 @@ Widget bottomSheetView(BuildContext context) {
       decoration: new BoxDecoration(
         color: Colors.white,
       ),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text("Ordem de Compra"),
-        ConfirmationComponent(),
-        Text("Deseja confirmar a transação ?"),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text("Confirmar transação"))
+      child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+                Text("Transação",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+
+
+                ConfirmationComponent(),
+                Column(
+                  children: [
+                    Text("Deseja confirmar a transação ?",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+
+
+                    ElevatedButton(
+                        onPressed: () {
+                            Navigator.of(context).pop();
+                        },
+                        child: Text("CONFIRMAR TRANSAÇÃO")),
+                  ],
+                )
       ]));
 }

@@ -11,13 +11,30 @@ class TradeItemBox extends StatelessWidget {
     return SizedBox(
         child: Card(
             color: Colors.blue,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(transaction.fromCurrency),
-                  Text(transaction.toCurrency),
-                  Text(transaction.fromValue.toString()),
-                ])),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: [
+                        Text(transaction.fromCurrency),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(transaction.toCurrency),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(transaction.fromValue.toString()),
+                      ],
+                    ),
+                  ]),
+            )),
         width: 100);
   }
 }

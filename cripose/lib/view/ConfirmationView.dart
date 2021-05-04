@@ -18,7 +18,8 @@ class ConfirmationView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-Column(children: [Text("ordem feita com sucesso!")],),
+Column(
+children: [Text("Ordem feita com sucesso!",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28))],),
                 ConfirmationComponent(),
             ButtonComponents.homeBtn(context),
             ]
