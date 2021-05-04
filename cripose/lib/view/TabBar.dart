@@ -19,6 +19,7 @@ class TabBarCripose extends StatelessWidget {
                 child: Scaffold(
                     resizeToAvoidBottomInset: false,
                     appBar: AppBar(
+                        backgroundColor: Colors.blueGrey[900],
                         title: Text("Cripose"),
                         bottom: TabBar(
                             tabs: [

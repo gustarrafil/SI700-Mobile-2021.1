@@ -9,6 +9,7 @@ class ConfirmationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blueGrey[900],
           title: Text("Confirmation"),
         ),
         body: Padding(

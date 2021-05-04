@@ -9,7 +9,7 @@ Widget bottomSheetView(BuildContext context) {
       ),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        Text("Transação",
+        Text("Transaction",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
         ConfirmationComponent(),
         Column(
@@ -17,8 +17,19 @@ Widget bottomSheetView(BuildContext context) {
             Text("Do you want to confirm the transaction?",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
             ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      return Colors.blueGrey[900];
+                    },
+                  ),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
+                  final snackBar = SnackBar(
+                    content: Text('Order finished with success!'),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Text("CONFIRM TRANSACTION")),
           ],

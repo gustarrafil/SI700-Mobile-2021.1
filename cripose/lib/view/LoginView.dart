@@ -8,6 +8,7 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey[900],
         title: Text("Login"),
       ),
       body: Padding(

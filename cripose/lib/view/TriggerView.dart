@@ -10,6 +10,7 @@ class TriggerView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey[900],
         title: Text("Trigger configuration"),
       ),
       body: Padding(

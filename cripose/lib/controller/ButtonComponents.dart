@@ -13,6 +13,13 @@ class ButtonComponents {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -29,6 +36,13 @@ class ButtonComponents {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -45,6 +59,13 @@ class ButtonComponents {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -61,8 +82,14 @@ class ButtonComponents {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
-            onPressed: () {
-            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
+            onPressed: () {},
             child: Text("LOGOUT")),
       ],
     );
@@ -73,6 +100,13 @@ class ButtonComponents {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
             onPressed: () {
               return showBottomSheet(
                   elevation: 20.0,
@@ -89,6 +123,13 @@ class ButtonComponents {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -102,6 +143,13 @@ class ButtonComponents {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -118,6 +166,13 @@ class ButtonComponents {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -133,7 +188,16 @@ class ButtonComponents {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        ElevatedButton(onPressed: () {}, child: Text("SIGN IN")),
+        ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
+            onPressed: () {},
+            child: Text("SIGN IN")),
       ],
     );
   }

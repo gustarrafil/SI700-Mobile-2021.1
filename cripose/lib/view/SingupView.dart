@@ -11,6 +11,7 @@ class SingUpView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey[900],
         title: Text("Sign Up"),
       ),
       body: Padding(

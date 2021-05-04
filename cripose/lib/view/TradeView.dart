@@ -54,13 +54,16 @@ class _TradeViewState extends State<TradeView> {
           Text("Buy",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
           Switch(
+            activeTrackColor: Colors.blueGrey[900],
+            inactiveTrackColor: Colors.blueGrey[900],
             value: crossFadeFirst,
             onChanged: (value) {
               setState(() {
                 crossFadeFirst = value;
               });
             },
-            activeColor: Colors.orangeAccent,
+            activeColor: Colors.green,
+            inactiveThumbColor: Colors.red,
           ),
           Text("Sell",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),

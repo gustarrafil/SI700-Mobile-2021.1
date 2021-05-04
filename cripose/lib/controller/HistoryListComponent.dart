@@ -13,7 +13,7 @@ Widget historyListComponent() {
       itemCount: itemsQtt,
       itemBuilder: (context, index) {
         return Card(
-            color: Colors.amber[100],
+            color: Colors.blueGrey[100],
             elevation: cardElevation,
             child: ListTile(
               title: HistoryItem(),

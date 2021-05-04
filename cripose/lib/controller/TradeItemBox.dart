@@ -10,7 +10,7 @@ class TradeItemBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         child: Card(
-            color: Colors.blue,
+            color: Colors.blueGrey[100],
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
