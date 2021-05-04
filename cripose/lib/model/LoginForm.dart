@@ -27,7 +27,7 @@ class LoginForm extends StatelessWidget {
     return TextFormField(
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
-        hintText: 'Senha',
+        hintText: 'Password',
       ),
       autofocus: false,
       obscureText: true,

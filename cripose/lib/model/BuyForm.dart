@@ -22,20 +22,20 @@ class BuyForm extends StatelessWidget {
 Widget parmoedaFormField() {
   return TextFormField(
     keyboardType: TextInputType.text,
-    decoration: InputDecoration(labelText: "Par da moeda"),
+    decoration: InputDecoration(labelText: "Currency pair"),
   );
 }
 
 Widget precoFormField() {
   return TextFormField(
     keyboardType: TextInputType.number,
-    decoration: InputDecoration(labelText: "Preço de compra"),
+    decoration: InputDecoration(labelText: "Buy price"),
   );
 }
 
 Widget qtdFormField() {
   return TextFormField(
     keyboardType: TextInputType.number,
-    decoration: InputDecoration(labelText: "Quantidade"),
+    decoration: InputDecoration(labelText: "Quantity"),
   );
 }

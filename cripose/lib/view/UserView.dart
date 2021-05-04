@@ -31,7 +31,7 @@ Widget screenUser(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Últimas ordens",
+                    "Last orders",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ],
@@ -41,7 +41,7 @@ Widget screenUser(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Ordens abertas",
+                    "Open orders",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ],

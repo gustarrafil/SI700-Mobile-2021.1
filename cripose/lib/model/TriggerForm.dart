@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../controller/TriggerTypeDropDown.dart';
 
 class TriggerForm extends StatelessWidget {
   final GlobalKey<FormState> triggerForm = new GlobalKey<FormState>();
@@ -20,21 +21,16 @@ class TriggerForm extends StatelessWidget {
 Widget currencyPair() {
   return TextFormField(
     keyboardType: TextInputType.text,
-    decoration: InputDecoration(labelText: "Par de moeda"),
+    decoration: InputDecoration(labelText: "Currency pair"),
   );
 }
 
 Widget triggerType() {
-  return TextFormField(
-    keyboardType: TextInputType.number,
-    decoration: InputDecoration(labelText: "Tipo de gatilho, > < <= >="),
-  );
+  return DropDownDemo();
 }
 
-//
-//
 Widget triggerValue() {
   return TextFormField(
       keyboardType: TextInputType.number,
-      decoration: InputDecoration(labelText: "Preço Gatilho"));
+      decoration: InputDecoration(labelText: "Trigger value"));
 }

@@ -1,8 +1,7 @@
-import 'package:cripose/view/AppCripose.dart';
-import 'package:cripose/view/LoginView.dart';
-import 'package:cripose/view/SingupView.dart';
-import 'package:cripose/view/TabBar.dart';
-
+import '../view/AppCripose.dart';
+import '../view/LoginView.dart';
+import '../view/SingupView.dart';
+import '../view/TabBar.dart';
 import '../view/ConfirmationView.dart';
 import 'package:flutter/material.dart';
 import '../view/BottomSheetView.dart';
@@ -20,7 +19,7 @@ class ButtonComponents {
                 MaterialPageRoute(builder: (context) => TriggerView()),
               );
             },
-            child: Text("GATILHO")),
+            child: Text("TRIGGER")),
       ],
     );
   }
@@ -36,7 +35,7 @@ class ButtonComponents {
                 MaterialPageRoute(builder: (context) => ConfirmationView()),
               );
             },
-            child: Text("FINALIZAR")),
+            child: Text("FINISH")),
       ],
     );
   }
@@ -52,7 +51,7 @@ class ButtonComponents {
                 MaterialPageRoute(builder: (context) => AppCripose()),
               );
             },
-            child: Text("ENTRAR")),
+            child: Text("LOGIN")),
       ],
     );
   }
@@ -63,12 +62,8 @@ class ButtonComponents {
       children: [
         ElevatedButton(
             onPressed: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => LoginView()),
-              //   );
             },
-            child: Text("SAIR")),
+            child: Text("LOGOUT")),
       ],
     );
   }
@@ -84,7 +79,7 @@ class ButtonComponents {
                   context: context,
                   builder: (context) => bottomSheetView(context));
             },
-            child: Text("FINALIZAR")),
+            child: Text("FINISH")),
       ],
     );
   }
@@ -97,7 +92,7 @@ class ButtonComponents {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("VOLTAR")),
+            child: Text("BACK")),
       ],
     );
   }
@@ -129,7 +124,7 @@ class ButtonComponents {
                 MaterialPageRoute(builder: (context) => SingUpView(context)),
               );
             },
-            child: Text("CADASTRO")),
+            child: Text("SIGN IN")),
       ],
     );
   }
@@ -138,7 +133,7 @@ class ButtonComponents {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        ElevatedButton(onPressed: () {}, child: Text("CADASTRO")),
+        ElevatedButton(onPressed: () {}, child: Text("SIGN IN")),
       ],
     );
   }

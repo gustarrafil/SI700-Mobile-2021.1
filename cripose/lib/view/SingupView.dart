@@ -1,7 +1,7 @@
-import 'package:cripose/controller/ButtonComponents.dart';
-import 'package:cripose/model/SingUpForm.dart';
+import '../controller/ButtonComponents.dart';
+import '../model/SingUpForm.dart';
 import 'package:flutter/material.dart';
-import 'package:cripose/model/LoginForm.dart';
+import '../model/LoginForm.dart';
 
 class SingUpView extends StatelessWidget {
   SingUpView(BuildContext context);
@@ -11,7 +11,7 @@ class SingUpView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text("Cadastrar:"),
+        title: Text("Sign Up"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),

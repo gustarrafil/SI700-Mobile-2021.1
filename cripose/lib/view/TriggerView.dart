@@ -1,5 +1,4 @@
-import 'package:cripose/controller/WalletComponent.dart';
-
+import '../controller/WalletComponent.dart';
 import '../controller/ButtonComponents.dart';
 import '../model/TriggerForm.dart';
 import 'package:flutter/material.dart';

@@ -27,9 +27,7 @@ class _TradeViewState extends State<TradeView> {
         switchComponent(),
         generateAnimatedCrossFade(),
         ButtonComponents.triggerBtn(context),
-        // ButtonController.finishBtn(context),
-ButtonComponents.finishBtnBottomSheet(context)
-
+        ButtonComponents.finishBtnBottomSheet(context)
       ]),
     );
   }
@@ -53,7 +51,8 @@ ButtonComponents.finishBtnBottomSheet(context)
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text("Compra",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
+          Text("Buy",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
           Switch(
             value: crossFadeFirst,
             onChanged: (value) {
@@ -63,12 +62,10 @@ ButtonComponents.finishBtnBottomSheet(context)
             },
             activeColor: Colors.orangeAccent,
           ),
-          Text("Venda",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
+          Text("Sell",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
         ],
       )
     ]);
   }
-
-
-
 }

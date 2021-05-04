@@ -7,13 +7,6 @@ class HistoryItem extends StatelessWidget {
     transaction = Transaction();
   }
   @override
-  // todo: vindo de transaction
-  //        par da moeda
-  //       Quantidade
-  //       Data
-  //
-  // Ao click open new confirmation transaction sem botao de confirmação
-  // só informações de transaction
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -27,8 +20,8 @@ class HistoryItem extends StatelessWidget {
         Column(
           children: [
             Icon(Icons.arrow_forward),
-            Text("data"),
-            Text("hora"),
+            Text("04/05/2021"),
+            Text("13h38"),
           ],
         ),
         Column(

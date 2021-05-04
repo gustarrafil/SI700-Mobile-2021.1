@@ -1,6 +1,4 @@
-
-
-import 'package:cripose/view/ChartView.dart';
+import '../view/ChartView.dart';
 import 'package:flutter/material.dart';
 import '../view/TradeView.dart';
 import '../controller/TabItem.dart';
@@ -15,7 +13,6 @@ class TabBarCripose extends StatelessWidget {
     Widget build(BuildContext context) {
 
         return MaterialApp(
-            // colocar tema preto com icones amarelos?
             home: DefaultTabController(
                 length: 3,
                 initialIndex: 0,
@@ -28,7 +25,6 @@ class TabBarCripose extends StatelessWidget {
                                 TabItem("User", Icons.account_box),
                                 TabItem("Trade", Icons.monetization_on_outlined),
                                 TabItem("History", Icons.history),
-                                // TabItem("chart", Icons.history),
                             ],
                         ),
                     ),
@@ -37,7 +33,6 @@ class TabBarCripose extends StatelessWidget {
                             UserView(),
                             TradeView(context),
                             HistoryView(),
-                            // ChartView(),
                         ],
                     ),
                 ),

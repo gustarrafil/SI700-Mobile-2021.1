@@ -1,5 +1,5 @@
-import 'package:cripose/controller/ButtonComponents.dart';
-import 'package:cripose/model/LoginForm.dart';
+import '../controller/ButtonComponents.dart';
+import '../model/LoginForm.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {

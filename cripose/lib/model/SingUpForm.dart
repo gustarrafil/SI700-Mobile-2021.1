@@ -28,7 +28,7 @@ Widget passwordFormField() {
   return TextFormField(
     keyboardType: TextInputType.text,
     decoration: InputDecoration(
-      hintText: 'Senha',
+      hintText: 'Password',
     ),
     autofocus: false,
     obscureText: true,
@@ -39,7 +39,7 @@ Widget passwordConfirmationFormField() {
   return TextFormField(
     keyboardType: TextInputType.text,
     decoration: InputDecoration(
-      hintText: 'Confirmar senha',
+      hintText: 'Confirm password',
     ),
     autofocus: false,
     obscureText: true,
