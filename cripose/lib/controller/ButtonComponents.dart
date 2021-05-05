@@ -1,5 +1,4 @@
 import '../view/AppCripose.dart';
-import '../view/LoginView.dart';
 import '../view/SingupView.dart';
 import '../view/TabBar.dart';
 import '../view/ConfirmationView.dart';

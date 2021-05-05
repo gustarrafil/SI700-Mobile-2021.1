@@ -3,7 +3,6 @@ import '../controller/ButtonComponents.dart';
 import '../model/BuyForm.dart';
 import '../model/SellForm.dart';
 import '../controller/WalletComponent.dart';
-import 'BottomSheetView.dart';
 
 class TradeView extends StatefulWidget {
   TradeView(BuildContext context);
