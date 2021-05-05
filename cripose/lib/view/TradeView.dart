@@ -61,8 +61,8 @@ class _TradeViewState extends State<TradeView> {
                 crossFadeFirst = value;
               });
             },
-            activeColor: Colors.green,
-            inactiveThumbColor: Colors.red,
+            activeColor: Colors.red,
+            inactiveThumbColor: Colors.green,
           ),
           Text("Sell",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
