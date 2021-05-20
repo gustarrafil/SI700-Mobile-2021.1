@@ -1,8 +1,8 @@
-import '../model/Transaction.dart';
+import '../model/TransactionValues.dart';
 import 'package:flutter/material.dart';
 
 class UserOrderItem extends StatelessWidget {
-  Transaction transaction;
+  TransactionValues transaction;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

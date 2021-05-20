@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:cripose/model/TransactionValues.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseLocalServer {

@@ -1,10 +1,10 @@
-import '../model/Transaction.dart';
+import '../model/TransactionValues.dart';
 import 'package:flutter/material.dart';
 
 class HistoryItem extends StatelessWidget {
-  Transaction transaction;
+  TransactionValues transaction;
   HistoryItem() {
-    transaction = Transaction();
+    transaction = TransactionValues();
   }
   @override
   Widget build(BuildContext context) {
