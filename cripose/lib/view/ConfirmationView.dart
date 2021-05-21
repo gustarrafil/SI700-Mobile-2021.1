@@ -1,8 +1,6 @@
 import '../controller/ButtonComponents.dart';
-
 import '../controller/ConfirmationComponent.dart';
 import 'package:flutter/material.dart';
-import '../view/TabBar.dart';
 
 class ConfirmationView extends StatelessWidget {
   @override

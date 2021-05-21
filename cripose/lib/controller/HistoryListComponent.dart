@@ -1,7 +1,4 @@
-import '../model/subscriber_chart.dart';
-import '../model/subscriber_series.dart';
 import '../view/ChartView.dart';
-
 import '../controller/HistoryItem.dart';
 import 'package:flutter/material.dart';
 

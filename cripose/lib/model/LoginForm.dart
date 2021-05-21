@@ -1,4 +1,3 @@
-import '../controller/SliderComponent.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatelessWidget {

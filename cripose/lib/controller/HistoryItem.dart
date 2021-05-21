@@ -13,8 +13,8 @@ class HistoryItem extends StatelessWidget {
       children: [
         Column(
           children: [
-            Text(transaction.fromCurrency),
-            Text(transaction.fromValue.toString()),
+            Text('transaction.fromCurrency'),
+            Text('transaction.fromValue.toString()'),
           ],
         ),
         Column(
@@ -26,8 +26,8 @@ class HistoryItem extends StatelessWidget {
         ),
         Column(
           children: [
-            Text(transaction.toCurrency),
-            Text(transaction.toValue.toString()),
+            Text('transaction.toCurrency'),
+            Text('transaction.toValue.toString()'),
           ],
         ),
       ],

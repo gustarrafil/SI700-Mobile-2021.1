@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cripose/model/TransactionValues.dart';
 import 'package:meta/meta.dart';
 
 part 'transactionvalues_event.dart';
 part 'transactionvalues_state.dart';
 
-class TransactionvaluesBloc extends Bloc<TransactionvaluesEvent, TransactionvaluesState> {
+class TransactionvaluesBloc
+    extends Bloc<TransactionvaluesEvent, TransactionvaluesState> {
   TransactionvaluesBloc() : super(TransactionvaluesInitial());
 
   @override

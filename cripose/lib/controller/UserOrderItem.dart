@@ -11,8 +11,8 @@ class UserOrderItem extends StatelessWidget {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(transaction.fromCurrency),
-                  Text(transaction.fromValue.toString()),
+                  Text('transaction.fromCurrency'),
+                  Text('transaction.fromValue.toString()'),
                 ])),
         width: 100);
   }

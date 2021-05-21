@@ -2,7 +2,6 @@ import '../controller/WalletComponent.dart';
 import '../controller/ButtonComponents.dart';
 import '../model/TriggerForm.dart';
 import 'package:flutter/material.dart';
-import 'ConfirmationView.dart';
 
 class TriggerView extends StatelessWidget {
   @override

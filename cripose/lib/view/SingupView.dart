@@ -1,7 +1,6 @@
 import '../controller/ButtonComponents.dart';
 import '../model/SingUpForm.dart';
 import 'package:flutter/material.dart';
-import '../model/LoginForm.dart';
 
 class SingUpView extends StatelessWidget {
   SingUpView(BuildContext context);

@@ -6,8 +6,9 @@ class TransactionValues {
   double _quantity;
   DateTime _dateTime;
 
-  TransactionValues() { // pegar dos inputs
-  //Adicionar a chamada no bloc
+  TransactionValues() {
+    // pegar dos inputs
+    //Adicionar a chamada no bloc
     _buySell = true;
     _currencyPair = 'Btc/usdt';
     _triggerPrice = 50.000;
@@ -49,25 +50,29 @@ class TransactionValues {
       this._currencyPair = newCurrencyPair;
     }
   }
+
   set triggerPrice(double newtriggerPrice) {
     if (newtriggerPrice != 0) {
       this._triggerPrice = newtriggerPrice;
     }
   }
+
   set orderPrice(double newOrderPrice) {
     if (newOrderPrice != 0) {
       this._orderPrice = newOrderPrice;
     }
   }
+
   set quantity(double newQuantity) {
     if (newQuantity != 0) {
       this._quantity = newQuantity;
     }
   }
+
   set buysell(bool newbuysell) {
     if (newbuysell != null) {
       bool newbuySell;
-        this._buySell = newbuySell;
+      this._buySell = newbuySell;
     }
   }
 }
