@@ -1,27 +1,42 @@
+import 'package:cripose/logic/manage_db/manage_db_state.dart';
+import 'package:cripose/logic/manage_db/manage_local_db_bloc.dart';
+import 'package:cripose/model/TransactionValues.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../controller/TriggerTypeDropDown.dart';
 
 class TriggerForm extends StatelessWidget {
   final GlobalKey<FormState> triggerForm = new GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Form(
+return BlocBuilder<ManageLocalBloc, ManageState>(builder: (context, state) {
+      TransactionValues transactionValues = new TransactionValues();
+      return Form(
       key: triggerForm,
       child: Column(
         children: [
-          currencyPair(),
+          currencyPair(transactionValues),
           triggerType(),
-          triggerValue(),
+          triggerValue(transactionValues),
         ],
       ),
     );
+    });
+
+
+
+    
   }
 }
 
-Widget currencyPair() {
+Widget currencyPair(TransactionValues transactionValues) {
   return TextFormField(
     keyboardType: TextInputType.text,
     decoration: InputDecoration(labelText: "Currency pair"),
+    onSaved: (value) {
+          transactionValues.currencyPair = value;
+        },
   );
 }
 
@@ -29,8 +44,12 @@ Widget triggerType() {
   return DropDownDemo();
 }
 
-Widget triggerValue() {
+Widget triggerValue(TransactionValues transactionValues) {
   return TextFormField(
       keyboardType: TextInputType.number,
-      decoration: InputDecoration(labelText: "Trigger value"));
+      decoration: InputDecoration(labelText: "Trigger value"),
+      onSaved: (value) {
+          transactionValues.triggerPrice = value as double;
+        },
+    );
 }
