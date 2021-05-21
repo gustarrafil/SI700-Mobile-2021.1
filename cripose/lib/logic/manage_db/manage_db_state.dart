@@ -1,3 +1,5 @@
+import 'package:cripose/model/TransactionValues.dart';
+
 abstract class ManageState {}
 
 class InsertState extends ManageState {}

@@ -9,14 +9,17 @@ class DatabaseLocalServer {
   DatabaseLocalServer._createInstance();
 
   static Database _database;
-  static StreamController _controller;
 
   String transactionTable = 'transactionTable';
-  String transactionId = 'id';
-  String currencyPair = 'Btc/usdt';
-  double triggerPrice = 50.000;
-  double orderPrice = 49.999;
-  double quantity = 0.003;
+
+  String colId = 'id';
+
+  String colBuySell = 'buySell';
+  String colCurrencyPair = 'currencyPair';
+  String colTriggerPrice = 'triggerPrice';
+  String colOrderPrice = 'orderPrice';
+  String colQuantity = 'quantity';
+  String colDateTime = 'dateTime';
 
   Future<Database> get database async {
     if (_database == null) {
@@ -28,44 +31,45 @@ class DatabaseLocalServer {
   // Iniciando o banco da dados local
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = directory.path + 'transactions.db';
+    String path = directory.path + 'transactionValues.db';
 
-    Database transactionDatabase =
+    Database transactionValuesDatabase =
         await openDatabase(path, version: 1, onCreate: _createDb);
-    return transactionDatabase;
+    return transactionValuesDatabase;
   }
 
   // Criando o schema do local database
   _createDb(Database db, int newVersion) async {
     await db.execute(
-        "CREATE TABLE $transactionTable ($transactionId INTEGER PRIMARY KEY AUTOINCREMENT,$currencyPair TEXT ,$triggerPrice DOUBLE, $orderPrice DOUBLE, $quantity DOUBLE) ");
+        "CREATE TABLE $transactionTable ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colBuySell BIT NOT NULL, $colCurrencyPair TEXT NOT NULL, $colTriggerPrice DOUBLE, $colOrderPrice DOUBLE, $colQuantity DOUBLE NOT NULL, $colDateTime DATETIME  NOT NULL)");
   }
 
+    /* INSERT DELETE QUERY UPDATE */
+
   //Insert
-  Future<int> insertTransaction(TransactionValues transaction) async {
+  Future<int> insertTransactionValues(TransactionValues transactionValues) async {
     Database db = await this.database;
-    int result = await db.insert(transactionTable, transaction.toMap());
+    int result = await db.insert(transactionTable, transactionValues.toMap());
     notify();
     return result;
   }
 
-  // Query
-  Future<List<dynamic>> getTransactionList() async {
+    // QUERY: retorna tudo o que tem no banco.
+  getTransactionValuesList() async {
     Database db = await this.database;
-    var transactionMapList =
-        await db.rawQuery("SELECT * FROM $transactionTable");
+    var transactionValuesMapList = await db.rawQuery("SELECT * FROM $transactionTable");
 
-    List<TransactionValues> listTransaction = [];
+    List<TransactionValues> transactionValuesList = [];
     List<int> idList = [];
 
-    for (int i = 0; i < transactionMapList.length; i++) {
-      TransactionValues transactionValues =
-          TransactionValues.fromMap(transactionMapList[i]);
-      listTransaction.add(transactionValues);
-      idList.add(transactionMapList[i]['id']);
+    for (int i = 0; i < transactionValuesMapList.length; i++) {
+      TransactionValues transactionValues = TransactionValues.fromMap(transactionValuesMapList[i]);
+      transactionValuesList.add(transactionValues);
+      idList.add(transactionValuesMapList[i]["id"]);
     }
-    return [transactionMapList, idList];
+    return [transactionValuesList, idList];
   }
+
 
   // Todo:
   // Update (Acredito que nao rola fazer um update pela natureza da ordem)
@@ -73,19 +77,20 @@ class DatabaseLocalServer {
   // Future<int> updateTransaction (int transactionId,TransactionValues transation) async{}
 
   // Delete
+  // nao precisaria ter delete no banco local
   // Nao tenho certeza como bater esse id com o do banco entao
-  Future<int> deleteTransaction(int transactionId) async {
-    Database db = await this.database;
-    int result = await db.rawDelete(
-        'DELETE FROM $transactionTable where $transactionId = $transactionId');
-    notify();
-    return result;
-  }
+//   Future<int> deleteTransaction(int transactionId) async {
+//     Database db = await this.database;
+//     int result = await db.rawDelete(
+//         'DELETE FROM $transactionTable where $transactionId = $transactionId');
+//     notify();
+//     return result;
+//   }
 
   // Stream
   notify() async {
     if (_controller != null) {
-      var response = await getTransactionList();
+      var response = await getTransactionValuesList();
       _controller.sink.add(response);
     }
   }
@@ -103,4 +108,11 @@ class DatabaseLocalServer {
       _controller = null;
     }
   }
+
+  static StreamController _controller;
+}
+
+main() {
+  var response = DatabaseLocalServer.helper.getTransactionValuesList();
+  print(response[1]);
 }

@@ -9,6 +9,10 @@ class TransactionValues {
   TransactionValues() {
     // pegar dos inputs
     //Adicionar a chamada no bloc
+    /*
+    true = sell
+    false = buy
+    */
     _buySell = true;
     _currencyPair = 'Btc/usdt';
     _triggerPrice = 50.000;
@@ -25,17 +29,6 @@ class TransactionValues {
     this._orderPrice = map['orderPrice'];
     this._quantity = map['quantity'];
     this._dateTime = map['dateTime'];
-  }
-
-  toMap() {
-    var map = Map<String, dynamic>();
-    map['buySell'] = buySell;
-    map['currencyPair'] = currencyPair;
-    map['triggerPrice'] = triggerPrice;
-    map['orderPrice'] = orderPrice;
-    map['quantity'] = quantity;
-    map['dateTime'] = dateTime;
-    return map;
   }
 
   String get currencyPair => _currencyPair;
@@ -75,4 +68,17 @@ class TransactionValues {
       this._buySell = newbuySell;
     }
   }
+
+  toMap() {
+    var map = Map<String, dynamic>();
+    map['buySell'] = _buySell;
+    map['currencyPair'] = _currencyPair;
+    map['triggerPrice'] = _triggerPrice;
+    map['orderPrice'] = _orderPrice;
+    map['quantity'] = _quantity;
+    map['dateTime'] = _dateTime;
+    return map;
+  }
+
+
 }

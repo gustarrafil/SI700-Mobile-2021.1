@@ -8,8 +8,10 @@ class ManageLocalBloc extends Bloc<ManageEvent, ManageState> {
 
   @override
   Stream<ManageState> mapEventToState(ManageEvent event) async* {
-    if (event is DeleteEvent) {
-      DatabaseLocalServer.helper.deleteTransaction(event.transactionId);
+    if (event is SubmitEvent) {
+      if (state is InsertState) {
+        DatabaseLocalServer.helper.insertTransactionValues(event.transactionValues);
+      }
     }
   }
 }
