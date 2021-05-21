@@ -1,84 +1,73 @@
 class TransactionValues {
-  String _fromCurrency;
-  String _toCurrency;
-  double _fromValue;
-  double _toValue;
+  bool _buySell;
+  String _currencyPair;
+  double _triggerPrice;
+  double _orderPrice;
+  double _quantity;
+  DateTime _dateTime;
 
-  // arthur add para o database local
-  // String _transactionId = 'id';
-  String _currencyPair = 'Btc/usdt';
-  double _triggerPrice = 50.000;
-  double _orderPrice = 49.999;
-  double _quantity = 0.003;
-
-  TransactionValues() {
-    // arthur add para o database local
-    // _transactionId = 'id';
+  TransactionValues() { // pegar dos inputs
+  //Adicionar a chamada no bloc
+    _buySell = true;
     _currencyPair = 'Btc/usdt';
     _triggerPrice = 50.000;
     _orderPrice = 49.999;
     _quantity = 0.003;
-
-    _fromCurrency = 'USD';
-    _toCurrency = 'BTC';
-    _fromValue = 0.0;
-    _toValue = 20.0;
+    // datetime unico atribuido no construtor
+    _dateTime = DateTime.now();
   }
 
-  // String get transactionId => _transactionId;
-  String get currencyPair => _currencyPair;
-  double get triggerPrice => _triggerPrice;
-  double get orderPrice => _orderPrice;
-  double get quantity => _quantity;
-  // arthur add para o database local
-
-  String get fromCurrency => _fromCurrency;
-  String get toCurrency => _toCurrency;
-  double get fromValue => _fromValue;
-  double get toValue => _toValue;
-
   TransactionValues.fromMap(map) {
-    // this._transactionId = map['transactionId'];
+    this._buySell = map['buySell'];
     this._currencyPair = map['currencyPair'];
     this._triggerPrice = map['triggerPrice'];
     this._orderPrice = map['orderPrice'];
     this._quantity = map['quantity'];
+    this._dateTime = map['dateTime'];
   }
 
   toMap() {
     var map = Map<String, dynamic>();
-    map['_currencyPair'] = _currencyPair;
-    map['_triggerPrice'] = _triggerPrice;
-    map['_orderPrice'] = _orderPrice;
-    map['_quantity'] = _quantity;
-    // map['_fromCurrency'] = _fromCurrency;
-    // map['_toCurrency'] = _toCurrency;
-    // map['_fromValue'] = _fromValue;
-    // map['_toValue'] = _toValue;
+    map['buySell'] = buySell;
+    map['currencyPair'] = currencyPair;
+    map['triggerPrice'] = triggerPrice;
+    map['orderPrice'] = orderPrice;
+    map['quantity'] = quantity;
+    map['dateTime'] = dateTime;
     return map;
   }
+
+  String get currencyPair => _currencyPair;
+  double get triggerPrice => _triggerPrice;
+  double get orderPrice => _orderPrice;
+  double get quantity => _quantity;
+  bool get buySell => _buySell;
+  DateTime get dateTime => _dateTime;
 
   set currencyPair(String newCurrencyPair) {
     if (newCurrencyPair.length > 0) {
       this._currencyPair = newCurrencyPair;
     }
   }
-
   set triggerPrice(double newtriggerPrice) {
     if (newtriggerPrice != 0) {
       this._triggerPrice = newtriggerPrice;
     }
   }
-
   set orderPrice(double newOrderPrice) {
     if (newOrderPrice != 0) {
       this._orderPrice = newOrderPrice;
     }
   }
-
   set quantity(double newQuantity) {
     if (newQuantity != 0) {
       this._quantity = newQuantity;
+    }
+  }
+  set buysell(bool newbuysell) {
+    if (newbuysell != null) {
+      bool newbuySell;
+        this._buySell = newbuySell;
     }
   }
 }
