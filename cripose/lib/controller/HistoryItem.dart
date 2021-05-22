@@ -2,10 +2,11 @@ import '../model/TransactionValues.dart';
 import 'package:flutter/material.dart';
 
 class HistoryItem extends StatelessWidget {
-  TransactionValues transaction;
-  HistoryItem() {
-    transaction = TransactionValues();
+  TransactionValues transactionValues;
+  HistoryItem(item) {
+    transactionValues = item;
   }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,21 +14,21 @@ class HistoryItem extends StatelessWidget {
       children: [
         Column(
           children: [
-            Text('transaction.fromCurrency'),
-            Text('transaction.fromValue.toString()'),
+            Text('${transactionValues.currencyPair}'),
+            Text('${transactionValues.orderPrice}')
           ],
         ),
         Column(
           children: [
             Icon(Icons.arrow_forward),
-            Text("04/05/2021"),
-            Text("13h38"),
+            Text('${transactionValues.dateTime.day}/${transactionValues.dateTime.month}/${transactionValues.dateTime.year}'),
+            Text('${transactionValues.dateTime.hour}h${transactionValues.dateTime.minute}'),
           ],
         ),
         Column(
           children: [
-            Text('transaction.toCurrency'),
-            Text('transaction.toValue.toString()'),
+              Text('${transactionValues.buySell ? "venda" : "compra"}'),
+            Text('${transactionValues.quantity}')
           ],
         ),
       ],

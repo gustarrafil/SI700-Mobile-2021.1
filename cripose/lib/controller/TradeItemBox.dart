@@ -2,9 +2,9 @@ import '../model/TransactionValues.dart';
 import 'package:flutter/material.dart';
 
 class TradeItemBox extends StatelessWidget {
-  TransactionValues transaction;
+  TransactionValues transactionValues;
   TradeItemBox() {
-    transaction = TransactionValues();
+    transactionValues = TransactionValues();
   }
   @override
   Widget build(BuildContext context) {
@@ -19,18 +19,18 @@ class TradeItemBox extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text('transaction.fromCurrency'),
+                        Text('${transactionValues.currencyPair}'),
                       ],
                     ),
                     Row(
                       children: [
-                        Text('transaction.toCurrency'),
+                          Text('${transactionValues.buySell ? "compra" : "venda"}'),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text('transaction.fromValue.toString()'),
+                        Text('${transactionValues.quantity}'),
                       ],
                     ),
                   ]),
