@@ -1,4 +1,4 @@
-import '../controller/ConfirmationComponent.dart';
+import '../bloc/component/ConfirmationComponent.dart';
 import 'package:flutter/material.dart';
 
 Widget bottomSheetView(BuildContext context) {

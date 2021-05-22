@@ -1,5 +1,5 @@
-import '../controller/ButtonComponents.dart';
-import '../model/LoginForm.dart';
+import '../bloc/component/ButtonComponents.dart';
+import '../bloc/form/LoginForm.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {

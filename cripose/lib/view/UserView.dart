@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../controller/walletComponent.dart';
-import '../controller/ButtonComponents.dart';
-import '../controller/OrdersController.dart';
-import '../controller/NameComponent.dart';
+import '../bloc/component/ButtonComponents.dart';
+import '../bloc/component/OrdersController.dart';
+import '../bloc/component/NameComponent.dart';
 
 class UserView extends StatelessWidget {
   @override

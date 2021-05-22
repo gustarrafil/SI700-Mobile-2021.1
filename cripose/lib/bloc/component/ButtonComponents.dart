@@ -1,10 +1,10 @@
-import '../view/AppCripose.dart';
-import '../view/SingupView.dart';
-import '../view/TabBar.dart';
-import '../view/ConfirmationView.dart';
+import '../../view/AppCripose.dart';
+import '../../view/SingupView.dart';
+import '../../view/TabBar.dart';
+import '../../view/ConfirmationView.dart';
 import 'package:flutter/material.dart';
-import '../view/BottomSheetView.dart';
-import '../view/TriggerView.dart';
+import '../../view/BottomSheetView.dart';
+import '../../view/TriggerView.dart';
 
 class ButtonComponents {
   static Widget triggerBtn(BuildContext context) {
@@ -152,7 +152,7 @@ class ButtonComponents {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => TabBarCripose(context)),
+                MaterialPageRoute(builder: (context) => TabBarCripose()),
               );
             },
             child: Text("OK")),

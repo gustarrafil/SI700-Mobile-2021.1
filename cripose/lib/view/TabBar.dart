@@ -1,10 +1,10 @@
-import 'package:cripose/logic/manage_db/manage_db_state.dart';
-import 'package:cripose/logic/manage_db/manage_local_db_bloc.dart';
-import 'package:cripose/logic/monitor_db/monitor_db_bloc.dart';
+import 'package:cripose/bloc/logic/manage_db/manage_db_state.dart';
+import 'package:cripose/bloc/logic/manage_db/manage_local_db_bloc.dart';
+import 'package:cripose/bloc/logic/monitor_db/monitor_db_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../view/TradeView.dart';
-import '../controller/TabItem.dart';
+import '../bloc/component/TabItem.dart';
 import 'UserView.dart';
 import 'TradeView.dart';
 import 'HistoryView.dart';
@@ -34,75 +34,67 @@ class _TabBarCriposeState extends State<TabBarCripose> {
                 ],
                 child: BlocListener<ManageLocalBloc, ManageState>(
                     listener: (context, state) {
-                        if (state is UpdateState) {
-                            setState(() {
-                                _currentPage = 1;
-                            });
-                        }
+                        // if (state is UpdateState) {
+                        //     setState(() {
+                        //         _currentPage = 1;
+                        //     });
+                        // }
                     },
 
-                    child: Scaffold(
-                        resizeToAvoidBottomInset: false,
-                        body: _pages[_currentPage],
-                        appBar: AppBar(
-                            backgroundColor: Colors.blueGrey[900],
-                            title: Text("Cripose"),
-                            bottom: TabBar(
-                                tabs: [
-                                    TabItem("User", Icons.account_box),
-                                    TabItem("Trade", Icons.monetization_on_outlined),
-                                    TabItem("History", Icons.history),
+                    child: DefaultTabController(
+                        length: 3,
+                        initialIndex: 0,
+                        child: Scaffold(
+                            resizeToAvoidBottomInset: false,
+                            appBar: AppBar(
+                                backgroundColor: Colors.blueGrey[900],
+                                title: Text("Cripose"),
+                                bottom: TabBar(
+                                    tabs: _pages,
+                                ),
+                            ),
+                            body: TabBarView(
+                                children: [
+                                    UserView(),
+                                    TradeView(context),
+                                    HistoryView(),
                                 ],
                             ),
                         ),
-                        bottomNavigationBar: BottomNavigationBar(
-                            items: [
-                                TabItem("User", Icons.account_box),
-                                TabItem("Trade", Icons.monetization_on_outlined),
-                                TabItem("History", Icons.history),
-                            ],
-                            currentIndex: _currentPage,
-                            onTap: (int novoIndex) {
-                                setState(() {
-                                    _currentPage = novoIndex;
-                                });
-                            },
-                        ),
-                        
-                    ),
+                    )
                 ),
             ),
         );
 
 
 
-    return MaterialApp(
-        home: DefaultTabController(
-            length: 3,
-            initialIndex: 0,
-            child: Scaffold(
-                resizeToAvoidBottomInset: false,
-                appBar: AppBar(
-                    backgroundColor: Colors.blueGrey[900],
-                    title: Text("Cripose"),
-                    bottom: TabBar(
-                        tabs: [
-                            TabItem("User", Icons.account_box),
-                            TabItem("Trade", Icons.monetization_on_outlined),
-                            TabItem("History", Icons.history),
-                        ],
-                    ),
-                ),
-                body: TabBarView(
-                    children: [
-                        UserView(),
-                        TradeView(context),
-                        HistoryView(),
-                    ],
-                ),
-            ),
-        )
-    );
+    // return MaterialApp(
+    //     home: DefaultTabController(
+    //         length: 3,
+    //         initialIndex: 0,
+    //         child: Scaffold(
+    //             resizeToAvoidBottomInset: false,
+    //             appBar: AppBar(
+    //                 backgroundColor: Colors.blueGrey[900],
+    //                 title: Text("Cripose"),
+    //                 bottom: TabBar(
+    //                     tabs: [
+    //                         TabItem("User", Icons.account_box),
+    //                         TabItem("Trade", Icons.monetization_on_outlined),
+    //                         TabItem("History", Icons.history),
+    //                     ],
+    //                 ),
+    //             ),
+    //             body: TabBarView(
+    //                 children: [
+    //                     UserView(),
+    //                     TradeView(context),
+    //                     HistoryView(),
+    //                 ],
+    //             ),
+    //         ),
+    //     )
+    // );
   }
 }
 

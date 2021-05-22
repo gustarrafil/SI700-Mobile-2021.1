@@ -1,4 +1,4 @@
-import '../model/TransactionValues.dart';
+import '../../model/TransactionValues.dart';
 import 'package:flutter/material.dart';
 
 class HistoryItem extends StatelessWidget {

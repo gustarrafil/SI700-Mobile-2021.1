@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cripose/data/local/local_database.dart';
-import 'package:cripose/logic/monitor_db/monitor_db_event.dart';
-import 'package:cripose/logic/monitor_db/monitor_db_state.dart';
+import 'package:cripose/bloc/logic/monitor_db/monitor_db_event.dart';
+import 'package:cripose/bloc/logic/monitor_db/monitor_db_state.dart';
 import 'package:cripose/model/TransactionValues.dart';
+import 'package:cripose/model/User.dart';
 
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   StreamSubscription _localSubscription;
@@ -28,6 +29,8 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
       List<int> localIdList = response[1];
       yield MonitorState(idList: localIdList, transactionValuesList: localtransactionValuesList);
     } else if (event is UpdateList) {
+      yield MonitorState(idList: event.idList, transactionValuesList: event.transactionValuesList);
+    } else if (event is UpdateWallet) {
       yield MonitorState(idList: event.idList, transactionValuesList: event.transactionValuesList);
     }
   }

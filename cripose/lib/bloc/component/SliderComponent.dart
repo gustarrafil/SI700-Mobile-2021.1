@@ -1,4 +1,4 @@
-import '../model/Wallet.dart';
+import '../../model/Wallet.dart';
 import 'package:flutter/material.dart';
 
 class TradeSlider extends StatefulWidget {
@@ -10,7 +10,7 @@ class _TradeSliderState extends State<TradeSlider> {
   double _value = 0.0;
 
   calculatePercentage(double inValue) {
-    double wallet = (new Wallet()).value;
+    double wallet = (new Wallet()).walletValueDouble;
     return (inValue * 100) / wallet;
   }
 

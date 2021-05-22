@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:cripose/model/TransactionValues.dart';
+import 'package:cripose/model/User.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -11,6 +12,10 @@ class DatabaseLocalServer {
   static Database _database;
 
   String transactionTable = 'transactionTable';
+  String userTable = 'userTable';
+  String colUserName = 'name';
+  String colUserEmail = 'email';
+  String colUserPwd = 'pwd';
 
   String colId = 'id';
 
@@ -20,6 +25,7 @@ class DatabaseLocalServer {
   String colOrderPrice = 'orderPrice';
   String colQuantity = 'quantity';
   String colDateTime = 'dateTime';
+  String colWallet = 'wallet';
 
   Future<Database> get database async {
     if (_database == null) {
@@ -38,10 +44,14 @@ class DatabaseLocalServer {
     return transactionValuesDatabase;
   }
 
+  
+
   // Criando o schema do local database
   _createDb(Database db, int newVersion) async {
     await db.execute(
-        "CREATE TABLE $transactionTable ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colBuySell BIT NOT NULL, $colCurrencyPair TEXT NOT NULL, $colTriggerPrice DOUBLE, $colOrderPrice DOUBLE, $colQuantity DOUBLE NOT NULL, $colDateTime DATETIME  NOT NULL)");
+        "CREATE TABLE $transactionTable ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colWallet DOUBLE, $colBuySell BIT, $colCurrencyPair TEXT, $colTriggerPrice DOUBLE, $colOrderPrice DOUBLE, $colQuantity DOUBLE, $colDateTime DATETIME)");
+    await db.execute(
+        "CREATE TABLE $userTable ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colUserName TEXT NOT NULL, $colUserEmail TEXT NOT NULL, $colUserPwd TEXT NOT NULL)");
   }
 
     /* INSERT DELETE QUERY UPDATE */
@@ -50,6 +60,12 @@ class DatabaseLocalServer {
   Future<int> insertTransactionValues(TransactionValues transactionValues) async {
     Database db = await this.database;
     int result = await db.insert(transactionTable, transactionValues.toMap());
+    notify();
+    return result;
+  }
+  Future<int> insertUser(User user) async {
+    Database db = await this.database;
+    int result = await db.insert(userTable, user.toMap());
     notify();
     return result;
   }
@@ -69,23 +85,26 @@ class DatabaseLocalServer {
     }
     return [transactionValuesList, idList];
   }
+  getUser(User user) async {
+    Database db = await this.database;
+    var userMapList = await db.rawQuery("SELECT * FROM $userTable");
 
+    if (userMapList.length == 1) {
+      User user = User.fromMap(userMapList[0]);
 
-  // Todo:
-  // Update (Acredito que nao rola fazer um update pela natureza da ordem)
-  // Se vc enviou uma ordem nao da pra atualizar ela, apenas excluir e gerar outra...
-  // Future<int> updateTransaction (int transactionId,TransactionValues transation) async{}
+      return user.email == userMapList[0]["email"] && user.pwd == userMapList[0]["pwd"];
+    }
+  }
+
 
   // Delete
-  // nao precisaria ter delete no banco local
-  // Nao tenho certeza como bater esse id com o do banco entao
-//   Future<int> deleteTransaction(int transactionId) async {
-//     Database db = await this.database;
-//     int result = await db.rawDelete(
-//         'DELETE FROM $transactionTable where $transactionId = $transactionId');
-//     notify();
-//     return result;
-//   }
+  Future<int> deleteTransaction(int transactionId) async {
+    Database db = await this.database;
+    int result = await db.rawDelete(
+        "DELETE FROM $transactionTable WHERE $colId = $transactionId");
+    notify();
+    return result;
+  }
 
   // Stream
   notify() async {
@@ -112,7 +131,9 @@ class DatabaseLocalServer {
   static StreamController _controller;
 }
 
-main() {
-  var response = DatabaseLocalServer.helper.getTransactionValuesList();
-  print(response[1]);
-}
+// main() {
+//   var response = DatabaseLocalServer.helper.getTransactionValuesList();
+//   print(response[0]);
+//   var responseUser = DatabaseLocalServer.helper.getUser(user);
+//   print(responseUser[0]);
+// }
