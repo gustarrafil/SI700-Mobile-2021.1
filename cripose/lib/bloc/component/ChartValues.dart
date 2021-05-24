@@ -1,15 +1,17 @@
+import 'dart:ffi';
+
 import 'package:flutter/foundation.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-class SubscriberSeries {
-  final String year;
-  final int subscribers;
+class ValuesSeries {
+  final String dateTime;
+  final int value;
   final charts.Color barColor;
 
-  SubscriberSeries(
+  ValuesSeries(
     {
-      @required this.year,
-      @required this.subscribers,
+      @required this.dateTime,
+      @required this.value,
       @required this.barColor
     }
   );

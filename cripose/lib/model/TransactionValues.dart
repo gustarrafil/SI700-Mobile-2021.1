@@ -7,14 +7,11 @@ class TransactionValues {
   DateTime _dateTime;
 
   TransactionValues() {
-    // pegar dos inputs
-    //Adicionar a chamada no bloc
     _buySell = true;
-    _currencyPair = 'Btc/usdt';
-    _triggerPrice = 50.000;
-    _orderPrice = 49.999;
-    _quantity = 0.003;
-    // datetime unico atribuido no construtor
+    _currencyPair = "";
+    _triggerPrice = 0;
+    _orderPrice = 0;
+    _quantity = 0;
     _dateTime = DateTime.now();
   }
 
@@ -29,12 +26,12 @@ class TransactionValues {
 
   toMap() {
     var map = Map<String, dynamic>();
-    map['buySell'] = buySell;
-    map['currencyPair'] = currencyPair;
-    map['triggerPrice'] = triggerPrice;
-    map['orderPrice'] = orderPrice;
-    map['quantity'] = quantity;
-    map['dateTime'] = dateTime;
+    map['buySell'] = _buySell;
+    map['currencyPair'] = _currencyPair;
+    map['triggerPrice'] = _triggerPrice;
+    map['orderPrice'] = _orderPrice;
+    map['quantity'] = _quantity;
+    map['dateTime'] = _dateTime;
     return map;
   }
 
@@ -75,4 +72,8 @@ class TransactionValues {
       this._buySell = newbuySell;
     }
   }
+
+  
+
+
 }

@@ -1,6 +1,6 @@
-import '../controller/WalletComponent.dart';
-import '../controller/ButtonComponents.dart';
-import '../model/TriggerForm.dart';
+import '../bloc/component/WalletComponent.dart';
+import '../bloc/component/ButtonComponents.dart';
+import '../bloc/form/TriggerForm.dart';
 import 'package:flutter/material.dart';
 
 class TriggerView extends StatelessWidget {

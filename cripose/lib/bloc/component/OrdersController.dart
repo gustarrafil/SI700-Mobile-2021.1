@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../controller/TradeItemBox.dart';
+import 'TradeItemBox.dart';
 
 class OrdersController extends StatelessWidget {
   @override

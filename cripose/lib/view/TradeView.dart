@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../controller/ButtonComponents.dart';
-import '../model/BuyForm.dart';
-import '../model/SellForm.dart';
-import '../controller/WalletComponent.dart';
+import '../bloc/component/ButtonComponents.dart';
+import '../bloc/form/BuyForm.dart';
+import '../bloc/form/SellForm.dart';
+import '../bloc/component/WalletComponent.dart';
 
 class TradeView extends StatefulWidget {
   TradeView(BuildContext context);

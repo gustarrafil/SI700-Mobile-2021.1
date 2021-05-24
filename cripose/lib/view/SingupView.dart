@@ -1,5 +1,5 @@
-import '../controller/ButtonComponents.dart';
-import '../model/SingUpForm.dart';
+import '../bloc/component/ButtonComponents.dart';
+import '../bloc/form/SingUpForm.dart';
 import 'package:flutter/material.dart';
 
 class SingUpView extends StatelessWidget {

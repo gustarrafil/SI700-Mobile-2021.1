@@ -1,48 +1,48 @@
-import '../model/subscriber_chart.dart';
-import '../model/subscriber_series.dart';
+import '../bloc/component/CurrencyChartComponent.dart';
+import '../bloc/component/ChartValues.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class ChartView extends StatelessWidget {
-  final List<SubscriberSeries> data = [
-    SubscriberSeries(
-      year: "12",
-      subscribers: 65,
+  final List<ValuesSeries> data = [
+    ValuesSeries(
+      dateTime: "12",
+      value: 65,
       barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     ),
-    SubscriberSeries(
-      year: "13",
-      subscribers: 60,
+    ValuesSeries(
+      dateTime: "13",
+      value: 60,
       barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     ),
-    SubscriberSeries(
-      year: "14",
-      subscribers: 58,
+    ValuesSeries(
+      dateTime: "14",
+      value: 58,
       barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     ),
-    SubscriberSeries(
-      year: "15",
-      subscribers: 67,
+    ValuesSeries(
+      dateTime: "15",
+      value: 67,
       barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     ),
-    SubscriberSeries(
-      year: "16",
-      subscribers: 40,
+    ValuesSeries(
+      dateTime: "16",
+      value: 40,
       barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     ),
-    SubscriberSeries(
-      year: "17",
-      subscribers: 35,
+    ValuesSeries(
+      dateTime: "17",
+      value: 35,
       barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     ),
-    SubscriberSeries(
-      year: "18",
-      subscribers: 70,
+    ValuesSeries(
+      dateTime: "18",
+      value: 70,
       barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     ),
-    SubscriberSeries(
-      year: "19",
-      subscribers: 76,
+    ValuesSeries(
+      dateTime: "19",
+      value: 76,
       barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     ),
   ];

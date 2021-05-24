@@ -1,7 +1,10 @@
 import 'package:cripose/controller/NameComponent.dart';
 import 'package:cripose/controller/OrdersController.dart';
 import 'package:flutter/material.dart';
+import '../controller/walletComponent.dart';
 import '../bloc/component/ButtonComponents.dart';
+import '../bloc/component/OrdersController.dart';
+import '../bloc/component/NameComponent.dart';
 
 class UserView extends StatelessWidget {
   @override

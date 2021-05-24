@@ -1,4 +1,4 @@
-import '../model/UserName.dart';
+import 'UserNameComponent.dart';
 import 'package:flutter/material.dart';
 
 Widget nameComponent() {

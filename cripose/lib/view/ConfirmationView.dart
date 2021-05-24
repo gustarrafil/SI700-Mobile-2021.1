@@ -1,5 +1,5 @@
-import '../controller/ButtonComponents.dart';
-import '../controller/ConfirmationComponent.dart';
+import '../bloc/component/ButtonComponents.dart';
+import '../bloc/component/ConfirmationComponent.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmationView extends StatelessWidget {
