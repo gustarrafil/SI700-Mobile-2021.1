@@ -1,8 +1,7 @@
+import 'package:cripose/controller/NameComponent.dart';
+import 'package:cripose/controller/OrdersController.dart';
 import 'package:flutter/material.dart';
-import '../controller/walletComponent.dart';
-import '../controller/ButtonComponents.dart';
-import '../controller/OrdersController.dart';
-import '../controller/NameComponent.dart';
+import '../bloc/component/ButtonComponents.dart';
 
 class UserView extends StatelessWidget {
   @override
@@ -22,7 +21,7 @@ Widget screenUser(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               nameComponent(),
-              walletComponent(),
+              //   walletComponent(),
             ],
           ),
           Column(
