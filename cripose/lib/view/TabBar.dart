@@ -10,6 +10,8 @@ import 'TradeView.dart';
 import 'HistoryView.dart';
 
 class TabBarCripose extends StatefulWidget {
+  TabBarCripose(BuildContext context);
+
   @override
   _TabBarCriposeState createState() => _TabBarCriposeState();
 }

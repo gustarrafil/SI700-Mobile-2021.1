@@ -7,9 +7,8 @@ class AppCripose extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
-        child: TabBarCripose(),
+        child: TabBarCripose(context),
       ),
     );
   }
 }
-
