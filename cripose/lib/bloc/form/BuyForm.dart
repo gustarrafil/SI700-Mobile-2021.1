@@ -1,4 +1,3 @@
-import 'package:cripose/bloc/component/SliderComponent.dart';
 import 'package:cripose/bloc/logic/manage_db/manage_db_event.dart';
 import 'package:cripose/bloc/logic/manage_db/manage_db_state.dart';
 import 'package:cripose/bloc/logic/manage_db/manage_local_db_bloc.dart';

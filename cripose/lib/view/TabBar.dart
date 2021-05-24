@@ -17,58 +17,53 @@ class TabBarCripose extends StatefulWidget {
 }
 
 class _TabBarCriposeState extends State<TabBarCripose> {
+  // ADAPTAR BLOCPROVIDER COM MENU EMBAIXO PRA MENU EM CIMA
 
-    // ADAPTAR BLOCPROVIDER COM MENU EMBAIXO PRA MENU EM CIMA
-    
-    @override
-    Widget build(BuildContext context) {
-        var _pages = [
-            TabItem("User", Icons.account_box), 
-            TabItem("Trade", Icons.monetization_on_outlined), 
-            TabItem("History", Icons.history)
-        ];
-        return MaterialApp(
-            title: 'Cripose',
-            home: MultiBlocProvider(
-                providers: [
-                    BlocProvider(create: (_) => MonitorBloc()),
-                    BlocProvider(create: (_) => ManageLocalBloc())
-                ],
-                child: BlocListener<ManageLocalBloc, ManageState>(
-                    listener: (context, state) {
-                        // if (state is UpdateState) {
-                        //     setState(() {
-                        //         _currentPage = 1;
-                        //     });
-                        // }
-                    },
-
-                    child: DefaultTabController(
-                        length: 3,
-                        initialIndex: 0,
-                        child: Scaffold(
-                            resizeToAvoidBottomInset: false,
-                            appBar: AppBar(
-                                backgroundColor: Colors.blueGrey[900],
-                                title: Text("Cripose"),
-                                bottom: TabBar(
-                                    tabs: _pages,
-                                ),
-                            ),
-                            body: TabBarView(
-                                children: [
-                                    UserView(),
-                                    TradeView(context),
-                                    HistoryView(),
-                                ],
-                            ),
-                        ),
-                    )
+  @override
+  Widget build(BuildContext context) {
+    var _pages = [
+      TabItem("User", Icons.account_box),
+      TabItem("Trade", Icons.monetization_on_outlined),
+      TabItem("History", Icons.history)
+    ];
+    return MaterialApp(
+      title: 'Cripose',
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => MonitorBloc()),
+          BlocProvider(create: (_) => ManageLocalBloc())
+        ],
+        child: BlocListener<ManageLocalBloc, ManageState>(
+            listener: (context, state) {
+              // if (state is UpdateState) {
+              //     setState(() {
+              //         _currentPage = 1;
+              //     });
+              // }
+            },
+            child: DefaultTabController(
+              length: 3,
+              initialIndex: 0,
+              child: Scaffold(
+                resizeToAvoidBottomInset: false,
+                appBar: AppBar(
+                  backgroundColor: Colors.blueGrey[900],
+                  title: Text("Cripose"),
+                  bottom: TabBar(
+                    tabs: _pages,
+                  ),
                 ),
-            ),
-        );
-
-
+                body: TabBarView(
+                  children: [
+                    UserView(),
+                    TradeView(context),
+                    HistoryView(),
+                  ],
+                ),
+              ),
+            )),
+      ),
+    );
 
     // return MaterialApp(
     //     home: DefaultTabController(
@@ -99,4 +94,3 @@ class _TabBarCriposeState extends State<TabBarCripose> {
     // );
   }
 }
-

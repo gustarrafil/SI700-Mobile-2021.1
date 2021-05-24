@@ -72,8 +72,4 @@ class TransactionValues {
       this._buySell = newbuySell;
     }
   }
-
-  
-
-
 }
