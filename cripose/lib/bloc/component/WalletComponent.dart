@@ -1,5 +1,3 @@
-
-
 import 'package:cripose/model/Wallet.dart';
 import 'package:flutter/material.dart';
 

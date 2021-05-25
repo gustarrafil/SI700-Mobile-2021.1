@@ -24,7 +24,7 @@ class TradeItemBox extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                          Text('${transactionValues.buySell ? "compra" : "venda"}'),
+                          Text('compra'),
                       ],
                     ),
                     Row(

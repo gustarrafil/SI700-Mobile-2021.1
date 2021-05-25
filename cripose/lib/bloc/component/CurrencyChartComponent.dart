@@ -13,7 +13,7 @@ class SubscriberChart extends StatelessWidget {
       charts.Series(
           id: "Subscribers",
           data: data,
-          domainFn: (ValuesSeries series, _) => series.dateTime.toString(),
+          //   domainFn: (ValuesSeries series, _) => series.dateTime.toString(),
           measureFn: (ValuesSeries series, _) => series.value,
           colorFn: (ValuesSeries series, _) => series.barColor)
     ];

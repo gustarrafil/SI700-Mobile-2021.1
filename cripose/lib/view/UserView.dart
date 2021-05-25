@@ -1,3 +1,5 @@
+import 'package:cripose/bloc/component/NameComponent.dart';
+import 'package:cripose/bloc/component/WalletComponent.dart';
 import 'package:flutter/material.dart';
 import '../bloc/component/ButtonComponents.dart';
 import '../bloc/component/OrdersController.dart';
@@ -21,7 +23,7 @@ Widget screenUser(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               nameComponent(),
-              //   walletComponent(),
+              walletComponent(),
             ],
           ),
           Column(

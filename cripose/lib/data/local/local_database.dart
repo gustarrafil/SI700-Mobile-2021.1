@@ -24,7 +24,7 @@ class DatabaseLocalServer {
   String colTriggerPrice = 'triggerPrice';
   String colOrderPrice = 'orderPrice';
   String colQuantity = 'quantity';
-  String colDateTime = 'dateTime';
+//   String colDateTime = 'dateTime';
   String colWallet = 'wallet';
 
   Future<Database> get database async {
@@ -37,32 +37,43 @@ class DatabaseLocalServer {
   // Iniciando o banco da dados local
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = directory.path + 'transactionValues.db';
+    String path = directory.path + 'banquinho.db';
 
     Database transactionValuesDatabase =
         await openDatabase(path, version: 1, onCreate: _createDb);
     return transactionValuesDatabase;
   }
 
-  
-
   // Criando o schema do local database
   _createDb(Database db, int newVersion) async {
-    await db.execute(
-        "CREATE TABLE $transactionTable ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colWallet DOUBLE, $colBuySell BIT, $colCurrencyPair TEXT, $colTriggerPrice DOUBLE, $colOrderPrice DOUBLE, $colQuantity DOUBLE, $colDateTime DATETIME)");
-    await db.execute(
-        "CREATE TABLE $userTable ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colUserName TEXT NOT NULL, $colUserEmail TEXT NOT NULL, $colUserPwd TEXT NOT NULL)");
+    await db.execute('''
+        CREATE TABLE $transactionTable 
+          ($colId INTEGER PRIMARY KEY AUTOINCREMENT, 
+          $colBuySell BIT, 
+          $colCurrencyPair TEXT, 
+          $colTriggerPrice DOUBLE, 
+          $colOrderPrice DOUBLE, 
+          $colQuantity DOUBLE)
+        ''');
+    // await db.execute(
+    //     "CREATE TABLE $userTable ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colUserName TEXT NOT NULL, $colUserEmail TEXT NOT NULL, $colUserPwd TEXT NOT NULL)");
   }
 
-    /* INSERT DELETE QUERY UPDATE */
+  /* INSERT DELETE QUERY UPDATE */
 
-  //Insert
-  Future<int> insertTransactionValues(TransactionValues transactionValues) async {
+  //Insert Transaction
+  Future<int> insertTransactionValues(
+      TransactionValues transactionValues) async {
     Database db = await this.database;
     int result = await db.insert(transactionTable, transactionValues.toMap());
+    // int result2 = await db.rawInsert(
+    //     '''INSERT INTO $transactionTable (currencyPair, $colTriggerPrice, $colOrderPrice, $colQuantity)
+    //     VALUES(${transactionValues.currencyPair}, ${transactionValues.triggerPrice}, ${transactionValues.orderPrice}, ${transactionValues.quantity})''');
     notify();
     return result;
   }
+
+  // Insert User
   Future<int> insertUser(User user) async {
     Database db = await this.database;
     int result = await db.insert(userTable, user.toMap());
@@ -70,21 +81,24 @@ class DatabaseLocalServer {
     return result;
   }
 
-    // QUERY: retorna tudo o que tem no banco.
-  getTransactionValuesList() async {
+  // QUERY: retorna tudo o que tem no banco.
+  Future<dynamic> getTransactionValuesList() async {
     Database db = await this.database;
-    var transactionValuesMapList = await db.rawQuery("SELECT * FROM $transactionTable");
+    var transactionValuesMapList =
+        await db.rawQuery("SELECT * FROM $transactionTable");
 
     List<TransactionValues> transactionValuesList = [];
     List<int> idList = [];
 
     for (int i = 0; i < transactionValuesMapList.length; i++) {
-      TransactionValues transactionValues = TransactionValues.fromMap(transactionValuesMapList[i]);
+      TransactionValues transactionValues =
+          TransactionValues.fromMap(transactionValuesMapList[i]);
       transactionValuesList.add(transactionValues);
-      idList.add(transactionValuesMapList[i]["id"]);
+      //   idList.add(transactionValuesMapList[i]["id"]);
     }
-    return [transactionValuesList, idList];
+    return transactionValuesList;
   }
+
   getUser(User user) async {
     Database db = await this.database;
     var userMapList = await db.rawQuery("SELECT * FROM $userTable");
@@ -92,10 +106,10 @@ class DatabaseLocalServer {
     if (userMapList.length == 1) {
       User user = User.fromMap(userMapList[0]);
 
-      return user.email == userMapList[0]["email"] && user.pwd == userMapList[0]["pwd"];
+      return user.email == userMapList[0]["email"] &&
+          user.pwd == userMapList[0]["pwd"];
     }
   }
-
 
   // Delete
   Future<int> deleteTransaction(int transactionId) async {

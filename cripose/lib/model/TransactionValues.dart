@@ -1,37 +1,37 @@
 class TransactionValues {
-  bool _buySell;
+//   bool _buySell;
   String _currencyPair;
   double _triggerPrice;
   double _orderPrice;
   double _quantity;
-  DateTime _dateTime;
+//   DateTime _dateTime;
 
   TransactionValues() {
-    _buySell = true;
+    // _buySell = true;
     _currencyPair = "";
     _triggerPrice = 0;
     _orderPrice = 0;
     _quantity = 0;
-    _dateTime = DateTime.now();
+    // _dateTime = DateTime.now();
   }
 
   TransactionValues.fromMap(map) {
-    this._buySell = map['buySell'];
+    // this._buySell = map['buySell'];
     this._currencyPair = map['currencyPair'];
     this._triggerPrice = map['triggerPrice'];
     this._orderPrice = map['orderPrice'];
     this._quantity = map['quantity'];
-    this._dateTime = map['dateTime'];
+    // this._dateTime = map['dateTime'];
   }
 
   toMap() {
     var map = Map<String, dynamic>();
-    map['buySell'] = _buySell;
+    // map['buySell'] = _buySell;
     map['currencyPair'] = _currencyPair;
     map['triggerPrice'] = _triggerPrice;
     map['orderPrice'] = _orderPrice;
     map['quantity'] = _quantity;
-    map['dateTime'] = _dateTime;
+    // map['dateTime'] = _dateTime;
     return map;
   }
 
@@ -39,8 +39,8 @@ class TransactionValues {
   double get triggerPrice => _triggerPrice;
   double get orderPrice => _orderPrice;
   double get quantity => _quantity;
-  bool get buySell => _buySell;
-  DateTime get dateTime => _dateTime;
+//   bool get buySell => _buySell;
+//   DateTime get dateTime => _dateTime;
 
   set currencyPair(String newCurrencyPair) {
     if (newCurrencyPair.length > 0) {
@@ -66,10 +66,10 @@ class TransactionValues {
     }
   }
 
-  set buysell(bool newbuysell) {
-    if (newbuysell != null) {
-      bool newbuySell;
-      this._buySell = newbuySell;
-    }
-  }
+//   set buysell(bool newbuysell) {
+//     if (newbuysell != null) {
+//       bool newbuySell;
+//       this._buySell = newbuySell;
+//     }
+//   }
 }

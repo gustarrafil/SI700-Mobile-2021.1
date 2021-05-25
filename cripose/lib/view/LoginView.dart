@@ -20,7 +20,7 @@ class LoginView extends StatelessWidget {
             Column(
               children: [
                 LoginForm(),
-                // ButtonComponents.loginBtn(context),
+                ButtonComponents.loginBtn(context),
                 ButtonComponents.singupButton(context)
               ],
             ),

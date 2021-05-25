@@ -11,47 +11,46 @@ class SingUpForm extends StatelessWidget {
           emailFormField(),
           passwordFormField(),
           passwordConfirmationFormField(),
+          // TODO: Add campos corretos para login na api da binance
           walletFormField()
         ],
       ),
     );
   }
 
-
   Widget emailFormField() {
     return TextFormField(
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(labelText: "E-mail"),
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(labelText: "E-mail"),
     );
-    }
+  }
 
-    Widget passwordFormField() {
+  Widget passwordFormField() {
     return TextFormField(
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
+      keyboardType: TextInputType.text,
+      decoration: InputDecoration(
         hintText: 'Password',
-        ),
-        autofocus: false,
-        obscureText: true,
+      ),
+      autofocus: false,
+      obscureText: true,
     );
-    }
+  }
 
-    Widget passwordConfirmationFormField() {
+  Widget passwordConfirmationFormField() {
     return TextFormField(
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
+      keyboardType: TextInputType.text,
+      decoration: InputDecoration(
         hintText: 'Confirm password',
-        ),
-        autofocus: false,
-        obscureText: true,
+      ),
+      autofocus: false,
+      obscureText: true,
     );
-    }
+  }
 
-    Widget walletFormField() {
+  Widget walletFormField() {
     return TextFormField(
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(labelText: "How much do you have?"),
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(labelText: "How much do you have?"),
     );
-    }
+  }
 }
-

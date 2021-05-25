@@ -5,6 +5,10 @@ abstract class MonitorEvent {}
 
 class AskNewList extends MonitorEvent {}
 
+class BuyEvent extends MonitorEvent {}
+
+class SellEvent extends MonitorEvent {}
+
 class UpdateList extends MonitorEvent {
   List<TransactionValues> transactionValuesList;
   List<int> idList;
