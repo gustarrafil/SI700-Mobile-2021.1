@@ -6,6 +6,8 @@ import '../bloc/component/OrdersController.dart';
 import '../bloc/component/NameComponent.dart';
 
 class UserView extends StatelessWidget {
+  UserView(BuildContext context);
+
   @override
   Widget build(BuildContext context) {
     return screenUser(context);

@@ -15,9 +15,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
       try {
         List<TransactionValues> localtransactionValuesList = response[0];
         List<int> localIdList = response[1];
-        add(UpdateList(
-            transactionValuesList: localtransactionValuesList,
-            idList: localIdList));
+        add(UpdateList(transactionValuesList: localtransactionValuesList,idList: localIdList));
       } catch (e) {}
     });
   }
@@ -27,6 +25,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
     if (event is AskNewList) {
       var response =
           await DatabaseLocalServer.helper.getTransactionValuesList();
+          print(response);
       List<TransactionValues> localtransactionValuesList = response[0];
       List<int> localIdList = response[1];
       yield MonitorState(

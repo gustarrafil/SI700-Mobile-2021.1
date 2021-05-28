@@ -3,7 +3,8 @@ import 'package:cripose/model/User.dart';
 
 abstract class MonitorEvent {}
 
-class AskNewList extends MonitorEvent {}
+class AskNewList extends MonitorEvent {
+}
 
 class UpdateList extends MonitorEvent {
   List<TransactionValues> transactionValuesList;

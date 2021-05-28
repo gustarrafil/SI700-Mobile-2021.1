@@ -8,3 +8,5 @@ class MonitorState {
   List<int> userIdList;
   MonitorState({this.transactionValuesList, this.idList, this.userList, this.userIdList});
 }
+
+

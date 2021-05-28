@@ -95,9 +95,12 @@ class DatabaseLocalServer {
       TransactionValues transactionValues =
           TransactionValues.fromMap(transactionValuesMapList[i]);
       transactionValuesList.add(transactionValues);
-      //   idList.add(transactionValuesMapList[i]["id"]);
+        idList.add(transactionValuesMapList[i]["id"]);
     }
-    return transactionValuesList;
+    
+    
+    // print(transactionValuesList);
+    return [transactionValuesList.reversed.toList(), idList.reversed.toList()];
   }
 
   getUser(User user) async {

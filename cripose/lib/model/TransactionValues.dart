@@ -18,9 +18,15 @@ TransactionValues({buySell, currencyPair, orderPrice, quantity});
 
 Map<String, dynamic> toMap() {
     var map = <String, dynamic>{};
+    map['currencyPair'] = _currencyPair;
+    map['orderPrice'] = _orderPrice;
+    map['quantity'] = _quantity;
+    return map;
 }
 TransactionValues.fromMap(Map<String, dynamic> map) {
-
+this._currencyPair = map['currencyPair'];
+this._orderPrice = map['orderPrice'];
+this._quantity = map['quantity'];
 }
 
 

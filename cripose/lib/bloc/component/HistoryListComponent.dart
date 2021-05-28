@@ -18,6 +18,7 @@ class _TransactionListState extends State<HistoryListComponent> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MonitorBloc, MonitorState>(builder: (context, state) {
+        print(state.transactionValuesList);
       return getList(state.transactionValuesList, state.idList);
       // return Padding(
       //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -33,10 +34,10 @@ class _TransactionListState extends State<HistoryListComponent> {
   }
 
   ListView getList(transactionValuesList, idList) {
-    const int itemsQtt = 20;
+    int itemsQtt = transactionValuesList.length > 0 ? transactionValuesList.length : 1;
     const double cardElevation = 10;
     return ListView.builder(
-        itemCount: transactionValuesList.length > 0 ? itemsQtt : 1,
+        itemCount: itemsQtt,
         itemBuilder: (context, index) {
           return transactionValuesList.length > 0
               ? Card(

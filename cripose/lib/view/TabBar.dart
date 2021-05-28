@@ -55,9 +55,9 @@ class _TabBarCriposeState extends State<TabBarCripose> {
                 ),
                 body: TabBarView(
                   children: [
-                    UserView(),
+                    UserView(context),
                     TradeView(context),
-                    HistoryView(),
+                    HistoryView(context),
                   ],
                 ),
               ),
