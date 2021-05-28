@@ -1,5 +1,4 @@
 class TransactionValues {
-  bool _buySell;
   String _currencyPair;
   double _orderPrice;
   double _quantity;
@@ -23,7 +22,6 @@ class TransactionValues {
   String get currencyPair => _currencyPair;
   double get orderPrice => _orderPrice;
   double get quantity => _quantity;
-  bool get buySell => _buySell;
 
   set currencyPair(String newCurrencyPair) {
     if (newCurrencyPair.length > 0) {
@@ -40,13 +38,6 @@ class TransactionValues {
   set quantity(double newQuantity) {
     if (newQuantity != 0) {
       this._quantity = newQuantity;
-    }
-  }
-
-  set buysell(bool newbuysell) {
-    if (newbuysell != null) {
-      bool newbuySell;
-      this._buySell = newbuySell;
     }
   }
 }

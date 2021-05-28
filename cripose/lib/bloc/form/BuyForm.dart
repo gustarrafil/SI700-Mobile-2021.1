@@ -1,7 +1,6 @@
 import 'package:cripose/bloc/logic/manage_db/manage_db_event.dart';
 import 'package:cripose/bloc/logic/manage_db/manage_db_state.dart';
 import 'package:cripose/bloc/logic/manage_db/manage_local_db_bloc.dart';
-import 'package:cripose/data/local/local_database.dart';
 import 'package:cripose/model/TransactionValues.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BuyForm extends StatelessWidget {
   final GlobalKey<FormState> buyForm = new GlobalKey<FormState>();
   TransactionValues transactionValues = new TransactionValues();
-  final dbHelper = DatabaseLocalServer.helper;
 
   @override
   Widget build(BuildContext context) {
