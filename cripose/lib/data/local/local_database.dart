@@ -65,10 +65,11 @@ class DatabaseLocalServer {
   Future<int> insertTransactionValues(
       TransactionValues transactionValues) async {
     Database db = await this.database;
-    int result = await db.insert(transactionTable, transactionValues.toMap());
+    int result = await db.insert(transactionTable, transactionValues.toMap(), nullColumnHack: colId);
     // int result2 = await db.rawInsert(
     //     '''INSERT INTO $transactionTable (currencyPair, $colTriggerPrice, $colOrderPrice, $colQuantity)
     //     VALUES(${transactionValues.currencyPair}, ${transactionValues.triggerPrice}, ${transactionValues.orderPrice}, ${transactionValues.quantity})''');
+    print(result);
     notify();
     return result;
   }

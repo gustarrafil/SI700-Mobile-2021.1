@@ -28,6 +28,7 @@ dependencies:
   bloc:
   flutter_bloc:
   path_provider:
+  path:
   dio:
 
 

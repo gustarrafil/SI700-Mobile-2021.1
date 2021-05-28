@@ -46,25 +46,25 @@ class _TransactionListState extends State<HistoryListComponent> {
                     title: HistoryItem(transactionValuesList[index]),
                     onTap: () {
                       // FALTA O PEDIDO DE TODOS OS VALORES PRA COLOCAR NO GRAFICO
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Dialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: Container(
-                                constraints: BoxConstraints(maxHeight: 450),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [ChartView()],
-                                  ),
-                                ),
-                              ),
-                            );
-                          });
+                    //   showDialog(
+                    //       context: context,
+                    //       builder: (BuildContext context) {
+                    //         return Dialog(
+                    //           shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(20.0)),
+                    //           child: Container(
+                    //             constraints: BoxConstraints(maxHeight: 450),
+                    //             child: Padding(
+                    //               padding: const EdgeInsets.all(12.0),
+                    //               child: Column(
+                    //                 crossAxisAlignment:
+                    //                     CrossAxisAlignment.start,
+                    //                 children: [ChartView()],
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         );
+                    //       });
                     },
                   ))
               : Center(child: Text("No transactions made!"));

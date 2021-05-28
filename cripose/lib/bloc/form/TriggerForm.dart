@@ -49,7 +49,7 @@ Widget triggerValue(TransactionValues transactionValues) {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(labelText: "Trigger value"),
       onSaved: (value) {
-          transactionValues.triggerPrice = value as double;
+        //   transactionValues.triggerPrice = value as double;
         },
     );
 }

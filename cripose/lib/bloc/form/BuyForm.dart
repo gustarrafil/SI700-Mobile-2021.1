@@ -1,18 +1,21 @@
 import 'package:cripose/bloc/logic/manage_db/manage_db_event.dart';
 import 'package:cripose/bloc/logic/manage_db/manage_db_state.dart';
 import 'package:cripose/bloc/logic/manage_db/manage_local_db_bloc.dart';
+import 'package:cripose/data/local/local_database.dart';
 import 'package:cripose/model/TransactionValues.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuyForm extends StatelessWidget {
   final GlobalKey<FormState> buyForm = new GlobalKey<FormState>();
+  TransactionValues transactionValues = new TransactionValues();
+  final dbHelper = DatabaseLocalServer.helper;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ManageLocalBloc, ManageState>(builder: (context, state) {
       if (state is InsertState) {
-        TransactionValues transactionValues = new TransactionValues();
+        
         return Form(
           key: buyForm,
           child: Column(
@@ -35,8 +38,19 @@ class BuyForm extends StatelessWidget {
         onPressed: () {
           if (buyForm.currentState.validate()) {
             buyForm.currentState.save();
+            // dbHelper.insertTransactionValues(transactionValues);
             BlocProvider.of<ManageLocalBloc>(context).add(
                 SubmitTransactionEvent(transactionValues: transactionValues));
+            //     Navigator.of(context).push(
+            //     MaterialPageRoute(
+            //       builder: (_) => BlocProvider.value(
+            //         value: BlocProvider.of<ManageLocalBloc>(context),
+            //         child: SecondScreen(
+            //           title: 'screen',
+            //         ),
+            //       ),
+            //     ),
+            //   );
           }
         });
   }
