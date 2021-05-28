@@ -11,7 +11,6 @@ class SingUpForm extends StatelessWidget {
           emailFormField(),
           passwordFormField(),
           passwordConfirmationFormField(),
-          // TODO: Add campos corretos para login na api da binance
           walletFormField()
         ],
       ),

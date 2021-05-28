@@ -21,15 +21,10 @@ class HistoryItem extends StatelessWidget {
         Column(
           children: [
             Icon(Icons.arrow_forward),
-            // Text('${transactionValues.dateTime.day}/${transactionValues.dateTime.month}/${transactionValues.dateTime.year}'),
-            // Text('${transactionValues.dateTime.hour}h${transactionValues.dateTime.minute}'),
           ],
         ),
         Column(
-          children: [
-            Text("venda"),
-            Text('${transactionValues.quantity}')
-          ],
+          children: [Text("venda"), Text('${transactionValues.quantity}')],
         ),
       ],
     );

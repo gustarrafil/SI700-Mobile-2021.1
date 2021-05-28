@@ -15,7 +15,6 @@ class BuyForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ManageLocalBloc, ManageState>(builder: (context, state) {
       if (state is InsertState) {
-        
         return Form(
           key: buyForm,
           child: Column(
@@ -24,7 +23,6 @@ class BuyForm extends StatelessWidget {
               precoFormField(transactionValues),
               qtdFormField(transactionValues),
               submitButton(transactionValues, state, context)
-              // TradeSlider()
             ],
           ),
         );
@@ -38,7 +36,6 @@ class BuyForm extends StatelessWidget {
         onPressed: () {
           if (buyForm.currentState.validate()) {
             buyForm.currentState.save();
-            // dbHelper.insertTransactionValues(transactionValues);
             BlocProvider.of<ManageLocalBloc>(context).add(
                 SubmitTransactionEvent(transactionValues: transactionValues));
             //     Navigator.of(context).push(

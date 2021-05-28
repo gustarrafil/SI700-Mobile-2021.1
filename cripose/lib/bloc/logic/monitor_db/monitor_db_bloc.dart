@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:cripose/bloc/logic/monitor_db/monitor_db_event.dart';
 import 'package:cripose/data/local/local_database.dart';
-import 'package:cripose/leozin/monitor_db_event.dart';
 import 'package:cripose/bloc/logic/monitor_db/monitor_db_state.dart';
 import 'package:cripose/model/TransactionValues.dart';
-// import 'package:cripose/model/User.dart';
 
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   StreamSubscription _localSubscription;
@@ -15,7 +14,9 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
       try {
         List<TransactionValues> localtransactionValuesList = response[0];
         List<int> localIdList = response[1];
-        add(UpdateList(transactionValuesList: localtransactionValuesList,idList: localIdList));
+        add(UpdateList(
+            transactionValuesList: localtransactionValuesList,
+            idList: localIdList));
       } catch (e) {}
     });
   }
@@ -25,7 +26,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
     if (event is AskNewList) {
       var response =
           await DatabaseLocalServer.helper.getTransactionValuesList();
-          print(response);
+      print(response);
       List<TransactionValues> localtransactionValuesList = response[0];
       List<int> localIdList = response[1];
       yield MonitorState(

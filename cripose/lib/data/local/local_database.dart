@@ -12,10 +12,6 @@ class DatabaseLocalServer {
   static Database _database;
 
   String transactionTable = 'transactionTable';
-  String userTable = 'userTable';
-  String colUserName = 'name';
-  String colUserEmail = 'email';
-  String colUserPwd = 'pwd';
 
   String colId = 'id';
 
@@ -24,8 +20,6 @@ class DatabaseLocalServer {
   String colTriggerPrice = 'triggerPrice';
   String colOrderPrice = 'orderPrice';
   String colQuantity = 'quantity';
-//   String colDateTime = 'dateTime';
-  String colWallet = 'wallet';
 
   Future<Database> get database async {
     if (_database == null) {
@@ -55,8 +49,6 @@ class DatabaseLocalServer {
           $colOrderPrice DOUBLE, 
           $colQuantity DOUBLE)
         ''');
-    // await db.execute(
-    //     "CREATE TABLE $userTable ($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colUserName TEXT NOT NULL, $colUserEmail TEXT NOT NULL, $colUserPwd TEXT NOT NULL)");
   }
 
   /* INSERT DELETE QUERY UPDATE */
@@ -65,19 +57,8 @@ class DatabaseLocalServer {
   Future<int> insertTransactionValues(
       TransactionValues transactionValues) async {
     Database db = await this.database;
-    int result = await db.insert(transactionTable, transactionValues.toMap(), nullColumnHack: colId);
-    // int result2 = await db.rawInsert(
-    //     '''INSERT INTO $transactionTable (currencyPair, $colTriggerPrice, $colOrderPrice, $colQuantity)
-    //     VALUES(${transactionValues.currencyPair}, ${transactionValues.triggerPrice}, ${transactionValues.orderPrice}, ${transactionValues.quantity})''');
-    print(result);
-    notify();
-    return result;
-  }
-
-  // Insert User
-  Future<int> insertUser(User user) async {
-    Database db = await this.database;
-    int result = await db.insert(userTable, user.toMap());
+    int result = await db.insert(transactionTable, transactionValues.toMap(),
+        nullColumnHack: colId);
     notify();
     return result;
   }
@@ -95,24 +76,10 @@ class DatabaseLocalServer {
       TransactionValues transactionValues =
           TransactionValues.fromMap(transactionValuesMapList[i]);
       transactionValuesList.add(transactionValues);
-        idList.add(transactionValuesMapList[i]["id"]);
+      idList.add(transactionValuesMapList[i]["id"]);
     }
-    
-    
-    // print(transactionValuesList);
+
     return [transactionValuesList.reversed.toList(), idList.reversed.toList()];
-  }
-
-  getUser(User user) async {
-    Database db = await this.database;
-    var userMapList = await db.rawQuery("SELECT * FROM $userTable");
-
-    if (userMapList.length == 1) {
-      User user = User.fromMap(userMapList[0]);
-
-      return user.email == userMapList[0]["email"] &&
-          user.pwd == userMapList[0]["pwd"];
-    }
   }
 
   // Delete
@@ -148,10 +115,3 @@ class DatabaseLocalServer {
 
   static StreamController _controller;
 }
-
-// main() {
-//   var response = DatabaseLocalServer.helper.getTransactionValuesList();
-//   print(response[0]);
-//   var responseUser = DatabaseLocalServer.helper.getUser(user);
-//   print(responseUser[0]);
-// }

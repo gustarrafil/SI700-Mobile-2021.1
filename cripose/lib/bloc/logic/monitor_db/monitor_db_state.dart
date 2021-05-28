@@ -6,7 +6,9 @@ class MonitorState {
   List<User> userList;
   List<int> idList;
   List<int> userIdList;
-  MonitorState({this.transactionValuesList, this.idList, this.userList, this.userIdList});
+  MonitorState(
+      {this.transactionValuesList,
+      this.idList,
+      this.userList,
+      this.userIdList});
 }
-
-

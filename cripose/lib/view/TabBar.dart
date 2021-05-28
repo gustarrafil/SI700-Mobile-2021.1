@@ -17,8 +17,6 @@ class TabBarCripose extends StatefulWidget {
 }
 
 class _TabBarCriposeState extends State<TabBarCripose> {
-  // ADAPTAR BLOCPROVIDER COM MENU EMBAIXO PRA MENU EM CIMA
-
   @override
   Widget build(BuildContext context) {
     var _pages = [
@@ -34,13 +32,7 @@ class _TabBarCriposeState extends State<TabBarCripose> {
           BlocProvider(create: (_) => ManageLocalBloc())
         ],
         child: BlocListener<ManageLocalBloc, ManageState>(
-            listener: (context, state) {
-              // if (state is UpdateState) {
-              //     setState(() {
-              //         _currentPage = 1;
-              //     });
-              // }
-            },
+            listener: (context, state) {},
             child: DefaultTabController(
               length: 3,
               initialIndex: 0,
@@ -64,33 +56,5 @@ class _TabBarCriposeState extends State<TabBarCripose> {
             )),
       ),
     );
-
-    // return MaterialApp(
-    //     home: DefaultTabController(
-    //         length: 3,
-    //         initialIndex: 0,
-    //         child: Scaffold(
-    //             resizeToAvoidBottomInset: false,
-    //             appBar: AppBar(
-    //                 backgroundColor: Colors.blueGrey[900],
-    //                 title: Text("Cripose"),
-    //                 bottom: TabBar(
-    //                     tabs: [
-    //                         TabItem("User", Icons.account_box),
-    //                         TabItem("Trade", Icons.monetization_on_outlined),
-    //                         TabItem("History", Icons.history),
-    //                     ],
-    //                 ),
-    //             ),
-    //             body: TabBarView(
-    //                 children: [
-    //                     UserView(),
-    //                     TradeView(context),
-    //                     HistoryView(),
-    //                 ],
-    //             ),
-    //         ),
-    //     )
-    // );
   }
 }

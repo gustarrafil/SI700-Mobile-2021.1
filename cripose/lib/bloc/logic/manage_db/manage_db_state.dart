@@ -1,5 +1,4 @@
 import 'package:cripose/model/TransactionValues.dart';
-import 'package:cripose/view/BottomSheetView.dart';
 
 abstract class ManageState {}
 

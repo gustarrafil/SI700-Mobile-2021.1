@@ -25,8 +25,8 @@ class _TradeViewState extends State<TradeView> {
             children: [walletComponent()]),
         switchComponent(),
         generateAnimatedCrossFade(),
-        ButtonComponents.triggerBtn(context),
-        ButtonComponents.finishBtnBottomSheet(context)
+        // ButtonComponents.triggerBtn(context),
+        // ButtonComponents.finishBtnBottomSheet(context)
       ]),
     );
   }

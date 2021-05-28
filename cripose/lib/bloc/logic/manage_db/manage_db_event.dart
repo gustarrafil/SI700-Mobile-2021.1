@@ -13,11 +13,6 @@ class SubmitTransactionEvent extends ManageEvent {
   SubmitTransactionEvent({this.transactionValues});
 }
 
-// class SubmitUserEvent extends ManageEvent {
-//   User user;
-//   SubmitUserEvent({this.user});
-// }
-
 class SubmitSignEvent extends ManageEvent {
   User user;
   SubmitSignEvent({this.user});

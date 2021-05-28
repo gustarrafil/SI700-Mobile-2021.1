@@ -18,23 +18,14 @@ class _TransactionListState extends State<HistoryListComponent> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MonitorBloc, MonitorState>(builder: (context, state) {
-        print(state.transactionValuesList);
+      print(state.transactionValuesList);
       return getList(state.transactionValuesList, state.idList);
-      // return Padding(
-      //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      //     child: Column(
-      //       children: [
-      //         Expanded(
-      //             child: Container(
-      //                 child: historyListComponent(
-      //                     state.transactionValuesList, state.idList))),
-      //       ],
-      //     ));
     });
   }
 
   ListView getList(transactionValuesList, idList) {
-    int itemsQtt = transactionValuesList.length > 0 ? transactionValuesList.length : 1;
+    int itemsQtt =
+        transactionValuesList.length > 0 ? transactionValuesList.length : 1;
     const double cardElevation = 10;
     return ListView.builder(
         itemCount: itemsQtt,
@@ -47,25 +38,25 @@ class _TransactionListState extends State<HistoryListComponent> {
                     title: HistoryItem(transactionValuesList[index]),
                     onTap: () {
                       // FALTA O PEDIDO DE TODOS OS VALORES PRA COLOCAR NO GRAFICO
-                    //   showDialog(
-                    //       context: context,
-                    //       builder: (BuildContext context) {
-                    //         return Dialog(
-                    //           shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(20.0)),
-                    //           child: Container(
-                    //             constraints: BoxConstraints(maxHeight: 450),
-                    //             child: Padding(
-                    //               padding: const EdgeInsets.all(12.0),
-                    //               child: Column(
-                    //                 crossAxisAlignment:
-                    //                     CrossAxisAlignment.start,
-                    //                 children: [ChartView()],
-                    //               ),
-                    //             ),
-                    //           ),
-                    //         );
-                    //       });
+                      //   showDialog(
+                      //       context: context,
+                      //       builder: (BuildContext context) {
+                      //         return Dialog(
+                      //           shape: RoundedRectangleBorder(
+                      //               borderRadius: BorderRadius.circular(20.0)),
+                      //           child: Container(
+                      //             constraints: BoxConstraints(maxHeight: 450),
+                      //             child: Padding(
+                      //               padding: const EdgeInsets.all(12.0),
+                      //               child: Column(
+                      //                 crossAxisAlignment:
+                      //                     CrossAxisAlignment.start,
+                      //                 children: [ChartView()],
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         );
+                      //       });
                     },
                   ))
               : Center(child: Text("No transactions made!"));

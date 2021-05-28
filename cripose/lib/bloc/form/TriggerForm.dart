@@ -10,23 +10,19 @@ class TriggerForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-return BlocBuilder<ManageLocalBloc, ManageState>(builder: (context, state) {
+    return BlocBuilder<ManageLocalBloc, ManageState>(builder: (context, state) {
       TransactionValues transactionValues = new TransactionValues();
       return Form(
-      key: triggerForm,
-      child: Column(
-        children: [
-          currencyPair(transactionValues),
-          triggerType(),
-          triggerValue(transactionValues),
-        ],
-      ),
-    );
+        key: triggerForm,
+        child: Column(
+          children: [
+            currencyPair(transactionValues),
+            triggerType(),
+            triggerValue(transactionValues),
+          ],
+        ),
+      );
     });
-
-
-
-    
   }
 }
 
@@ -35,8 +31,8 @@ Widget currencyPair(TransactionValues transactionValues) {
     keyboardType: TextInputType.text,
     decoration: InputDecoration(labelText: "Currency pair"),
     onSaved: (value) {
-          transactionValues.currencyPair = value;
-        },
+      transactionValues.currencyPair = value;
+    },
   );
 }
 
@@ -46,10 +42,8 @@ Widget triggerType() {
 
 Widget triggerValue(TransactionValues transactionValues) {
   return TextFormField(
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(labelText: "Trigger value"),
-      onSaved: (value) {
-        //   transactionValues.triggerPrice = value as double;
-        },
-    );
+    keyboardType: TextInputType.number,
+    decoration: InputDecoration(labelText: "Trigger value"),
+    onSaved: (value) {},
+  );
 }
