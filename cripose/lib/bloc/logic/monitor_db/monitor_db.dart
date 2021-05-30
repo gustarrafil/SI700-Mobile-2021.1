@@ -1,16 +1,28 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
-import 'package:cripose/bloc/logic/monitor_db/monitor_db_event.dart';
-import 'package:cripose/data/local/local_database.dart';
-import 'package:cripose/bloc/logic/monitor_db/monitor_db_state.dart';
+
+import 'package:cripose/data/web/web_database.dart';
 import 'package:cripose/model/TransactionValues.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+abstract class MonitorEvent {}
+
+class AskNewList extends MonitorEvent {}
+
+class UpdateList extends MonitorEvent {
+  List<TransactionValues> transactionValuesList;
+  List<int> idList;
+  UpdateList({this.transactionValuesList, this.idList});
+}
+
+//////////////////////////////////////////////////////////////////////////
+
 
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   StreamSubscription _localSubscription;
 
   MonitorBloc() : super(MonitorState(transactionValuesList: [], idList: [])) {
     add(AskNewList());
-    _localSubscription = DatabaseLocalServer.helper.stream.listen((response) {
+    _localSubscription = DatabaseRemoteServer.helper.stream.listen((response) {
       try {
         List<TransactionValues> localtransactionValuesList = response[0];
         List<int> localIdList = response[1];
@@ -25,8 +37,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   Stream<MonitorState> mapEventToState(MonitorEvent event) async* {
     if (event is AskNewList) {
       var response =
-          await DatabaseLocalServer.helper.getTransactionValuesList();
-      print(response);
+          await DatabaseRemoteServer.helper.getTransactionValuesList();
       List<TransactionValues> localtransactionValuesList = response[0];
       List<int> localIdList = response[1];
       yield MonitorState(
@@ -36,14 +47,6 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
       yield MonitorState(
           idList: event.idList,
           transactionValuesList: event.transactionValuesList);
-    } else if (event is UpdateWallet) {
-      yield MonitorState(
-          idList: event.idList,
-          transactionValuesList: event.transactionValuesList);
-    } else if (event is BuyEvent) {
-      yield MonitorState();
-    } else if (event is SellEvent) {
-      yield MonitorState();
     }
   }
 
@@ -51,4 +54,17 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
     _localSubscription.cancel();
     return super.close();
   }
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+class MonitorState {
+  List<TransactionValues> transactionValuesList;
+  List<int> idList;
+  MonitorState(
+      {this.transactionValuesList,
+      this.idList,
+      });
 }

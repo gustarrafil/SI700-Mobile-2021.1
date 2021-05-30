@@ -1,5 +1,4 @@
-import 'package:cripose/bloc/logic/manage_db/manage_db_state.dart';
-import 'package:cripose/bloc/logic/manage_db/manage_local_db_bloc.dart';
+import 'package:cripose/bloc/logic/manage_db/manage_db.dart';
 import 'package:cripose/model/TransactionValues.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

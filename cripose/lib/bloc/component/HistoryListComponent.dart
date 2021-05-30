@@ -1,6 +1,4 @@
-import 'package:cripose/bloc/logic/monitor_db/monitor_db_bloc.dart';
-import 'package:cripose/bloc/logic/monitor_db/monitor_db_state.dart';
-import 'package:cripose/data/local/local_database.dart';
+import 'package:cripose/bloc/logic/monitor_db/monitor_db.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../view/ChartView.dart';

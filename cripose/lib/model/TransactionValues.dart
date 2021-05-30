@@ -6,7 +6,7 @@ class TransactionValues {
   TransactionValues({buySell, currencyPair, orderPrice, quantity});
 
   Map<String, dynamic> toMap() {
-    var map = <String, dynamic>{};
+    var map = Map<String, dynamic>();
     map['currencyPair'] = _currencyPair;
     map['orderPrice'] = _orderPrice;
     map['quantity'] = _quantity;

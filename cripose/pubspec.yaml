@@ -30,6 +30,7 @@ dependencies:
   path_provider:
   path:
   dio:
+  socket_io_client: 
 
 
   # The following adds the Cupertino Icons font to your application.
