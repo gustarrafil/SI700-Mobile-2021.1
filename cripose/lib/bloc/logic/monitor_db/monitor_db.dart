@@ -18,17 +18,20 @@ class UpdateList extends MonitorEvent {
 
 
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
-  StreamSubscription _localSubscription;
+  StreamSubscription _remoteSubscription;
+
+  List<TransactionValues> remoteTransactionValuesList;
+  List<int> remoteIdList;
 
   MonitorBloc() : super(MonitorState(transactionValuesList: [], idList: [])) {
     add(AskNewList());
-    _localSubscription = DatabaseRemoteServer.helper.stream.listen((response) {
+    _remoteSubscription = DatabaseRemoteServer.helper.stream.listen((response) {
       try {
-        List<TransactionValues> localtransactionValuesList = response[0];
-        List<int> localIdList = response[1];
+        remoteTransactionValuesList = response[0];
+        remoteIdList = response[1];
         add(UpdateList(
-            transactionValuesList: localtransactionValuesList,
-            idList: localIdList));
+            transactionValuesList: List.from(remoteTransactionValuesList),
+            idList: List.from(remoteIdList)));
       } catch (e) {}
     });
   }
@@ -36,13 +39,13 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   @override
   Stream<MonitorState> mapEventToState(MonitorEvent event) async* {
     if (event is AskNewList) {
-      var response =
+      var remoteResponse =
           await DatabaseRemoteServer.helper.getTransactionValuesList();
-      List<TransactionValues> localtransactionValuesList = response[0];
-      List<int> localIdList = response[1];
+      remoteTransactionValuesList = remoteResponse[0];
+      remoteIdList = remoteResponse[1];
       yield MonitorState(
-          idList: localIdList,
-          transactionValuesList: localtransactionValuesList);
+          idList: List.from(remoteIdList),
+          transactionValuesList: List.from(remoteTransactionValuesList));
     } else if (event is UpdateList) {
       yield MonitorState(
           idList: event.idList,
@@ -51,7 +54,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   }
 
   close() {
-    _localSubscription.cancel();
+    _remoteSubscription.cancel();
     return super.close();
   }
 }

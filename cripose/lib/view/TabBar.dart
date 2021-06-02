@@ -28,9 +28,9 @@ class _TabBarCriposeState extends State<TabBarCripose> {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => MonitorBloc()),
-          BlocProvider(create: (_) => ManageLocalBloc())
+          BlocProvider(create: (_) => ManageRemoteBloc())
         ],
-        child: BlocListener<ManageLocalBloc, ManageState>(
+        child: BlocListener<ManageRemoteBloc, ManageState>(
             listener: (context, state) {},
             child: DefaultTabController(
               length: 3,

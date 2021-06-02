@@ -13,7 +13,8 @@ class DatabaseRemoteServer {
   static DatabaseRemoteServer helper = DatabaseRemoteServer._createInstance();
   DatabaseRemoteServer._createInstance();
 
-  String databaseUrl = "https://server-test-aula-mobile.herokuapp.com/transaction";
+  String databaseUrl =
+      "https://server-test-aula-mobile.herokuapp.com/transactions";
 
   Dio _dio = Dio();
 
@@ -37,28 +38,23 @@ class DatabaseRemoteServer {
   Future<int> insertTransaction(TransactionValues transactionValues) async {
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
-        data:
-            jsonEncode(
-                {
-                    "currencyPair": transactionValues.currencyPair, 
-                    "orderPrice": transactionValues.orderPrice,
-                    "quantity": transactionValues.quantity
-                }
-            ));
+        data: jsonEncode({
+          "currencyPair": transactionValues.currencyPair,
+          "orderPrice": transactionValues.orderPrice,
+          "quantity": transactionValues.quantity
+        }));
     return 1;
   }
 
-  Future<int> updateTransaction(int transactionValuesId, TransactionValues transactionValues) async {
+  Future<int> updateTransaction(
+      int transactionValuesId, TransactionValues transactionValues) async {
     await _dio.put(this.databaseUrl + "/$transactionValuesId",
         options: Options(headers: {"Accept": "application/json"}),
-        data:
-            jsonEncode(
-                {
-                    "currencyPair": transactionValues.currencyPair, 
-                    "orderPrice": transactionValues.orderPrice,
-                    "quantity": transactionValues.quantity
-                }
-            ));
+        data: jsonEncode({
+          "currencyPair": transactionValues.currencyPair,
+          "orderPrice": transactionValues.orderPrice,
+          "quantity": transactionValues.quantity
+        }));
     return 1;
   }
 
@@ -103,19 +99,19 @@ class DatabaseRemoteServer {
   static StreamController _controller;
 }
 
-void main() async {
-  DatabaseRemoteServer noteService = DatabaseRemoteServer.helper;
-  /*
-  var response = await noteService.getNoteList();
-  Note note = response[0][0];
-  print(note.title);
-  */
+// void main() async {
+//   DatabaseRemoteServer noteService = DatabaseRemoteServer.helper;
+//   /*
+//   var response = await noteService.getNoteList();
+//   Note note = response[0][0];
+//   print(note.title);
+//   */
 
-  TransactionValues note = TransactionValues();
-  note.currencyPair = "BRL";
-  note.orderPrice = 23.6;
-  note.quantity = 34.7;
-  noteService.insertTransaction(note);
-  //noteService.updateNote(0, note);
-  //noteService.deleteNote(1);
-}
+//   TransactionValues note = TransactionValues();
+//   note.currencyPair = "BRL";
+//   note.orderPrice = 23.6;
+//   note.quantity = 34.7;
+//   noteService.insertTransaction(note);
+//   //noteService.updateNote(0, note);
+//   //noteService.deleteNote(1);
+// }

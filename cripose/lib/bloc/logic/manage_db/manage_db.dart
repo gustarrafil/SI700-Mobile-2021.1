@@ -18,8 +18,8 @@ class SubmitTransactionEvent extends ManageEvent {
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-class ManageLocalBloc extends Bloc<ManageEvent, ManageState> {
-  ManageLocalBloc() : super(InsertState());
+class ManageRemoteBloc extends Bloc<ManageEvent, ManageState> {
+  ManageRemoteBloc() : super(InsertState());
 
   @override
   Stream<ManageState> mapEventToState(ManageEvent event) async* {
@@ -28,15 +28,13 @@ class ManageLocalBloc extends Bloc<ManageEvent, ManageState> {
     } else if (event is SubmitTransactionEvent) {
       var response = DatabaseRemoteServer.helper
           .insertTransaction(event.transactionValues);
-      print(response);
+      //   print(response);
     }
   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-
 abstract class ManageState {}
 
 class InsertState extends ManageState {}
-

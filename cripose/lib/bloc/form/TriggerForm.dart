@@ -9,7 +9,7 @@ class TriggerForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ManageLocalBloc, ManageState>(builder: (context, state) {
+    return BlocBuilder<ManageRemoteBloc, ManageState>(builder: (context, state) {
       TransactionValues transactionValues = new TransactionValues();
       return Form(
         key: triggerForm,

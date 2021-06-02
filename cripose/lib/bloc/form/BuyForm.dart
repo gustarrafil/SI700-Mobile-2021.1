@@ -9,7 +9,7 @@ class BuyForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ManageLocalBloc, ManageState>(builder: (context, state) {
+    return BlocBuilder<ManageRemoteBloc, ManageState>(builder: (context, state) {
       if (state is InsertState) {
         return Form(
           key: buyForm,
@@ -32,7 +32,7 @@ class BuyForm extends StatelessWidget {
         onPressed: () {
           if (buyForm.currentState.validate()) {
             buyForm.currentState.save();
-            BlocProvider.of<ManageLocalBloc>(context).add(
+            BlocProvider.of<ManageRemoteBloc>(context).add(
                 SubmitTransactionEvent(transactionValues: transactionValues));
             //     Navigator.of(context).push(
             //     MaterialPageRoute(

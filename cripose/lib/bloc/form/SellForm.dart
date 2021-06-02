@@ -9,7 +9,7 @@ class SellForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ManageLocalBloc, ManageState>(builder: (context, state) {
+    return BlocBuilder<ManageRemoteBloc, ManageState>(builder: (context, state) {
       if (state is InsertState) {
         TransactionValues transactionValues = new TransactionValues();
         return Form(
@@ -33,7 +33,7 @@ class SellForm extends StatelessWidget {
         onPressed: () {
           if (sellForm.currentState.validate()) {
             sellForm.currentState.save();
-            BlocProvider.of<ManageLocalBloc>(context).add(
+            BlocProvider.of<ManageRemoteBloc>(context).add(
                 SubmitTransactionEvent(transactionValues: transactionValues));
           }
         });
