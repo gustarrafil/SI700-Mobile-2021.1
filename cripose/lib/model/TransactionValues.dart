@@ -14,9 +14,11 @@ class TransactionValues {
   }
 
   TransactionValues.fromMap(Map<String, dynamic> map) {
+    double orderDouble = map['orderPrice'].toDouble();
+    double quantityDouble = map['quantity'].toDouble();
     this._currencyPair = map['currencyPair'];
-    this._orderPrice = map['orderPrice'];
-    this._quantity = map['quantity'];
+    this._orderPrice = orderDouble;
+    this._quantity = quantityDouble;
   }
 
   String get currencyPair => _currencyPair;
