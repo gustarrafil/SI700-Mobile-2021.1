@@ -2,6 +2,7 @@ class TransactionValues {
   String _currencyPair;
   double _orderPrice;
   double _quantity;
+  bool _buySell;
 
   TransactionValues({buySell, currencyPair, orderPrice, quantity});
 
@@ -10,18 +11,19 @@ class TransactionValues {
     map['currencyPair'] = _currencyPair;
     map['orderPrice'] = _orderPrice;
     map['quantity'] = _quantity;
+    map['buySell'] = _buySell;
     return map;
   }
 
   TransactionValues.fromMap(Map<String, dynamic> map) {
-    double orderDouble = map['orderPrice'].toDouble();
-    double quantityDouble = map['quantity'].toDouble();
     this._currencyPair = map['currencyPair'];
-    this._orderPrice = orderDouble;
-    this._quantity = quantityDouble;
+    this._buySell = map['buySell'];
+    this._orderPrice = map['orderPrice'].toDouble();
+    this._quantity = map['quantity'].toDouble();
   }
 
   String get currencyPair => _currencyPair;
+  bool get buySell => _buySell;
   double get orderPrice => _orderPrice;
   double get quantity => _quantity;
 
@@ -29,6 +31,11 @@ class TransactionValues {
     if (newCurrencyPair.length > 0) {
       this._currencyPair = newCurrencyPair;
     }
+  }
+
+  set buySell(bool newForm) {
+      this._buySell = newForm;
+    
   }
 
   set orderPrice(double newOrderPrice) {
