@@ -42,7 +42,8 @@ class DatabaseRemoteServer {
           "buySell": transactionValues.buySell,
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
-          "quantity": transactionValues.quantity
+          "quantity": transactionValues.quantity,
+          "triggerValue": transactionValues.triggerValue
         }));
     return 1;
   }
@@ -55,7 +56,8 @@ class DatabaseRemoteServer {
             "buySell": transactionValues.buySell,
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
-          "quantity": transactionValues.quantity
+          "quantity": transactionValues.quantity,
+          "triggerValue": transactionValues.triggerValue
         }));
     return 1;
   }
