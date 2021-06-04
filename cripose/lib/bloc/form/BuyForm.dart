@@ -30,6 +30,7 @@ class BuyForm extends StatelessWidget {
     return ElevatedButton(
         child: Text("Insert Data"),
         onPressed: () {
+            transactionValues.buySell = true;
           if (buyForm.currentState.validate()) {
             buyForm.currentState.save();
             BlocProvider.of<ManageRemoteBloc>(context).add(

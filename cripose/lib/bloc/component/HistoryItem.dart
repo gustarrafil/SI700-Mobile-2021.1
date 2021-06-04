@@ -24,7 +24,7 @@ class HistoryItem extends StatelessWidget {
           ],
         ),
         Column(
-          children: [Text("venda"), Text('${transactionValues.quantity}')],
+          children: [Text(transactionValues.buySell ? "comprar" : "venda"), Text('${transactionValues.quantity}')],
         ),
       ],
     );

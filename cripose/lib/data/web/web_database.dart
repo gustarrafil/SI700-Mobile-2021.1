@@ -39,6 +39,7 @@ class DatabaseRemoteServer {
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
         data: jsonEncode({
+          "buySell": transactionValues.buySell,
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity
@@ -51,6 +52,7 @@ class DatabaseRemoteServer {
     await _dio.put(this.databaseUrl + "/$transactionValuesId",
         options: Options(headers: {"Accept": "application/json"}),
         data: jsonEncode({
+            "buySell": transactionValues.buySell,
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity
