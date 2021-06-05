@@ -31,6 +31,7 @@ class SellForm extends StatelessWidget {
     return ElevatedButton(
         child: Text("Insert Data"),
         onPressed: () {
+            transactionValues.buySell = false;
           if (sellForm.currentState.validate()) {
             sellForm.currentState.save();
             BlocProvider.of<ManageRemoteBloc>(context).add(
@@ -58,10 +59,10 @@ class SellForm extends StatelessWidget {
   Widget precoFormField(TransactionValues transactionValues) {
     return TextFormField(
       keyboardType: TextInputType.number,
-      decoration: InputDecoration(labelText: "Buy price"),
+      decoration: InputDecoration(labelText: "Sell price"),
       validator: (value) {
         if (double.parse(value) == 0.0) {
-          return "Insert buy price";
+          return "Insert sell price";
         }
         return null;
       },

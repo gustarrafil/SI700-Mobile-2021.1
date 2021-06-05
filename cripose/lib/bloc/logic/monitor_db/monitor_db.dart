@@ -8,6 +8,11 @@ abstract class MonitorEvent {}
 
 class AskNewList extends MonitorEvent {}
 
+class ChangeForm extends MonitorEvent {
+    bool change = true;
+    ChangeForm({this.change});
+}
+
 class UpdateList extends MonitorEvent {
   List<TransactionValues> transactionValuesList;
   List<int> idList;
@@ -50,6 +55,14 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
       yield MonitorState(
           idList: event.idList,
           transactionValuesList: event.transactionValuesList);
+    } else if (event is ChangeForm) {
+        // print(event.change);
+        if (event.change == true) {
+            yield MonitorState(changeTrue: event.change);
+        }
+        else if (event.change == false) {
+            yield MonitorState(changeFalse: event.change);
+        }
     }
   }
 
@@ -66,8 +79,12 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
 class MonitorState {
   List<TransactionValues> transactionValuesList;
   List<int> idList;
+  bool changeTrue;
+  bool changeFalse;
   MonitorState(
       {this.transactionValuesList,
       this.idList,
+      this.changeTrue,
+      this.changeFalse
       });
 }
