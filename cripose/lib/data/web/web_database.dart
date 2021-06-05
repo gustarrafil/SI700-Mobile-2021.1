@@ -56,7 +56,7 @@ class DatabaseRemoteServer {
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
-          "dateTime": "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2,'0')}-${dateTime.day.toString().padLeft(2,'0')}T${dateTime.hour}:${dateTime.minute}:${dateTime.second}.${dateTime.millisecond}Z",
+          "dateTime": "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2,'0')}-${dateTime.day.toString().padLeft(2,'0')}T${dateTime.hour.toString().padLeft(2,'0')}:${dateTime.minute.toString().padLeft(2,'0')}:${dateTime.second.toString().padLeft(2,'0')}.${dateTime.millisecond}Z",
         //   "triggerValue": transactionValues.triggerValue
         }));
     return 1;
