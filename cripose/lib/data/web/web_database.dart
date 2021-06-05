@@ -48,6 +48,7 @@ class DatabaseRemoteServer {
   }
 
   Future<int> insertTransaction(TransactionValues transactionValues) async {
+      DateTime dateTime = DateTime.now();
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
         data: jsonEncode({
@@ -55,6 +56,7 @@ class DatabaseRemoteServer {
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
+          "dateTime": "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2,'0')}-${dateTime.day.toString().padLeft(2,'0')}T${dateTime.hour}:${dateTime.minute}:${dateTime.second}.${dateTime.millisecond}Z",
         //   "triggerValue": transactionValues.triggerValue
         }));
     return 1;

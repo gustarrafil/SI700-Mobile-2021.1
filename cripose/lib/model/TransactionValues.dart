@@ -5,6 +5,7 @@ class TransactionValues {
   bool _buySell;
   double _triggerValue;
   bool _trigger;
+  DateTime _dateTime;
 
   TransactionValues({buySell, currencyPair, orderPrice, quantity, trigger, triggerValue});
 
@@ -16,6 +17,7 @@ class TransactionValues {
     map['buySell'] = _buySell;
     // map['triggerValue'] = _triggerValue;
     // map['trigger'] = _trigger;
+    map['dateTime'] = _dateTime;
     return map;
   }
 
@@ -26,6 +28,7 @@ class TransactionValues {
     this._quantity = map['quantity'].toDouble();
     // this._triggerValue = map['triggerValue'].toDouble();
     // this._trigger = map['trigger'];
+    this._dateTime = DateTime.parse(map['dateTime']);
   }
 
   String get currencyPair => _currencyPair;
@@ -34,6 +37,7 @@ class TransactionValues {
   double get quantity => _quantity;
   double get triggerValue => _triggerValue;
   bool get trigger => _trigger;
+  DateTime get dateTime => _dateTime;
 
   set currencyPair(String newCurrencyPair) {
     if (newCurrencyPair.length > 0) {
@@ -65,5 +69,9 @@ class TransactionValues {
     if (newTriggerValue != 0) {
       this._triggerValue = newTriggerValue;
     }
+  }
+
+  set dateTime(DateTime newDateTime) {
+      this._dateTime = newDateTime;
   }
 }
