@@ -39,8 +39,8 @@ class BuyForm extends StatelessWidget {
             ),
             onPressed: () {
                 transactionValues.buySell = true;
-                BlocProvider.of<ManageRemoteBloc>(context).add(
-                    CreateTriggerEvent(transactionValues: transactionValues));
+                // BlocProvider.of<ManageRemoteBloc>(context).add(
+                //     CreateTriggerEvent(transactionValues: transactionValues));
                 
             }, 
             child: Text('TRIGGER'));
