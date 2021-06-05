@@ -22,13 +22,16 @@ class _TransactionListState extends State<HistoryListComponent> {
   }
 
   ListView getList(transactionValuesList, idList) {
+      print(transactionValuesList);
     int itemsQtt =
-        transactionValuesList.length > 0 ? transactionValuesList.length : 1;
+        transactionValuesList == null ? 0 : transactionValuesList.length > 0 ? transactionValuesList.length : 1;
     const double cardElevation = 10;
     return ListView.builder(
         itemCount: itemsQtt,
         itemBuilder: (context, index) {
-          return transactionValuesList.length > 0
+          return transactionValuesList == null
+            ? Center(child: Text("null error"))
+            : transactionValuesList.length > 0
               ? Card(
                   color: Colors.blueGrey[100],
                   elevation: cardElevation,
