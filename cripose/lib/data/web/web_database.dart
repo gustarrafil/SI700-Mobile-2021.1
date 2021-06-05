@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cripose/model/TransactionValues.dart';
+import 'package:cripose/model/Wallet.dart';
 import 'package:dio/dio.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 
@@ -35,6 +36,17 @@ class DatabaseRemoteServer {
     return [transactionValuesList, idList];
   }
 
+  Future<List<Wallet>> getWallet() async {
+      Response response = await _dio.request(this.databaseUrl,
+        options: Options(method: "GET", headers: {
+          "Accept": "application/json",
+        }));
+        List<Wallet> walletList = [];
+        Wallet walletValue = Wallet.fromMap(response.data);
+        walletList.add(walletValue);
+        return walletList;
+  }
+
   Future<int> insertTransaction(TransactionValues transactionValues) async {
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
@@ -43,7 +55,7 @@ class DatabaseRemoteServer {
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
-          "triggerValue": transactionValues.triggerValue
+        //   "triggerValue": transactionValues.triggerValue
         }));
     return 1;
   }
@@ -57,7 +69,7 @@ class DatabaseRemoteServer {
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
-          "triggerValue": transactionValues.triggerValue
+        //   "triggerValue": transactionValues.triggerValue
         }));
     return 1;
   }

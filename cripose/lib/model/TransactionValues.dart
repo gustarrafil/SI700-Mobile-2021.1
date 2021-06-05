@@ -14,8 +14,8 @@ class TransactionValues {
     map['orderPrice'] = _orderPrice;
     map['quantity'] = _quantity;
     map['buySell'] = _buySell;
-    map['triggerValue'] = _triggerValue;
-    map['trigger'] = _trigger;
+    // map['triggerValue'] = _triggerValue;
+    // map['trigger'] = _trigger;
     return map;
   }
 
@@ -24,8 +24,8 @@ class TransactionValues {
     this._buySell = map['buySell'];
     this._orderPrice = map['orderPrice'].toDouble();
     this._quantity = map['quantity'].toDouble();
-    this._triggerValue = map['triggerValue'].toDouble();
-    this._trigger = map['trigger'];
+    // this._triggerValue = map['triggerValue'].toDouble();
+    // this._trigger = map['trigger'];
   }
 
   String get currencyPair => _currencyPair;
