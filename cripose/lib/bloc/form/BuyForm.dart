@@ -14,10 +14,12 @@ class BuyForm extends StatelessWidget {
         return Form(
           key: buyForm,
           child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               parmoedaFormField(transactionValues),
               precoFormField(transactionValues),
               qtdFormField(transactionValues),
+              gatilho(transactionValues, state, context),
               submitButton(transactionValues, state, context)
             ],
           ),
@@ -26,9 +28,34 @@ class BuyForm extends StatelessWidget {
     });
   }
 
+    Widget gatilho(TransactionValues transactionValues, state, context) {
+        return ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
+            onPressed: () {
+                transactionValues.buySell = true;
+                BlocProvider.of<ManageRemoteBloc>(context).add(
+                    CreateTriggerEvent(transactionValues: transactionValues));
+                
+            }, 
+            child: Text('TRIGGER'));
+    }
+
   Widget submitButton(TransactionValues transactionValues, state, context) {
     return ElevatedButton(
-        child: Text("Insert Data"),
+        style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
+        child: Text("FINISH"),
         onPressed: () {
             transactionValues.buySell = true;
           if (buyForm.currentState.validate()) {

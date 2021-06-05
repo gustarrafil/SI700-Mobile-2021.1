@@ -6,19 +6,22 @@ import 'package:flutter/material.dart';
 
 class SellForm extends StatelessWidget {
   final GlobalKey<FormState> sellForm = new GlobalKey<FormState>();
+  TransactionValues transactionValues = new TransactionValues();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ManageRemoteBloc, ManageState>(builder: (context, state) {
       if (state is InsertState) {
-        TransactionValues transactionValues = new TransactionValues();
+        
         return Form(
           key: sellForm,
           child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               parmoedaFormField(transactionValues),
               precoFormField(transactionValues),
               qtdFormField(transactionValues),
+              gatilho(transactionValues, state, context),
               submitButton(transactionValues, state, context)
             ],
           ),
@@ -27,9 +30,34 @@ class SellForm extends StatelessWidget {
     });
   }
 
+  Widget gatilho(TransactionValues transactionValues, state, context) {
+        return ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
+            onPressed: () {
+                transactionValues.buySell = false;
+                BlocProvider.of<ManageRemoteBloc>(context).add(
+                    CreateTriggerEvent(transactionValues: transactionValues));
+                
+            }, 
+            child: Text('TRIGGER'));
+    }
+
   Widget submitButton(TransactionValues transactionValues, state, context) {
     return ElevatedButton(
-        child: Text("Insert Data"),
+        style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  return Colors.blueGrey[900];
+                },
+              ),
+            ),
+        child: Text("FINISH"),
         onPressed: () {
             transactionValues.buySell = false;
           if (sellForm.currentState.validate()) {
