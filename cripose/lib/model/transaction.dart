@@ -1,13 +1,14 @@
 class Transaction {
-  String _currencyPair;
-  double _orderPrice;
-  double _quantity;
-  bool _buySell;
-  double _triggerValue;
-  bool _trigger;
-  DateTime _dateTime;
+  late String _currencyPair;
+  late double _orderPrice;
+  late double _quantity;
+  late bool _buySell;
+  late double _triggerValue;
+  late bool _trigger;
+  late DateTime _dateTime;
 
-  Transaction({buySell, currencyPair, orderPrice, quantity, trigger, triggerValue});
+  Transaction(
+      {buySell, currencyPair, orderPrice, quantity, trigger, triggerValue});
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
@@ -46,11 +47,11 @@ class Transaction {
   }
 
   set buySell(bool newForm) {
-      this._buySell = newForm;
+    this._buySell = newForm;
   }
 
   set trigger(bool newTrigger) {
-      this._trigger = newTrigger;
+    this._trigger = newTrigger;
   }
 
   set orderPrice(double newOrderPrice) {
@@ -72,6 +73,6 @@ class Transaction {
   }
 
   set dateTime(DateTime newDateTime) {
-      this._dateTime = newDateTime;
+    this._dateTime = newDateTime;
   }
 }

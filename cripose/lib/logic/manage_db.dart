@@ -8,12 +8,12 @@ abstract class ManageEvent {}
 
 class DeleteTransactionEvent extends ManageEvent {
   int transactionId;
-  DeleteTransactionEvent({this.transactionId});
+  DeleteTransactionEvent({required this.transactionId});
 }
 
 class SubmitTransactionEvent extends ManageEvent {
   Transaction transactionValues;
-  SubmitTransactionEvent({this.transactionValues});
+  SubmitTransactionEvent({required this.transactionValues});
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////

@@ -35,7 +35,7 @@ class DatabaseRemoteServer {
   }
 
   Future<int> insertTransaction(Transaction transactionValues) async {
-      DateTime dateTime = DateTime.now();
+    DateTime dateTime = DateTime.now();
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
         data: jsonEncode({
@@ -43,8 +43,9 @@ class DatabaseRemoteServer {
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
-          "dateTime": "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2,'0')}-${dateTime.day.toString().padLeft(2,'0')}T${dateTime.hour.toString().padLeft(2,'0')}:${dateTime.minute.toString().padLeft(2,'0')}:${dateTime.second.toString().padLeft(2,'0')}.${dateTime.millisecond.toString().padLeft(3,'0')}Z",
-        //   "triggerValue": transactionValues.triggerValue
+          "dateTime":
+              "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}T${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}.${dateTime.millisecond.toString().padLeft(3, '0')}Z",
+          //   "triggerValue": transactionValues.triggerValue
         }));
     return 1;
   }
@@ -54,11 +55,11 @@ class DatabaseRemoteServer {
     await _dio.put(this.databaseUrl + "/$transactionValuesId",
         options: Options(headers: {"Accept": "application/json"}),
         data: jsonEncode({
-            "buySell": transactionValues.buySell,
+          "buySell": transactionValues.buySell,
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
-        //   "triggerValue": transactionValues.triggerValue
+          //   "triggerValue": transactionValues.triggerValue
         }));
     return 1;
   }
@@ -85,10 +86,8 @@ class DatabaseRemoteServer {
     if (_controller == null) {
       _controller = StreamController();
 
-      Socket socket = io(
-          "https://server-test-aula-mobile.herokuapp.com/",
-          OptionBuilder().setTransports(['websocket'])
-              .build());
+      Socket socket = io("https://server-test-aula-mobile.herokuapp.com/",
+          OptionBuilder().setTransports(['websocket']).build());
       socket.on('invalidate', (_) => notify());
     }
     return _controller.stream.asBroadcastStream();
@@ -97,9 +96,9 @@ class DatabaseRemoteServer {
   dispose() {
     if (!_controller.hasListener) {
       _controller.close();
-      _controller = null;
+      _controller = StreamController<dynamic>();
     }
   }
 
-  static StreamController _controller;
+  static StreamController _controller = StreamController();
 }

@@ -13,23 +13,21 @@ class BuyForm extends StatelessWidget {
     return BlocBuilder<ManageRemoteBloc, ManageState>(
         builder: (context, state) {
       return BlocBuilder<MonitorBloc, MonitorState>(builder: (context, state) {
-          return Form(
-            key: buyForm,
-            child: Column(
-              children: [
-                parmoedaFormField(transactionValues),
-                precoFormField(transactionValues),
-                qtdFormField(transactionValues),
-                // gatilho(transactionValues, state, context),
-                submitButton("gatilho", transactionValues, state, context),
-                submitButton("envio", transactionValues, state, context),
-              ],
-            ),
-          );
-      }
-      );
-    }
-    );
+        return Form(
+          key: buyForm,
+          child: Column(
+            children: [
+              parmoedaFormField(transactionValues),
+              precoFormField(transactionValues),
+              qtdFormField(transactionValues),
+              // gatilho(transactionValues, state, context),
+              submitButton("gatilho", transactionValues, state, context),
+              submitButton("envio", transactionValues, state, context),
+            ],
+          ),
+        );
+      });
+    });
   }
 
   // NAO TA FUNCIONANDO A ROTA PRA PAGINA DE GATILHO
@@ -45,32 +43,29 @@ class BuyForm extends StatelessWidget {
 //         child: Text('botao gatilho'));
 //   }
 
-  Widget submitButton(String acao, Transaction transactionValues, state, context) {
-      transactionValues.buySell = true;
-      if (acao == "gatilho") {
-          return ElevatedButton(
-        child: Text("gatilho"),
-        onPressed: () {
-          
-          if (buyForm.currentState.validate()) {
-            buyForm.currentState.save();
-            Navigator.of(context).pushNamed("/second");
-          }
-        });
-      }
-      else if (acao == "envio") {
-return ElevatedButton(
-        child: Text("Insert Data"),
-        onPressed: () {
-          
-          if (buyForm.currentState.validate()) {
-            buyForm.currentState.save();
-            BlocProvider.of<ManageRemoteBloc>(context).add(
-                SubmitTransactionEvent(transactionValues: transactionValues));
-          }
-        });
-      }
-    
+  Widget submitButton(
+      String acao, Transaction transactionValues, state, context) {
+    transactionValues.buySell = true;
+    if (acao == "gatilho") {
+      return ElevatedButton(
+          child: Text("gatilho"),
+          onPressed: () {
+            if (buyForm.currentState!.validate()) {
+              buyForm.currentState!.save();
+              Navigator.of(context).pushNamed("/second");
+            }
+          });
+    } else {
+      return ElevatedButton(
+          child: Text("Insert Data"),
+          onPressed: () {
+            if (buyForm.currentState!.validate()) {
+              buyForm.currentState!.save();
+              BlocProvider.of<ManageRemoteBloc>(context).add(
+                  SubmitTransactionEvent(transactionValues: transactionValues));
+            }
+          });
+    }
   }
 
   Widget precoFormField(Transaction transactionValues) {
@@ -78,13 +73,13 @@ return ElevatedButton(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(labelText: "Buy price"),
       validator: (value) {
-        if (double.parse(value) == 0.0) {
+        if (double.parse(value!) == 0.0) {
           return "Insert buy price";
         }
         return null;
       },
       onSaved: (value) {
-        transactionValues.orderPrice = double.parse(value);
+        transactionValues.orderPrice = double.parse(value!);
       },
     );
   }
@@ -94,13 +89,13 @@ return ElevatedButton(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(labelText: "Quantity"),
       validator: (value) {
-        if (double.parse(value) == 0.0) {
+        if (double.parse(value!) == 0.0) {
           return "Insert quantity";
         }
         return null;
       },
       onSaved: (value) {
-        transactionValues.quantity = double.parse(value);
+        transactionValues.quantity = double.parse(value!);
       },
     );
   }
@@ -110,13 +105,13 @@ return ElevatedButton(
       keyboardType: TextInputType.text,
       decoration: InputDecoration(labelText: "Currency pair"),
       validator: (value) {
-        if (value.length == 0) {
+        if (value!.length == 0) {
           return "Insert currency pair";
         }
         return null;
       },
       onSaved: (value) {
-        transactionValues.currencyPair = value;
+        transactionValues.currencyPair = value!;
       },
     );
   }

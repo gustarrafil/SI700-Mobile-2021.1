@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabView extends StatefulWidget {
-  TabView({Key key, this.title}) : super(key: key);
+  TabView({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -35,10 +35,9 @@ class _TabViewState extends State<TabView> {
               Container(child: BlocBuilder<MonitorBloc, MonitorState>(
                 builder: (context, state) {
                   bool crossFadeFirst = false;
-                  if (state.changeFalse == null && state.changeTrue != null) {
+                  if (state.changeForm == true) {
                     crossFadeFirst = true;
-                  } else if (state.changeFalse != null &&
-                      state.changeTrue == null) {
+                  } else {
                     crossFadeFirst = false;
                   }
                   return Padding(
@@ -135,7 +134,8 @@ class _TabViewState extends State<TabView> {
                                         Column(
                                           children: [
                                             Text(state
-                                                    .transactionValuesList[index]
+                                                    .transactionValuesList[
+                                                        index]
                                                     .buySell
                                                 ? "comprar"
                                                 : "venda"),

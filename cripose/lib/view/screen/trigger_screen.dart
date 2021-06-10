@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MySecondPage extends StatefulWidget {
-  MySecondPage({Key key, this.title}) : super(key: key);
+  MySecondPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -37,14 +37,14 @@ class _MySecondPageState extends State<MySecondPage> {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                    //   BlocProvider.of<CounterBloc>(context)
-                    //       .add(CounterEvent.increment);
+                      //   BlocProvider.of<CounterBloc>(context)
+                      //       .add(CounterEvent.increment);
                     },
                     child: Icon(Icons.add)),
                 ElevatedButton(
                     onPressed: () {
-                    //   BlocProvider.of<CounterBloc>(context)
-                    //       .add(CounterEvent.decrement);
+                      //   BlocProvider.of<CounterBloc>(context)
+                      //       .add(CounterEvent.decrement);
                     },
                     child: Icon(Icons.remove)),
                 ElevatedButton(
@@ -56,7 +56,7 @@ class _MySecondPageState extends State<MySecondPage> {
                             create: (context) => CounterBloc(),
                             child: MySecondPage(title: "Third Page"));
                       }));*/
-                    //   Navigator.of(context).pushNamed("/third");
+                      //   Navigator.of(context).pushNamed("/third");
                     },
                     child: Icon(Icons.forward))
               ],
