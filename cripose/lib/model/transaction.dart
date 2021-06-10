@@ -1,4 +1,4 @@
-class TransactionValues {
+class Transaction {
   String _currencyPair;
   double _orderPrice;
   double _quantity;
@@ -7,7 +7,7 @@ class TransactionValues {
   bool _trigger;
   DateTime _dateTime;
 
-  TransactionValues({buySell, currencyPair, orderPrice, quantity, trigger, triggerValue});
+  Transaction({buySell, currencyPair, orderPrice, quantity, trigger, triggerValue});
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
@@ -21,7 +21,7 @@ class TransactionValues {
     return map;
   }
 
-  TransactionValues.fromMap(Map<String, dynamic> map) {
+  Transaction.fromMap(Map<String, dynamic> map) {
     this._currencyPair = map['currencyPair'];
     this._buySell = map['buySell'];
     this._orderPrice = map['orderPrice'].toDouble();

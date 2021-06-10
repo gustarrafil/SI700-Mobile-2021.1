@@ -1,5 +1,5 @@
-import 'package:cripose/data/web/web_database.dart';
-import 'package:cripose/model/TransactionValues.dart';
+import 'package:cripose/data/web_database.dart';
+import 'package:cripose/model/transaction.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -12,7 +12,7 @@ class DeleteTransactionEvent extends ManageEvent {
 }
 
 class SubmitTransactionEvent extends ManageEvent {
-  TransactionValues transactionValues;
+  Transaction transactionValues;
   SubmitTransactionEvent({this.transactionValues});
 }
 

@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:cripose/data/web/web_database.dart';
-import 'package:cripose/model/TransactionValues.dart';
+import 'package:cripose/data/web_database.dart';
+import 'package:cripose/model/transaction.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class MonitorEvent {}
@@ -14,7 +13,7 @@ class ChangeForm extends MonitorEvent {
 }
 
 class UpdateList extends MonitorEvent {
-  List<TransactionValues> transactionValuesList;
+  List<Transaction> transactionValuesList;
   List<int> idList;
   UpdateList({this.transactionValuesList, this.idList});
 }
@@ -25,7 +24,7 @@ class UpdateList extends MonitorEvent {
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   StreamSubscription _remoteSubscription;
 
-  List<TransactionValues> remoteTransactionValuesList;
+  List<Transaction> remoteTransactionValuesList;
   List<int> remoteIdList;
 
   MonitorBloc() : super(MonitorState(transactionValuesList: [], idList: [])) {
@@ -56,7 +55,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
           idList: event.idList,
           transactionValuesList: event.transactionValuesList);
     } else if (event is ChangeForm) {
-        // print(event.change);
+        print(event.change);
         if (event.change == true) {
             yield MonitorState(changeTrue: event.change);
         }
@@ -77,7 +76,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
 
 
 class MonitorState {
-  List<TransactionValues> transactionValuesList;
+  List<Transaction> transactionValuesList;
   List<int> idList;
   bool changeTrue;
   bool changeFalse;

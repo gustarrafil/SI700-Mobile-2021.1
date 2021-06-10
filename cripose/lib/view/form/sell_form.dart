@@ -1,27 +1,24 @@
-import 'package:cripose/bloc/logic/manage_db/manage_db.dart';
-import 'package:cripose/model/TransactionValues.dart';
+import 'package:cripose/logic/manage_db.dart';
+import 'package:cripose/model/transaction.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
 
 class SellForm extends StatelessWidget {
   final GlobalKey<FormState> sellForm = new GlobalKey<FormState>();
-  TransactionValues transactionValues = new TransactionValues();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ManageRemoteBloc, ManageState>(builder: (context, state) {
       if (state is InsertState) {
-        
+        Transaction transactionValues = new Transaction();
         return Form(
           key: sellForm,
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               parmoedaFormField(transactionValues),
               precoFormField(transactionValues),
               qtdFormField(transactionValues),
-              gatilho(transactionValues, state, context),
               submitButton(transactionValues, state, context)
             ],
           ),
@@ -30,34 +27,9 @@ class SellForm extends StatelessWidget {
     });
   }
 
-  Widget gatilho(TransactionValues transactionValues, state, context) {
-        return ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                (Set<MaterialState> states) {
-                  return Colors.blueGrey[900];
-                },
-              ),
-            ),
-            onPressed: () {
-                transactionValues.buySell = false;
-                // BlocProvider.of<ManageRemoteBloc>(context).add(
-                //     CreateTriggerEvent(transactionValues: transactionValues));
-                
-            }, 
-            child: Text('TRIGGER'));
-    }
-
-  Widget submitButton(TransactionValues transactionValues, state, context) {
+  Widget submitButton(Transaction transactionValues, state, context) {
     return ElevatedButton(
-        style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                (Set<MaterialState> states) {
-                  return Colors.blueGrey[900];
-                },
-              ),
-            ),
-        child: Text("FINISH"),
+        child: Text("Insert Data"),
         onPressed: () {
             transactionValues.buySell = false;
           if (sellForm.currentState.validate()) {
@@ -68,7 +40,7 @@ class SellForm extends StatelessWidget {
         });
   }
 
-  Widget parmoedaFormField(TransactionValues transactionValues) {
+  Widget parmoedaFormField(Transaction transactionValues) {
     return TextFormField(
       keyboardType: TextInputType.text,
       decoration: InputDecoration(labelText: "Currency pair"),
@@ -84,7 +56,7 @@ class SellForm extends StatelessWidget {
     );
   }
 
-  Widget precoFormField(TransactionValues transactionValues) {
+  Widget precoFormField(Transaction transactionValues) {
     return TextFormField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(labelText: "Sell price"),
@@ -100,7 +72,7 @@ class SellForm extends StatelessWidget {
     );
   }
 
-  Widget qtdFormField(TransactionValues transactionValues) {
+  Widget qtdFormField(Transaction transactionValues) {
     return TextFormField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(labelText: "Quantity"),

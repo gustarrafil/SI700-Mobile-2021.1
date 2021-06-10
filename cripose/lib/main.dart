@@ -1,11 +1,24 @@
-/*
- * Arthur Briganti Gini 213253
- * Gustavo Tarrafil Sousa Pereira 159740
- */
-
-import 'package:cripose/view/LoginView.dart';
+import 'package:cripose/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(home: LoginView()));
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+    final LocalAppRouter _localAppRouter = LocalAppRouter();
+  @override
+  Widget build(BuildContext context) {
+      return MaterialApp(
+      title: 'Flutter Demo',
+      onGenerateRoute: _localAppRouter.onGenerateRoute,
+    );
+  }
 }

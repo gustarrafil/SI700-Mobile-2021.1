@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:cripose/model/TransactionValues.dart';
-import 'package:cripose/model/Wallet.dart';
+import 'package:cripose/model/transaction.dart';
 import 'package:dio/dio.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 
@@ -24,11 +22,11 @@ class DatabaseRemoteServer {
         options: Options(method: "GET", headers: {
           "Accept": "application/json",
         }));
-    List<TransactionValues> transactionValuesList = [];
+    List<Transaction> transactionValuesList = [];
     List<int> idList = [];
 
     response.data.forEach((element) {
-      TransactionValues transactionValues = TransactionValues.fromMap(element);
+      Transaction transactionValues = Transaction.fromMap(element);
       transactionValuesList.add(transactionValues);
       idList.add(element["id"]);
     });
@@ -36,18 +34,7 @@ class DatabaseRemoteServer {
     return [transactionValuesList, idList];
   }
 
-  Future<List<Wallet>> getWallet() async {
-      Response response = await _dio.request(this.databaseUrl,
-        options: Options(method: "GET", headers: {
-          "Accept": "application/json",
-        }));
-        List<Wallet> walletList = [];
-        Wallet walletValue = Wallet.fromMap(response.data);
-        walletList.add(walletValue);
-        return walletList;
-  }
-
-  Future<int> insertTransaction(TransactionValues transactionValues) async {
+  Future<int> insertTransaction(Transaction transactionValues) async {
       DateTime dateTime = DateTime.now();
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
@@ -63,7 +50,7 @@ class DatabaseRemoteServer {
   }
 
   Future<int> updateTransaction(
-      int transactionValuesId, TransactionValues transactionValues) async {
+      int transactionValuesId, Transaction transactionValues) async {
     await _dio.put(this.databaseUrl + "/$transactionValuesId",
         options: Options(headers: {"Accept": "application/json"}),
         data: jsonEncode({
@@ -100,7 +87,7 @@ class DatabaseRemoteServer {
 
       Socket socket = io(
           "https://server-test-aula-mobile.herokuapp.com/",
-          OptionBuilder().setTransports(['websocket']) // for Flutter or Dart VM
+          OptionBuilder().setTransports(['websocket'])
               .build());
       socket.on('invalidate', (_) => notify());
     }
@@ -116,20 +103,3 @@ class DatabaseRemoteServer {
 
   static StreamController _controller;
 }
-
-// void main() async {
-//   DatabaseRemoteServer noteService = DatabaseRemoteServer.helper;
-//   /*
-//   var response = await noteService.getNoteList();
-//   Note note = response[0][0];
-//   print(note.title);
-//   */
-
-//   TransactionValues note = TransactionValues();
-//   note.currencyPair = "BRL";
-//   note.orderPrice = 23.6;
-//   note.quantity = 34.7;
-//   noteService.insertTransaction(note);
-//   //noteService.updateNote(0, note);
-//   //noteService.deleteNote(1);
-// }
