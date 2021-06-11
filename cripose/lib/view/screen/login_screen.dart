@@ -19,6 +19,12 @@ class _SignInState extends State<SignIn> {
         child: ElevatedButton(
             onPressed: () async {
               dynamic result = await _auth.signInAnon();
+              if (result == null) {
+                print('Error signing');
+              } else {
+                print('Sucess');
+                print(result.uid);
+              }
             },
             child: Text("botao")),
       ),
