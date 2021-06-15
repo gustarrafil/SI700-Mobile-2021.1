@@ -101,6 +101,7 @@ class SellForm extends StatelessWidget {
       //   if (state is InsertState) {
       Transaction transactionValues = new Transaction();
       return Form(
+          
         key: sellForm,
         child: Column(
           children: [
@@ -121,6 +122,8 @@ class SellForm extends StatelessWidget {
     transactionValues.buySell = true;
     if (acao == "gatilho") {
       return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey[900]),
           child: Text("gatilho"),
           onPressed: () {
             if (sellForm.currentState!.validate()) {
@@ -130,6 +133,8 @@ class SellForm extends StatelessWidget {
           });
     } else {
       return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey[900]),
           child: Text("Insert Data"),
           onPressed: () {
             if (sellForm.currentState!.validate()) {

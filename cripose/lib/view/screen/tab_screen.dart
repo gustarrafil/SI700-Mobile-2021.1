@@ -2,6 +2,7 @@ import 'package:cripose/logic/auth_bloc.dart';
 import 'package:cripose/logic/monitor_db.dart';
 import 'package:cripose/view/form/buy_form.dart';
 import 'package:cripose/view/form/sell_form.dart';
+import 'package:cripose/view/screen/trade_box.dart';
 import 'package:cripose/view/screen/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -160,7 +161,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 //   }
 // }
 
-
 class TabView extends StatefulWidget {
   TabView({Key? key, required this.title}) : super(key: key);
 
@@ -171,13 +171,17 @@ class TabView extends StatefulWidget {
 }
 
 class _TabViewState extends State<TabView> {
+  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
           length: 3,
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             appBar: AppBar(
+              backgroundColor: Colors.blueGrey[900],
               bottom: TabBar(
                 tabs: [
                   Tab(icon: Icon(Icons.account_box)),
@@ -186,27 +190,140 @@ class _TabViewState extends State<TabView> {
                 ],
               ),
               actions: [
-                  TextButton.icon(
-                      style: TextButton.styleFrom(primary: Colors.white),
-                      icon: Icon(Icons.logout),
-                      onPressed: () {
-                        BlocProvider.of<AuthBloc>(context).add(Logout());
-                      },
-                      label: Text("Logout"))
-                ],
+                TextButton.icon(
+                    style: TextButton.styleFrom(primary: Colors.white),
+                    icon: Icon(Icons.logout),
+                    onPressed: () {
+                      BlocProvider.of<AuthBloc>(context).add(Logout());
+                    },
+                    label: Text("Logout"))
+              ],
               title: Text(widget.title),
             ),
             body: TabBarView(children: [
-            //   Icon(Icons.account_box),
-            // Column(
-            //   children: [
-            //     ElevatedButton(onPressed: () {
-            //         BlocProvider.of<AuthBloc>(context).add(Logout());
-            //         Navigator.of(context).pushNamed("/");
-            //     }, child: Text("sair")),
-            //   ],
-            // ),
-            UserView(),
+              Container(
+                child: BlocBuilder<MonitorBloc, MonitorState>(
+                  builder: (context, state) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 30),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                "nome",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 30),
+                              ),
+                              Text(
+                                "carteira",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 30),
+                              ),
+                            ],
+                          ),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  "Last orders",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                                Column(children: [
+                                  Container(
+                                      margin:
+                                          EdgeInsets.symmetric(vertical: 20.0),
+                                      height: 100.0,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        children: [
+                                          SizedBox(
+                                            child: Card(
+                                              color: Colors.blueGrey[100],
+                                              child: Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 10),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      Text(
+                                                          "${state.transactionValuesList[0].currencyPair}"),
+                                                      Text(state
+                                                              .transactionValuesList[0]
+                                                              .buySell
+                                                          ? "compra"
+                                                          : "venda"),
+                                                      Text(
+                                                          "${state.transactionValuesList[0].quantity}"),
+                                                    ],
+                                                  )),
+                                            ),
+                                          ),
+                                        ],
+                                      ))
+                                ])
+                              ]),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  "Open orders",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                                Column(children: [
+                                  Container(
+                                      margin:
+                                          EdgeInsets.symmetric(vertical: 20.0),
+                                      height: 100.0,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        children: [
+                                          SizedBox(
+                                            child: Card(
+                                              color: Colors.blueGrey[100],
+                                              child: Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 10),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      Text(
+                                                          "${state.transactionValuesList[0].currencyPair}"),
+                                                      Text(state
+                                                              .transactionValuesList[0]
+                                                              .buySell
+                                                          ? "comprar"
+                                                          : "venda"),
+                                                      Text(
+                                                          "${state.transactionValuesList[0].quantity}"),
+                                                    ],
+                                                  )),
+                                            ),
+                                          ),
+                                        ],
+                                      ))
+                                ])
+                              ]),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+
               Container(child: BlocBuilder<MonitorBloc, MonitorState>(
                 builder: (context, state) {
                   bool crossFadeFirst = false;
@@ -219,12 +336,17 @@ class _TabViewState extends State<TabView> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 30),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [] // get wallet
-                            ),
+                            children: [
+                              Text(
+                                "carteira",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 30),
+                              ),
+                            ]),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [

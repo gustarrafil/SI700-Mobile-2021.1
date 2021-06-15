@@ -162,6 +162,8 @@ class BuyForm extends StatelessWidget {
     transactionValues.buySell = true;
     if (acao == "gatilho") {
       return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey[900]),
           child: Text("gatilho"),
           onPressed: () {
             if (buyForm.currentState!.validate()) {
@@ -171,6 +173,8 @@ class BuyForm extends StatelessWidget {
           });
     } else {
       return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey[900]),
           child: Text("Insert Data"),
           onPressed: () {
             if (buyForm.currentState!.validate()) {

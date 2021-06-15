@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
             //   });
             // }
           },
-          child: TabView(title: "abas",)
+          child: TabView(title: "Cripose",)
         ),
     );
   }
