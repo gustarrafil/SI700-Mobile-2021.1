@@ -47,22 +47,6 @@ class _RegisterState extends State<Register> {
               },
               decoration:
                   InputDecoration(hintText: "Password", labelText: "Password")),
-          TextFormField(
-              initialValue: "",
-              keyboardType: TextInputType.text,
-              onSaved: (inValue) {
-                registerData.pwd = inValue!;
-              },
-              decoration:
-                  InputDecoration(hintText: "Password", labelText: "Password")),
-          TextFormField(
-              initialValue: "",
-              keyboardType: TextInputType.text,
-              onSaved: (inValue) {
-                registerData.pwd = inValue!;
-              },
-              decoration:
-                  InputDecoration(hintText: "Password", labelText: "Password")),
           ElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {

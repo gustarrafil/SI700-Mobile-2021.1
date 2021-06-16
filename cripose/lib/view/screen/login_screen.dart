@@ -35,7 +35,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 //   }
 // }
 
-
 class AuthenticationScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -94,14 +93,14 @@ class _AuthenticationScreenStatex extends State<AuthenticationScreen> {
                 BlocProvider.of<AuthBloc>(context).add(LoginAnon());
               },
               child: Text("SignInAnônimo!")),
-        ElevatedButton(
+          ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Register()),
                 );
               },
-              child: Text("regiar")),
+              child: Text("Registrar")),
         ]));
   }
 }

@@ -39,30 +39,31 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
-      try {
-    if (event == null) {
-      yield Unauthenticated();
-    }
-    if (event is RegisterUser) {
-      await _authenticationService.createUser(
-          email: event.userName, pwd: event.pwd);
-    } else if (event is LoginAnon) {
-      await _authenticationService.signInAnonimo();
-    } else if (event is LoginUser) {
-      await _authenticationService.signInWithEmail(
-          email: event.userName, pwd: event.pwd);
-    } else if (event is InnerServerEvent) {
-      if (event.userAccount == null) {
+    try {
+      if (event == false) {
         yield Unauthenticated();
-      } else {
-        yield Authenticated(user: event.userAccount);
       }
-    } else if (event is Logout) {
-      await _authenticationService.signOut();
+      if (event is RegisterUser) {
+        await _authenticationService.createUser(
+            email: event.userName, pwd: event.pwd);
+      } else if (event is LoginAnon) {
+        await _authenticationService.signInAnonimo();
+      } else if (event is LoginUser) {
+        await _authenticationService.signInWithEmail(
+            email: event.userName, pwd: event.pwd);
+      } else if (event is InnerServerEvent) {
+        if (event.userAccount == false) {
+          yield Unauthenticated();
+        } else {
+          yield Authenticated(user: event.userAccount);
+        }
+      } else if (event is Logout) {
+        await _authenticationService.signOut();
+        yield Unauthenticated();
+      }
+    } catch (e) {
+      yield AuthError(msg: e.toString());
     }
-      }catch(e) {
-          yield AuthError(msg: e.toString());
-      }
   }
 }
 
