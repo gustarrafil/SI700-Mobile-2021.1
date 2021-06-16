@@ -1,39 +1,7 @@
 import 'package:cripose/logic/auth_bloc.dart';
-import 'package:cripose/services/auth.dart';
 import 'package:cripose/view/screen/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-// class SignIn extends StatefulWidget {
-//   const SignIn({Key? key}) : super(key: key);
-
-//   @override
-//   _SignInState createState() => _SignInState();
-// }
-
-// class _SignInState extends State<SignIn> {
-//   final AuthService _auth = AuthService();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text("sei la")),
-//       body: Container(
-//         child: ElevatedButton(
-//             onPressed: () async {
-//               dynamic result = await _auth.signInAnon();
-//               if (result == null) {
-//                 print('Error signing');
-//               } else {
-//                 print('Sucess');
-//                 print(result.uid);
-//               }
-//             },
-//             child: Text("botao")),
-//       ),
-//     );
-//   }
-// }
 
 class AuthenticationScreen extends StatefulWidget {
   @override
@@ -48,7 +16,7 @@ class _AuthenticationScreenStatex extends State<AuthenticationScreen> {
     return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("entrar"),
+          title: Text("Entrar"),
         ),
         body: Column(
           children: <Widget>[signInFormulario()],

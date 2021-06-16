@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:cripose/model/transaction.dart';
 import 'package:dio/dio.dart';
 import 'package:socket_io_client/socket_io_client.dart';
@@ -41,6 +40,7 @@ class DatabaseRemoteServer {
         data: jsonEncode({
           "buySell": transactionValues.buySell,
           "currencyPair": transactionValues.currencyPair,
+          "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
           "dateTime":
               "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}T${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}.${dateTime.millisecond.toString().padLeft(3, '0')}Z",
@@ -49,19 +49,19 @@ class DatabaseRemoteServer {
     return 1;
   }
 
-  Future<int> updateTransaction(
-      int transactionValuesId, Transaction transactionValues) async {
-    await _dio.put(this.databaseUrl + "/$transactionValuesId",
-        options: Options(headers: {"Accept": "application/json"}),
-        data: jsonEncode({
-          "buySell": transactionValues.buySell,
-          "currencyPair": transactionValues.currencyPair,
-          "orderPrice": transactionValues.orderPrice,
-          "quantity": transactionValues.quantity,
-          //   "triggerValue": transactionValues.triggerValue
-        }));
-    return 1;
-  }
+  // Future<int> updateTransaction(
+  //     int transactionValuesId, Transaction transactionValues) async {
+  //   await _dio.put(this.databaseUrl + "/$transactionValuesId",
+  //       options: Options(headers: {"Accept": "application/json"}),
+  //       data: jsonEncode({
+  //         "buySell": transactionValues.buySell,
+  //         "currencyPair": transactionValues.currencyPair,
+  //         "orderPrice": transactionValues.orderPrice,
+  //         "quantity": transactionValues.quantity,
+  //         //   "triggerValue": transactionValues.triggerValue
+  //       }));
+  //   return 1;
+  // }
 
   Future<int> deleteTransaction(int transactionValuesId) async {
     await _dio.delete(this.databaseUrl + "/$transactionValuesId",

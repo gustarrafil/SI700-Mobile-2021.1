@@ -2,8 +2,6 @@ import 'package:cripose/logic/auth_bloc.dart';
 import 'package:cripose/logic/monitor_db.dart';
 import 'package:cripose/view/form/buy_form.dart';
 import 'package:cripose/view/form/sell_form.dart';
-import 'package:cripose/view/screen/trade_box.dart';
-import 'package:cripose/view/screen/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

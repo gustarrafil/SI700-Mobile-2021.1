@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cripose/model/user.dart';
 import 'package:cripose/services/auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       } else if (event is Logout) {
         await _authenticationService.signOut();
-        yield Unauthenticated();
+        // TODO: Conferir esse sistema de logoff
       }
     } catch (e) {
       yield AuthError(msg: e.toString());
