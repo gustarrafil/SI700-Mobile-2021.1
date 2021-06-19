@@ -30,7 +30,7 @@ class SellForm extends StatelessWidget {
 
   Widget submitButton(
       String acao, Transaction transactionValues, state, context) {
-    transactionValues.buySell = true;
+    transactionValues.buySell = false;
     // if (acao == "gatilho") {
     //   return ElevatedButton(
     //       style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
