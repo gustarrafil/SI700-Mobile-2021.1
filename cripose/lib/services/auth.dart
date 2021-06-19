@@ -12,7 +12,7 @@ class FirebaseAuthenticationService {
 
   UserModel _userFromFirebase(User? user) {
     // ignore: unnecessary_null_comparison
-    String users = user?.uid as String;
+    String users = user != null ? user.uid as String : '';
     return UserModel(uid: users);
   }
 
