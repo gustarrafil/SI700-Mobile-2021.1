@@ -14,10 +14,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => MonitorBloc()),
-        BlocProvider(create: (_) => ManageRemoteBloc()),
-      ],
+        providers: [
+          BlocProvider(create: (_) => MonitorBloc()),
+          BlocProvider(create: (_) => ManageRemoteBloc()),
+        ],
         child: BlocListener<ManageRemoteBloc, ManageState>(
           listener: (context, state) {
             // if (state is UpdateState) {
@@ -26,8 +26,17 @@ class _MyAppState extends State<MyApp> {
             //   });
             // }
           },
-          child: TabView(title: "Cripose",)
-        ),
-    );
+          child: BlocListener<MonitorBloc, MonitorState>(
+              listener: (context, state) {
+                // if (state is UpdateState) {
+                //   setState(() {
+                //     _currentPage = 2;
+                //   });
+                // }
+              },
+              child: TabView(
+                title: "Cripose",
+              )),
+        ));
   }
 }
