@@ -6,9 +6,10 @@ class Transaction {
   late double _triggerValue;
   late bool _trigger;
   late DateTime _dateTime;
+  late double _wallet;
 
   Transaction(
-      {buySell, currencyPair, orderPrice, quantity, trigger, triggerValue});
+      {buySell, currencyPair, orderPrice, quantity, trigger, triggerValue, wallet});
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
@@ -19,6 +20,7 @@ class Transaction {
     // map['triggerValue'] = _triggerValue;
     // map['trigger'] = _trigger;
     map['dateTime'] = _dateTime;
+    map['wallet'] = _wallet;
     return map;
   }
 
@@ -27,6 +29,7 @@ class Transaction {
     this._buySell = map['buySell'];
     this._orderPrice = map['orderPrice'].toDouble();
     this._quantity = map['quantity'].toDouble();
+    this._wallet = map['wallet'] != null ? map['wallet'].toDouble() : 0;
     // this._triggerValue = map['triggerValue'].toDouble();
     // this._trigger = map['trigger'];
     this._dateTime = DateTime.parse(map['dateTime']);
@@ -36,6 +39,7 @@ class Transaction {
   bool get buySell => _buySell;
   double get orderPrice => _orderPrice;
   double get quantity => _quantity;
+  double get wallet => _wallet;
   double get triggerValue => _triggerValue;
   bool get trigger => _trigger;
   DateTime get dateTime => _dateTime;
@@ -63,6 +67,11 @@ class Transaction {
   set quantity(double newQuantity) {
     if (newQuantity != 0) {
       this._quantity = newQuantity;
+    }
+  }
+  set wallet(double newWallet) {
+    if (newWallet != 0) {
+      this._wallet = newWallet;
     }
   }
 

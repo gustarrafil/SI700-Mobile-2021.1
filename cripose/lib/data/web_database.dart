@@ -34,6 +34,14 @@ class DatabaseRemoteServer {
   }
 
   Future<int> insertTransaction(Transaction transactionValues) async {
+    Response response = await _dio.request(this.databaseUrl,
+        options: Options(method: "GET", headers: {
+          "Accept": "application/json",
+        }));
+    double wallet =
+        response.data[response.data.length - 1]["wallet"].toDouble();
+    double alterValue =
+        transactionValues.orderPrice * transactionValues.quantity;
     DateTime dateTime = DateTime.now();
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
@@ -42,6 +50,9 @@ class DatabaseRemoteServer {
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
+          "wallet": transactionValues.buySell
+              ? wallet - alterValue
+              : wallet + alterValue,
           "dateTime":
               "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}T${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}.${dateTime.millisecond.toString().padLeft(3, '0')}Z",
           //   "triggerValue": transactionValues.triggerValue
