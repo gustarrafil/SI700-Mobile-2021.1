@@ -29,7 +29,7 @@ class DatabaseRemoteServer {
       transactionValuesList.add(transactionValues);
       idList.add(element["id"]);
     });
-
+    // notify();
     return [transactionValuesList, idList];
   }
 
@@ -57,6 +57,7 @@ class DatabaseRemoteServer {
               "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}T${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}.${dateTime.millisecond.toString().padLeft(3, '0')}Z",
           //   "triggerValue": transactionValues.triggerValue
         }));
+        notify();
     return 1;
   }
 

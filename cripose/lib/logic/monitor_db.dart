@@ -64,8 +64,16 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
       //   } else if (event.change == false) {
       //     yield MonitorState(changeFalse: event.change);
       //   }
+      var remoteResponse =
+          await DatabaseRemoteServer.helper.getTransactionValuesList();
+          remoteTransactionValuesList = remoteResponse[0];
+      remoteIdList = remoteResponse[1];
       yield MonitorState(
-          idList: [], transactionValuesList: [], changeForm: event.change);
+          changeForm: event.change, //teste
+          idList: List.from(remoteIdList),
+          transactionValuesList: List.from(remoteTransactionValuesList));
+    //   yield MonitorState(
+    //       idList: [], transactionValuesList: [], changeForm: event.change);
     }
   }
 
