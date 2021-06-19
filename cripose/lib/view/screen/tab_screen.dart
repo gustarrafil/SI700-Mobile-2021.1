@@ -186,7 +186,7 @@ class _TabViewState extends State<TabView> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,

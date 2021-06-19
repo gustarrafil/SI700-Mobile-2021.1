@@ -20,9 +20,10 @@ class BuyForm extends StatelessWidget {
               parmoedaFormField(transactionValues),
               precoFormField(transactionValues),
               qtdFormField(transactionValues),
-              // gatilho(transactionValues, state, context),
-              //   submitButton("gatilho", transactionValues, state, context),
-              submitButton("envio", transactionValues, state, context),
+              Padding(
+              padding: const EdgeInsets.only(top: 100),
+              child: submitButton(transactionValues, state, context),
+            )
             ],
           ),
         );
@@ -31,30 +32,21 @@ class BuyForm extends StatelessWidget {
   }
 
   Widget submitButton(
-      String acao, Transaction transactionValues, state, context) {
+      Transaction transactionValues, state, context) {
     transactionValues.buySell = true;
-    // if (acao == "gatilho") {
-    //   return ElevatedButton(
-    //       style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-    //       child: Text("gatilho"),
-    //       onPressed: () {
-    //         if (buyForm.currentState!.validate()) {
-    //           buyForm.currentState!.save();
-    //           //   Navigator.of(context).pushNamed("/second");
-    //         }
-    //       });
-    // } else {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-        child: Text("Insert Data"),
-        onPressed: () {
-          if (buyForm.currentState!.validate()) {
-            buyForm.currentState!.save();
-            BlocProvider.of<ManageRemoteBloc>(context).add(
-                SubmitTransactionEvent(transactionValues: transactionValues));
-          }
-        });
-    // }
+    return SizedBox(
+        width: double.infinity,
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+          child: Text("BUY ORDER"),
+          onPressed: () {
+            if (buyForm.currentState!.validate()) {
+              buyForm.currentState!.save();
+              BlocProvider.of<ManageRemoteBloc>(context).add(
+                  SubmitTransactionEvent(transactionValues: transactionValues));
+            }
+          }),
+    );
   }
 
   Widget precoFormField(Transaction transactionValues) {

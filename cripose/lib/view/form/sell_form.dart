@@ -15,12 +15,15 @@ class SellForm extends StatelessWidget {
       return Form(
         key: sellForm,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             parmoedaFormField(transactionValues),
             precoFormField(transactionValues),
             qtdFormField(transactionValues),
-            // submitButton("gatilho",transactionValues, state, context),
-            submitButton("envio", transactionValues, state, context)
+            Padding(
+              padding: const EdgeInsets.only(top: 100),
+              child: submitButton(transactionValues, state, context),
+            )
           ],
         ),
       );
@@ -28,31 +31,21 @@ class SellForm extends StatelessWidget {
     });
   }
 
-  Widget submitButton(
-      String acao, Transaction transactionValues, state, context) {
+  Widget submitButton(Transaction transactionValues, state, context) {
     transactionValues.buySell = false;
-    // if (acao == "gatilho") {
-    //   return ElevatedButton(
-    //       style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-    //       child: Text("gatilho"),
-    //       onPressed: () {
-    //         if (sellForm.currentState!.validate()) {
-    //           sellForm.currentState!.save();
-    //           //   Navigator.of(context).pushNamed("/second");
-    //         }
-    //       });
-    // } else {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-        child: Text("Insert Data"),
-        onPressed: () {
-          if (sellForm.currentState!.validate()) {
-            sellForm.currentState!.save();
-            BlocProvider.of<ManageRemoteBloc>(context).add(
-                SubmitTransactionEvent(transactionValues: transactionValues));
-          }
-        });
-    // }
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+          child: Text("SELL ORDER"),
+          onPressed: () {
+            if (sellForm.currentState!.validate()) {
+              sellForm.currentState!.save();
+              BlocProvider.of<ManageRemoteBloc>(context).add(
+                  SubmitTransactionEvent(transactionValues: transactionValues));
+            }
+          }),
+    );
   }
 
   Widget parmoedaFormField(Transaction transactionValues) {
