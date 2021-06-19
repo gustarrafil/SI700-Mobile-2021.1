@@ -19,8 +19,10 @@ class RegisterUser extends AuthEvent {
 
 class LoginAnon extends AuthEvent {}
 
-class Logout extends AuthEvent {}
+class Logout extends AuthEvent {
+}
 
+// Auth_event.dart
 class InnerServerEvent extends AuthEvent {
   final UserModel userAccount;
   InnerServerEvent(this.userAccount);
@@ -29,6 +31,7 @@ class InnerServerEvent extends AuthEvent {
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   late FirebaseAuthenticationService _authenticationService;
   late StreamSubscription _authStream;
+
   AuthBloc() : super(Unauthenticated()) {
     _authenticationService = FirebaseAuthenticationService();
     _authStream = _authenticationService.user.listen((UserModel userAccount) {
@@ -39,7 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
     try {
-      if (event == false) {
+      if (event == null) {
         yield Unauthenticated();
       }
       if (event is RegisterUser) {
@@ -51,14 +54,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await _authenticationService.signInWithEmail(
             email: event.userName, pwd: event.pwd);
       } else if (event is InnerServerEvent) {
-        if (event.userAccount == false) {
+        if (event.userAccount.uid == "") {
           yield Unauthenticated();
         } else {
           yield Authenticated(user: event.userAccount);
         }
       } else if (event is Logout) {
         await _authenticationService.signOut();
-        // TODO: Conferir esse sistema de logoff
       }
     } catch (e) {
       yield AuthError(msg: e.toString());
