@@ -53,10 +53,29 @@ class _TabViewState extends State<TabView> {
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              "nome",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
+                            Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 20.0),
+                                  height: 50.0,
+                                  child: ListView.builder(
+                                    itemCount:
+                                        1,
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        children: [
+                                          Text(
+                                            "${state.transactionValuesList[state.transactionValuesList.length - 1].userName}",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 30),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                             Column(
                               children: [

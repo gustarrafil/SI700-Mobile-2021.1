@@ -34,6 +34,7 @@ class SellForm extends StatelessWidget {
   Widget submitButton(Transaction transactionValues, state, context) {
     transactionValues.buySell = false;
     transactionValues.wallet = 0.0;
+    transactionValues.userName = "";
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(

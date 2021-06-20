@@ -15,10 +15,15 @@ class _RegisterState extends State<Register> {
     return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("registro"),
+            backgroundColor: Colors.blueGrey[900],
+          title: Text("Create user"),
         ),
-        body: Column(
-          children: <Widget>[registerForm()],
+        body: Padding(
+          padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: Column(
+            children: <Widget>[registerForm()],
+          ),
         ),
       );
     });
@@ -37,8 +42,8 @@ class _RegisterState extends State<Register> {
                 registerData.userName = inValue!;
               },
               decoration: InputDecoration(
-                  hintText: "none@none.com",
-                  labelText: "Username (eMail address)")),
+                  hintText: "john@doe.com",
+                  labelText: "e-mail address")),
           TextFormField(
               initialValue: "",
               obscureText: true,
@@ -46,15 +51,19 @@ class _RegisterState extends State<Register> {
                 registerData.pwd = inValue!;
               },
               decoration:
-                  InputDecoration(hintText: "Password", labelText: "Password")),
-          ElevatedButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  BlocProvider.of<AuthBloc>(context).add(registerData);
-                }
-              },
-              child: Text("Register!"))
+                  InputDecoration(hintText: "password", labelText: "password")),
+          SizedBox(
+              width: double.infinity,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    BlocProvider.of<AuthBloc>(context).add(registerData);
+                  }
+                },
+                child: Text("REGISTER")),
+          )
         ]));
   }
 }

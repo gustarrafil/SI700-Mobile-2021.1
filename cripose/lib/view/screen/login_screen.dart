@@ -16,10 +16,15 @@ class _AuthenticationScreenStatex extends State<AuthenticationScreen> {
     return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Entrar"),
+            backgroundColor: Colors.blueGrey[900],
+          title: Text("Access account"),
         ),
-        body: Column(
-          children: <Widget>[signInFormulario()],
+        body: Padding(
+          padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: Column(
+            children: <Widget>[signInFormulario()],
+          ),
         ),
       );
     });
@@ -38,8 +43,8 @@ class _AuthenticationScreenStatex extends State<AuthenticationScreen> {
                 loginData.userName = inValue!;
               },
               decoration: InputDecoration(
-                  hintText: "none@none.com",
-                  labelText: "Username (eMail address)")),
+                  hintText: "john@doe.com",
+                  labelText: "e-mail address")),
           TextFormField(
               initialValue: "",
               obscureText: true,
@@ -47,28 +52,40 @@ class _AuthenticationScreenStatex extends State<AuthenticationScreen> {
                 loginData.pwd = inValue!;
               },
               decoration:
-                  InputDecoration(hintText: "Password", labelText: "Password")),
-          ElevatedButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  BlocProvider.of<AuthBloc>(context).add(loginData);
-                }
-              },
-              child: Text("SignIn!")),
-          ElevatedButton(
-              onPressed: () {
-                BlocProvider.of<AuthBloc>(context).add(LoginAnon());
-              },
-              child: Text("SignInAnônimo!")),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Register()),
-                );
-              },
-              child: Text("Registrar")),
+                  InputDecoration(hintText: "password", labelText: "password")),
+          SizedBox(
+              width: double.infinity,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    BlocProvider.of<AuthBloc>(context).add(loginData);
+                  }
+                },
+                child: Text("LOGIN")),
+          ),
+          SizedBox(
+              width: double.infinity,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+                onPressed: () {
+                  BlocProvider.of<AuthBloc>(context).add(LoginAnon());
+                },
+                child: Text("ANONYMOUS")),
+          ),
+          SizedBox(
+              width: double.infinity,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Register()),
+                  );
+                },
+                child: Text("CREATE USER")),
+          ),
         ]));
   }
 }
