@@ -43,6 +43,8 @@ class DatabaseRemoteServer {
     double alterValue =
         transactionValues.orderPrice * transactionValues.quantity;
     DateTime dateTime = DateTime.now();
+    String name =
+        response.data[response.data.length - 1]["userName"];
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
         data: jsonEncode({
@@ -53,6 +55,7 @@ class DatabaseRemoteServer {
           "wallet": transactionValues.buySell
               ? wallet - alterValue
               : wallet + alterValue,
+            "userName": name,
           "dateTime":
               "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}T${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}.${dateTime.millisecond.toString().padLeft(3, '0')}Z",
           //   "triggerValue": transactionValues.triggerValue

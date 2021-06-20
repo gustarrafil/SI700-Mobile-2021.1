@@ -8,8 +8,10 @@ class Transaction {
   late DateTime _dateTime;
   late double _wallet;
 
+  late String _userName;
+
   Transaction(
-      {buySell, currencyPair, orderPrice, quantity, trigger, triggerValue, wallet});
+      {buySell, currencyPair, orderPrice, quantity, trigger, triggerValue, wallet, userName});
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
@@ -21,6 +23,7 @@ class Transaction {
     // map['trigger'] = _trigger;
     map['dateTime'] = _dateTime;
     map['wallet'] = _wallet;
+    map['userName'] = _userName;
     return map;
   }
 
@@ -33,9 +36,11 @@ class Transaction {
     // this._triggerValue = map['triggerValue'].toDouble();
     // this._trigger = map['trigger'];
     this._dateTime = DateTime.parse(map['dateTime']);
+    this._userName = map['userName'];
   }
 
   String get currencyPair => _currencyPair;
+  String get userName => _userName;
   bool get buySell => _buySell;
   double get orderPrice => _orderPrice;
   double get quantity => _quantity;
@@ -47,6 +52,11 @@ class Transaction {
   set currencyPair(String newCurrencyPair) {
     if (newCurrencyPair.length > 0) {
       this._currencyPair = newCurrencyPair;
+    }
+  }
+  set userName(String newUserName) {
+    if (newUserName.length > 0) {
+      this._userName = newUserName;
     }
   }
 
