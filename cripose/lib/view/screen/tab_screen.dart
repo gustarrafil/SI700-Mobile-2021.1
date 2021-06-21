@@ -59,6 +59,7 @@ class _TabViewState extends State<TabView> {
                                   margin: EdgeInsets.symmetric(vertical: 20.0),
                                   height: 50.0,
                                   child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
                                     itemCount:
                                         1,
                                     itemBuilder: (context, index) {
@@ -83,13 +84,14 @@ class _TabViewState extends State<TabView> {
                                   margin: EdgeInsets.symmetric(vertical: 20.0),
                                   height: 50.0,
                                   child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
                                     itemCount:
                                         1,
                                     itemBuilder: (context, index) {
                                       return Column(
                                         children: [
                                           Text(
-                                            "\$${state.transactionValuesList[state.transactionValuesList.length - 1].wallet}",
+                                            "\$${state.transactionValuesList[state.transactionValuesList.length - 1].wallet.toStringAsFixed(2)}",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 30),
@@ -169,7 +171,8 @@ class _TabViewState extends State<TabView> {
                               scrollDirection: Axis.horizontal,
                               itemCount: state.transactionValuesList.length,
                               itemBuilder: (context, index) {
-                                return SizedBox(
+                                  if (state.transactionValuesList[index].trigger == true) {
+                                      return SizedBox(
                                   width: 100.0,
                                   child: Card(
                                     color: Colors.blueGrey[100],
@@ -201,6 +204,18 @@ class _TabViewState extends State<TabView> {
                                         )),
                                   ),
                                 );
+                                  }
+                                  else {
+                                      return SizedBox(
+                                  child: Card(
+                                    child: Column(
+                                      children: [
+                                      ],
+                                    ),
+                                  ),
+                                );
+                                  }
+                                
                               },
                             ),
                           ),
@@ -231,13 +246,14 @@ class _TabViewState extends State<TabView> {
                                   margin: EdgeInsets.symmetric(vertical: 20.0),
                                   height: 50.0,
                                   child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
                                     itemCount:
                                         1,
                                     itemBuilder: (context, index) {
                                       return Column(
                                         children: [
                                           Text(
-                                            "\$${state.transactionValuesList[state.transactionValuesList.length - 1].wallet}",
+                                            "\$${state.transactionValuesList[state.transactionValuesList.length - 1].wallet.toStringAsFixed(2)}",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 30),

@@ -1,4 +1,5 @@
 import 'package:cripose/logic/auth_bloc.dart';
+import 'package:cripose/routes.dart';
 import 'package:cripose/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +12,15 @@ void main() async {
 }
 
 class Launcher extends StatelessWidget {
-// final LocalAppRouter _localAppRouter = LocalAppRouter();
+final LocalAppRouter _localAppRouter = LocalAppRouter();
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(),
       child: MaterialApp(
         title: "launcher screen",
-        home: Wrapper(),
-        // onGenerateRoute: _localAppRouter.onGenerateRoute
+        // home: Wrapper(),
+        onGenerateRoute: _localAppRouter.onGenerateRoute
       ),
     );
   }

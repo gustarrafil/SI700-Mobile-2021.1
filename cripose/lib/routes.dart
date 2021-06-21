@@ -1,5 +1,6 @@
 import 'package:cripose/logic/manage_db.dart';
 import 'package:cripose/logic/monitor_db.dart';
+import 'package:cripose/view/screen/trigger_screen.dart';
 // import 'package:cripose/view/screen/tab_screen.dart';
 // import 'package:cripose/view/screen/trigger_screen.dart';
 import 'package:cripose/wrapper.dart';
@@ -29,6 +30,20 @@ class LocalAppRouter {
             ],
             // child: TabView(title: "Cripose"),
             child: Wrapper(),
+          );
+        });
+      case "/gatilho":
+        return MaterialPageRoute(builder: (_) {
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider.value(
+                value: _monitorBloc,
+              ),
+              BlocProvider.value(
+                value: _manageBloc,
+              ),
+            ],
+            child: TriggerView(),
           );
         });
       default:

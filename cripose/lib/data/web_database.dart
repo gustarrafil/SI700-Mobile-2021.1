@@ -43,8 +43,7 @@ class DatabaseRemoteServer {
     double alterValue =
         transactionValues.orderPrice * transactionValues.quantity;
     DateTime dateTime = DateTime.now();
-    String name =
-        response.data[response.data.length - 1]["userName"];
+    String name = response.data[response.data.length - 1]["userName"];
     await _dio.post(this.databaseUrl,
         options: Options(headers: {"Accept": "application/json"}),
         data: jsonEncode({
@@ -52,31 +51,50 @@ class DatabaseRemoteServer {
           "currencyPair": transactionValues.currencyPair,
           "orderPrice": transactionValues.orderPrice,
           "quantity": transactionValues.quantity,
+          "trigger": transactionValues.trigger,
           "wallet": transactionValues.buySell
               ? wallet - alterValue
               : wallet + alterValue,
-            "userName": name,
+          "userName": name,
           "dateTime":
               "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}T${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}.${dateTime.millisecond.toString().padLeft(3, '0')}Z",
-          //   "triggerValue": transactionValues.triggerValue
+          "triggerValue": transactionValues.triggerValue,
+          "triggerName": transactionValues.triggerName
         }));
-        notify();
+    notify();
     return 1;
   }
 
-  // Future<int> updateTransaction(
-  //     int transactionValuesId, Transaction transactionValues) async {
-  //   await _dio.put(this.databaseUrl + "/$transactionValuesId",
-  //       options: Options(headers: {"Accept": "application/json"}),
-  //       data: jsonEncode({
-  //         "buySell": transactionValues.buySell,
-  //         "currencyPair": transactionValues.currencyPair,
-  //         "orderPrice": transactionValues.orderPrice,
-  //         "quantity": transactionValues.quantity,
-  //         //   "triggerValue": transactionValues.triggerValue
-  //       }));
-  //   return 1;
-  // }
+  Future<int> updateTransaction(Transaction transactionValues) async {
+    // Response response = await _dio.request(this.databaseUrl,
+    //     options: Options(method: "GET", headers: {
+    //       "Accept": "application/json",
+    //     }));
+    // int transactionValuesId = response.data[response.data.length - 1]["id"];
+    Response response = await _dio.request(this.databaseUrl,
+        options: Options(method: "GET", headers: {
+          "Accept": "application/json",
+        }));
+
+    DateTime dateTime = DateTime.now();
+    int transactionValuesId = response.data[response.data.length - 1]["id"];
+    await _dio.put(this.databaseUrl + "/$transactionValuesId",
+        options: Options(headers: {"Accept": "application/json"}),
+        data: jsonEncode({
+          "buySell": response.data[response.data.length - 1]["buySell"],
+          "currencyPair": response.data[response.data.length - 1]["currencyPair"],
+          "orderPrice": response.data[response.data.length - 1]["orderPrice"],
+          "quantity": response.data[response.data.length - 1]["quantity"],
+          "trigger": response.data[response.data.length - 1]["trigger"],
+          "wallet": response.data[response.data.length - 1]["wallet"].toDouble(),
+          "userName": response.data[response.data.length - 1]["userName"],
+          "dateTime":
+              "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}T${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}.${dateTime.millisecond.toString().padLeft(3, '0')}Z",
+          "triggerValue": transactionValues.triggerValue,
+          "triggerName": transactionValues.triggerName
+        }));
+    return 1;
+  }
 
   Future<int> deleteTransaction(int transactionValuesId) async {
     await _dio.delete(this.databaseUrl + "/$transactionValuesId",

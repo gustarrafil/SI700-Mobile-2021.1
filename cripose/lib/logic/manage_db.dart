@@ -14,6 +14,15 @@ class SubmitTransactionEvent extends ManageEvent {
   SubmitTransactionEvent({required this.transactionValues});
 }
 
+class TriggerEvent extends ManageEvent {
+  Transaction previousTransactionValues;
+  TriggerEvent({required this.previousTransactionValues});
+}
+class CompleteEvent extends ManageEvent {
+  Transaction previousTransactionValues;
+  CompleteEvent({required this.previousTransactionValues});
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 class ManageRemoteBloc extends Bloc<ManageEvent, ManageState> {
@@ -24,11 +33,24 @@ class ManageRemoteBloc extends Bloc<ManageEvent, ManageState> {
     if (event is DeleteTransactionEvent) {
       DatabaseRemoteServer.helper.deleteTransaction(event.transactionId);
     } else if (event is SubmitTransactionEvent) {
-      var response = DatabaseRemoteServer.helper
+            DatabaseRemoteServer.helper
           .insertTransaction(event.transactionValues);
-      //   print(response);
+    } else if (event is TriggerEvent) {
+        DatabaseRemoteServer.helper
+          .insertTransaction(event.previousTransactionValues);
     }
-  }
+    else if (event is CompleteEvent) {
+        DatabaseRemoteServer.helper.updateTransaction(event.previousTransactionValues);
+        }
+      
+    } 
+        
+
+    
+    
+    
+    
+  
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -36,3 +58,8 @@ class ManageRemoteBloc extends Bloc<ManageEvent, ManageState> {
 abstract class ManageState {}
 
 class InsertState extends ManageState {}
+
+class UpdateState extends ManageState {
+  Transaction previousNote;
+  UpdateState({required this.previousNote});
+}

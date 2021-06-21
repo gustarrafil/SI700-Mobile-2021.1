@@ -3,15 +3,24 @@ class Transaction {
   late double _orderPrice;
   late double _quantity;
   late bool _buySell;
-  late double _triggerValue;
-  late bool _trigger;
   late DateTime _dateTime;
   late double _wallet;
+  late bool _trigger;
+  late String _triggerName;
+  late double _triggerValue;
 
   late String _userName;
 
   Transaction(
-      {buySell, currencyPair, orderPrice, quantity, trigger, triggerValue, wallet, userName});
+      {buySell,
+      currencyPair,
+      orderPrice,
+      quantity,
+      trigger,
+      triggerValue,
+      triggerName,
+      wallet,
+      userName});
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
@@ -19,8 +28,9 @@ class Transaction {
     map['orderPrice'] = _orderPrice;
     map['quantity'] = _quantity;
     map['buySell'] = _buySell;
-    // map['triggerValue'] = _triggerValue;
-    // map['trigger'] = _trigger;
+    map['triggerValue'] = _triggerValue;
+    map['triggerName'] = _triggerName;
+    map['trigger'] = _trigger;
     map['dateTime'] = _dateTime;
     map['wallet'] = _wallet;
     map['userName'] = _userName;
@@ -33,8 +43,10 @@ class Transaction {
     this._orderPrice = map['orderPrice'].toDouble();
     this._quantity = map['quantity'].toDouble();
     this._wallet = map['wallet'] != null ? map['wallet'].toDouble() : 0;
-    // this._triggerValue = map['triggerValue'].toDouble();
-    // this._trigger = map['trigger'];
+    this._triggerValue =
+        map['triggerValue'] != null ? map['triggerValue'].toDouble() : 0;
+    this.triggerName = map['triggerName'] != null ? map['triggerName'] : "";
+    this._trigger = map['trigger'];
     this._dateTime = DateTime.parse(map['dateTime']);
     this._userName = map['userName'];
   }
@@ -46,14 +58,16 @@ class Transaction {
   double get quantity => _quantity;
   double get wallet => _wallet;
   double get triggerValue => _triggerValue;
+  String get triggerName => _triggerName;
   bool get trigger => _trigger;
   DateTime get dateTime => _dateTime;
 
   set currencyPair(String newCurrencyPair) {
-    if (newCurrencyPair.length > 0) {
+    // if (newCurrencyPair.length > 0) {
       this._currencyPair = newCurrencyPair;
-    }
+    // }
   }
+
   set userName(String newUserName) {
     if (newUserName.length > 0) {
       this._userName = newUserName;
@@ -69,16 +83,17 @@ class Transaction {
   }
 
   set orderPrice(double newOrderPrice) {
-    if (newOrderPrice != 0) {
+    // if (newOrderPrice != 0) {
       this._orderPrice = newOrderPrice;
-    }
+    // }
   }
 
   set quantity(double newQuantity) {
-    if (newQuantity != 0) {
+    // if (newQuantity != 0) {
       this._quantity = newQuantity;
-    }
+    // }
   }
+
   set wallet(double newWallet) {
     if (newWallet != 0) {
       this._wallet = newWallet;
@@ -86,9 +101,11 @@ class Transaction {
   }
 
   set triggerValue(double newTriggerValue) {
-    if (newTriggerValue != 0) {
-      this._triggerValue = newTriggerValue;
-    }
+    this._triggerValue = newTriggerValue;
+  }
+
+  set triggerName(String newTriggerName) {
+    this._triggerName = newTriggerName;
   }
 
   set dateTime(DateTime newDateTime) {

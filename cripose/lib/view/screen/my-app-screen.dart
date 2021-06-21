@@ -13,12 +13,15 @@ class _MyAppState extends State<MyApp> {
 //   final LocalAppRouter _localAppRouter = LocalAppRouter();
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (_) => MonitorBloc()),
-          BlocProvider(create: (_) => ManageRemoteBloc()),
-        ],
-        child: BlocListener<ManageRemoteBloc, ManageState>(
+    return BlocListener<ManageRemoteBloc, ManageState>(
+      listener: (context, state) {
+        // if (state is UpdateState) {
+        //   setState(() {
+        //     _currentPage = 2;
+        //   });
+        // }
+      },
+      child: BlocListener<MonitorBloc, MonitorState>(
           listener: (context, state) {
             // if (state is UpdateState) {
             //   setState(() {
@@ -26,17 +29,9 @@ class _MyAppState extends State<MyApp> {
             //   });
             // }
           },
-          child: BlocListener<MonitorBloc, MonitorState>(
-              listener: (context, state) {
-                // if (state is UpdateState) {
-                //   setState(() {
-                //     _currentPage = 2;
-                //   });
-                // }
-              },
-              child: TabView(
-                title: "Cripose",
-              )),
-        ));
+          child: TabView(
+            title: "Cripose",
+          )),
+    );
   }
 }

@@ -6,29 +6,62 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuyForm extends StatelessWidget {
   final GlobalKey<FormState> buyForm = new GlobalKey<FormState>();
-  Transaction transactionValues = new Transaction();
+  
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ManageRemoteBloc, ManageState>(
         builder: (context, state) {
       return BlocBuilder<MonitorBloc, MonitorState>(builder: (context, state) {
-        return Form(
-          key: buyForm,
-          child: Column(
-            children: [
-              parmoedaFormField(transactionValues),
-              precoFormField(transactionValues),
-              qtdFormField(transactionValues),
-              Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: submitButton(transactionValues, state, context),
-            )
-            ],
-          ),
+          Transaction transactionValues = new Transaction();
+        return Column(
+          children: [
+            Form(
+              key: buyForm,
+              child: Column(
+                children: [
+                  parmoedaFormField(transactionValues),
+                  precoFormField(transactionValues),
+                  qtdFormField(transactionValues),
+                  Padding(
+                  padding: const EdgeInsets.only(top: 100),
+                  child: submitButton(transactionValues, state, context),
+                )
+                ],
+              ),
+            ),
+            triggerButton(transactionValues, state, context),
+          ],
         );
       });
     });
+
+
+  }
+
+  Widget triggerButton(Transaction transactionValues, state, context) {
+    // transactionValues.buySell = false;
+    // transactionValues.wallet = 0.0;
+    // transactionValues.userName = "";
+    // transactionValues.triggerName = "";
+    // transactionValues.triggerValue = 0.0;
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+          child: Text("TRIGGER"),
+          onPressed: () {
+            if (buyForm.currentState!.validate()) {
+              transactionValues.trigger = true;
+              transactionValues.triggerName = "";
+              transactionValues.triggerValue = 0.0;
+              buyForm.currentState!.save();
+              BlocProvider.of<ManageRemoteBloc>(context).add(
+                  TriggerEvent(previousTransactionValues: transactionValues));
+              Navigator.of(context).pushNamed("/gatilho");
+            }
+          }),
+    );
   }
 
   Widget submitButton(
@@ -43,6 +76,9 @@ class BuyForm extends StatelessWidget {
           child: Text("BUY ORDER"),
           onPressed: () {
             if (buyForm.currentState!.validate()) {
+                transactionValues.triggerName = "";
+                transactionValues.triggerValue = 0.0;
+              transactionValues.trigger = false;
               buyForm.currentState!.save();
               BlocProvider.of<ManageRemoteBloc>(context).add(
                   SubmitTransactionEvent(transactionValues: transactionValues));
