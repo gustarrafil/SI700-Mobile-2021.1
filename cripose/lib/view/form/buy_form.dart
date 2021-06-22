@@ -6,14 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuyForm extends StatelessWidget {
   final GlobalKey<FormState> buyForm = new GlobalKey<FormState>();
-  
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ManageRemoteBloc, ManageState>(
         builder: (context, state) {
       return BlocBuilder<MonitorBloc, MonitorState>(builder: (context, state) {
-          Transaction transactionValues = new Transaction();
+        Transaction transactionValues = new Transaction();
         return Column(
           children: [
             Form(
@@ -24,9 +23,9 @@ class BuyForm extends StatelessWidget {
                   precoFormField(transactionValues),
                   qtdFormField(transactionValues),
                   Padding(
-                  padding: const EdgeInsets.only(top: 100),
-                  child: submitButton(transactionValues, state, context),
-                )
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: submitButton(transactionValues, state, context),
+                  )
                 ],
               ),
             ),
@@ -35,8 +34,6 @@ class BuyForm extends StatelessWidget {
         );
       });
     });
-
-
   }
 
   Widget triggerButton(Transaction transactionValues, state, context) {
@@ -64,20 +61,19 @@ class BuyForm extends StatelessWidget {
     );
   }
 
-  Widget submitButton(
-      Transaction transactionValues, state, context) {
+  Widget submitButton(Transaction transactionValues, state, context) {
     transactionValues.buySell = true;
     transactionValues.wallet = 0.0;
     transactionValues.userName = "";
     return SizedBox(
-        width: double.infinity,
+      width: double.infinity,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
           child: Text("BUY ORDER"),
           onPressed: () {
             if (buyForm.currentState!.validate()) {
-                transactionValues.triggerName = "";
-                transactionValues.triggerValue = 0.0;
+              transactionValues.triggerName = "";
+              transactionValues.triggerValue = 0.0;
               transactionValues.trigger = false;
               buyForm.currentState!.save();
               BlocProvider.of<ManageRemoteBloc>(context).add(

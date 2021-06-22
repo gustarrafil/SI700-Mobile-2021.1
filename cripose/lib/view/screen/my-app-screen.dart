@@ -14,21 +14,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ManageRemoteBloc, ManageState>(
-      listener: (context, state) {
-        // if (state is UpdateState) {
-        //   setState(() {
-        //     _currentPage = 2;
-        //   });
-        // }
-      },
+      listener: (context, state) {},
       child: BlocListener<MonitorBloc, MonitorState>(
-          listener: (context, state) {
-            // if (state is UpdateState) {
-            //   setState(() {
-            //     _currentPage = 2;
-            //   });
-            // }
-          },
+          listener: (context, state) {},
           child: TabView(
             title: "Cripose",
           )),

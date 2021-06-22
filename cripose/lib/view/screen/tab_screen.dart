@@ -59,9 +59,8 @@ class _TabViewState extends State<TabView> {
                                   margin: EdgeInsets.symmetric(vertical: 20.0),
                                   height: 50.0,
                                   child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                    itemCount:
-                                        1,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: 1,
                                     itemBuilder: (context, index) {
                                       return Column(
                                         children: [
@@ -81,12 +80,11 @@ class _TabViewState extends State<TabView> {
                             Column(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.symmetric(vertical: 20.0),
+                                  margin: EdgeInsets.symmetric(vertical: 5.0),
                                   height: 50.0,
                                   child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                    itemCount:
-                                        1,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: 1,
                                     itemBuilder: (context, index) {
                                       return Column(
                                         children: [
@@ -108,7 +106,7 @@ class _TabViewState extends State<TabView> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            "Last orders",
+                            "Sell orders",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
@@ -116,43 +114,54 @@ class _TabViewState extends State<TabView> {
                             margin: EdgeInsets.symmetric(vertical: 20.0),
                             height: 100.0,
                             child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: state.transactionValuesList.length,
-                              itemBuilder: (context, index) {
-                                return SizedBox(
-                                  width: 100.0,
-                                  child: Card(
-                                    color: Colors.blueGrey[100],
-                                    child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: state.transactionValuesList.length,
+                                itemBuilder: (context, index) {
+                                  if (state.transactionValuesList[index]
+                                          .buySell ==
+                                      false) {
+                                    return SizedBox(
+                                      width: 100.0,
+                                      child: Card(
+                                        color: Colors.blueGrey[100],
+                                        child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              children: [
+                                                Text(
+                                                  "${state.transactionValuesList[index].currencyPair.toUpperCase()}",
+                                                  textAlign: TextAlign.left,
+                                                ),
+                                                Text(
+                                                    state
+                                                            .transactionValuesList[
+                                                                index]
+                                                            .buySell
+                                                        ? "Buy"
+                                                        : "Sell",
+                                                    textAlign: TextAlign.left),
+                                                Text(
+                                                    "${state.transactionValuesList[index].quantity}",
+                                                    textAlign: TextAlign.right),
+                                              ],
+                                            )),
+                                      ),
+                                    );
+                                  } else {
+                                    return SizedBox(
+                                      child: Card(
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: [
-                                            Text(
-                                              "${state.transactionValuesList[index].currencyPair.toUpperCase()}",
-                                              textAlign: TextAlign.left,
-                                            ),
-                                            Text(
-                                                state
-                                                        .transactionValuesList[
-                                                            index]
-                                                        .buySell
-                                                    ? "Buy"
-                                                    : "Sell",
-                                                textAlign: TextAlign.left),
-                                            Text(
-                                                "${state.transactionValuesList[index].quantity}",
-                                                textAlign: TextAlign.right),
-                                          ],
-                                        )),
-                                  ),
-                                );
-                              },
-                            ),
+                                          children: [],
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                }),
                           ),
                         ],
                       ),
@@ -160,7 +169,7 @@ class _TabViewState extends State<TabView> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            "Open orders",
+                            "Buy orders",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
@@ -171,51 +180,50 @@ class _TabViewState extends State<TabView> {
                               scrollDirection: Axis.horizontal,
                               itemCount: state.transactionValuesList.length,
                               itemBuilder: (context, index) {
-                                  if (state.transactionValuesList[index].trigger == true) {
-                                      return SizedBox(
-                                  width: 100.0,
-                                  child: Card(
-                                    color: Colors.blueGrey[100],
-                                    child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: [
-                                            Text(
-                                              "${state.transactionValuesList[index].currencyPair.toUpperCase()}",
-                                              textAlign: TextAlign.left,
-                                            ),
-                                            Text(
-                                                state
-                                                        .transactionValuesList[
-                                                            index]
-                                                        .buySell
-                                                    ? "Buy"
-                                                    : "Sell",
-                                                textAlign: TextAlign.left),
-                                            Text(
-                                                "${state.transactionValuesList[index].quantity}",
-                                                textAlign: TextAlign.right),
-                                          ],
-                                        )),
-                                  ),
-                                );
-                                  }
-                                  else {
-                                      return SizedBox(
-                                  child: Card(
-                                    child: Column(
-                                      children: [
-                                      ],
+                                if (state
+                                        .transactionValuesList[index].buySell ==
+                                    true) {
+                                  return SizedBox(
+                                    width: 100.0,
+                                    child: Card(
+                                      color: Colors.blueGrey[100],
+                                      child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.stretch,
+                                            children: [
+                                              Text(
+                                                "${state.transactionValuesList[index].currencyPair.toUpperCase()}",
+                                                textAlign: TextAlign.left,
+                                              ),
+                                              Text(
+                                                  state
+                                                          .transactionValuesList[
+                                                              index]
+                                                          .buySell
+                                                      ? "Buy"
+                                                      : "Sell",
+                                                  textAlign: TextAlign.left),
+                                              Text(
+                                                  "${state.transactionValuesList[index].quantity}",
+                                                  textAlign: TextAlign.right),
+                                            ],
+                                          )),
                                     ),
-                                  ),
-                                );
-                                  }
-                                
+                                  );
+                                } else {
+                                  return SizedBox(
+                                    child: Card(
+                                      child: Column(
+                                        children: [],
+                                      ),
+                                    ),
+                                  );
+                                }
                               },
                             ),
                           ),
@@ -241,30 +249,29 @@ class _TabViewState extends State<TabView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.symmetric(vertical: 20.0),
-                                  height: 50.0,
-                                  child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                    itemCount:
-                                        1,
-                                    itemBuilder: (context, index) {
-                                      return Column(
-                                        children: [
-                                          Text(
-                                            "\$${state.transactionValuesList[state.transactionValuesList.length - 1].wallet.toStringAsFixed(2)}",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 30),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 20.0),
+                            height: 50.0,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 1,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    Text(
+                                      "\$${state.transactionValuesList[state.transactionValuesList.length - 1].wallet.toStringAsFixed(2)}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 30),
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
+                          ),
+                        ],
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [

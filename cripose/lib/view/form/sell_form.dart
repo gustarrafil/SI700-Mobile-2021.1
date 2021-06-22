@@ -11,8 +11,8 @@ class SellForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ManageRemoteBloc, ManageState>(
         builder: (context, state) {
-            return BlocBuilder<MonitorBloc, MonitorState>(builder: (context, state) {
-    //   if (state is InsertState) {
+      return BlocBuilder<MonitorBloc, MonitorState>(builder: (context, state) {
+        //   if (state is InsertState) {
         Transaction transactionValues = new Transaction();
         return Column(
           children: [
@@ -25,10 +25,9 @@ class SellForm extends StatelessWidget {
                   precoFormField(transactionValues),
                   qtdFormField(transactionValues),
                   Padding(
-                    padding: const EdgeInsets.only(top: 100),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: submitButton(transactionValues, state, context),
                   ),
-                  
                 ],
               ),
             ),
@@ -36,10 +35,11 @@ class SellForm extends StatelessWidget {
           ],
         );
       }
-    //   throw("This is my first general exception");
-    // }
-    );
-  });}
+          //   throw("This is my first general exception");
+          // }
+          );
+    });
+  }
 
   Widget submitButton(Transaction transactionValues, state, context) {
     transactionValues.buySell = false;
@@ -52,8 +52,8 @@ class SellForm extends StatelessWidget {
           child: Text("SELL ORDER"),
           onPressed: () {
             if (sellForm.currentState!.validate()) {
-                transactionValues.triggerName = "";
-                transactionValues.triggerValue = 0.0;
+              transactionValues.triggerName = "";
+              transactionValues.triggerValue = 0.0;
               transactionValues.trigger = false;
               sellForm.currentState!.save();
               BlocProvider.of<ManageRemoteBloc>(context).add(
