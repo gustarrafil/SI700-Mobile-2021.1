@@ -1,17 +1,20 @@
-# Cripose - SI700 - Programação para Dispositivos Móveis - 2021.1
+# Cripose - Gerenciador de posições.
 
 ### Sobre o App:
-O seguinte código foi desenvolvido para auxiliar adicionando gatilhos para as posições de compra e venda de criptoativos, as atividades foram realizadas durante o semestre como objeto final de entrega da disciplina.
+O seguinte código foi desenvolvido para auxiliar adicionando gatilhos para as posições de compra e venda de criptoativos, o projeto foi realizado durante o semestre com o objetivo de ser entregue ao final da disciplina.
 
 ### Trabalho realizado:
 - Faculdade de Tecnologia - UNICAMP
-- Disciplina SI700 - Programação para Dispositivos móveis
+- Disciplina G_SI700A_2021S1 - Programação para Dispositivos móveis
 - Ministrada pelo Prof. Dr. Ulisses Martins Dias
 
 ### Desenvolvido por:
-* Arthur Briganti Gini       RA: 213253 
+* Arthur Briganti Gini       
+    * RA: 213253 
     * arthurbgini@gmail.com  
-* Gustavo Tarrafil           RA: 159740
+
+* Gustavo Tarrafil           
+    * RA: 159740
     * gustarrafil@gmail.com
 
 ## Instalação
@@ -19,13 +22,13 @@ O seguinte código foi desenvolvido para auxiliar adicionando gatilhos para as p
 Após clonar o repositório são necessários os seguintes comandos:
 
     flutter get packages
-
-    Inicializar o app 
-    
     
 ## Servidor:
 
 * Utilizamos o seguinte server para salvar os dados do app: 
-    * https://server-test-aula-mobile.herokuapp.com/transactions
+   * https://server-test-aula-mobile.herokuapp.com/transactions
+
+* O código fonte do servidor está disponivel em:
+   * https://github.com/gustarrafil/node_server_test
 
 * Utilizamos o Firebase Authentication para gerenciar o acesso dos usuários.
