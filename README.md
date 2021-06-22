@@ -1,6 +1,7 @@
-# Material produzido na displina SI700 - Desenvolvimento Mobile - 2021.1
+# Cripose - SI700 - Programação para Dispositivos Móveis - 2021.1
 
-Contém atividades construídas durante o semestre e o Aplicativo Cripose feito para o trabalho final.
+### Sobre o App:
+O seguinte código foi desenvolvido para auxiliar adicionando gatilhos para as posições de compra e venda de criptoativos, as atividades foram realizadas durante o semestre como objeto final de entrega da disciplina.
 
 ### Trabalho realizado:
 - Faculdade de Tecnologia - UNICAMP
@@ -8,14 +9,23 @@ Contém atividades construídas durante o semestre e o Aplicativo Cripose feito 
 - Ministrada pelo Prof. Dr. Ulisses Martins Dias
 
 ### Desenvolvido por:
-
 * Arthur Briganti Gini       RA: 213253 
- * arthurbgini@gmail.com  
+    * arthurbgini@gmail.com  
 * Gustavo Tarrafil           RA: 159740
- * gustarrafil@gmail.com
+    * gustarrafil@gmail.com
 
 ## Instalação
 
 Após clonar o repositório são necessários os seguintes comandos:
 
     flutter get packages
+
+    Inicializar o app 
+    
+    
+## Servidor:
+
+* Utilizamos o seguinte server para salvar os dados do app: 
+    * https://server-test-aula-mobile.herokuapp.com/transactions
+
+* Utilizamos o Firebase Authentication para gerenciar o acesso dos usuários.
