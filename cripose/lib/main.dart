@@ -19,7 +19,6 @@ final LocalAppRouter _localAppRouter = LocalAppRouter();
       create: (context) => AuthBloc(),
       child: MaterialApp(
         title: "launcher screen",
-        // home: Wrapper(),
         onGenerateRoute: _localAppRouter.onGenerateRoute
       ),
     );

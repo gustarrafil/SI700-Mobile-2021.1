@@ -1,14 +1,11 @@
 import 'package:cripose/logic/manage_db.dart';
 import 'package:cripose/logic/monitor_db.dart';
 import 'package:cripose/view/screen/trigger_screen.dart';
-// import 'package:cripose/view/screen/tab_screen.dart';
-// import 'package:cripose/view/screen/trigger_screen.dart';
 import 'package:cripose/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LocalAppRouter {
-  // Telas Home e Second
   ManageRemoteBloc _manageBloc = ManageRemoteBloc();
   MonitorBloc _monitorBloc = MonitorBloc();
 
@@ -28,7 +25,6 @@ class LocalAppRouter {
                 value: _manageBloc,
               ),
             ],
-            // child: TabView(title: "Cripose"),
             child: Wrapper(),
           );
         });

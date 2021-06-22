@@ -37,11 +37,6 @@ class BuyForm extends StatelessWidget {
   }
 
   Widget triggerButton(Transaction transactionValues, state, context) {
-    // transactionValues.buySell = false;
-    // transactionValues.wallet = 0.0;
-    // transactionValues.userName = "";
-    // transactionValues.triggerName = "";
-    // transactionValues.triggerValue = 0.0;
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(

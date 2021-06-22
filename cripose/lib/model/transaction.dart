@@ -63,9 +63,7 @@ class Transaction {
   DateTime get dateTime => _dateTime;
 
   set currencyPair(String newCurrencyPair) {
-    // if (newCurrencyPair.length > 0) {
       this._currencyPair = newCurrencyPair;
-    // }
   }
 
   set userName(String newUserName) {
@@ -83,15 +81,11 @@ class Transaction {
   }
 
   set orderPrice(double newOrderPrice) {
-    // if (newOrderPrice != 0) {
       this._orderPrice = newOrderPrice;
-    // }
   }
 
   set quantity(double newQuantity) {
-    // if (newQuantity != 0) {
       this._quantity = newQuantity;
-    // }
   }
 
   set wallet(double newWallet) {

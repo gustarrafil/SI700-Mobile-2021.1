@@ -30,4 +30,3 @@ class _TriggerViewState extends State<TriggerView> {
   }
 }
 
-// Navigator.of(context).pushNamed("/");

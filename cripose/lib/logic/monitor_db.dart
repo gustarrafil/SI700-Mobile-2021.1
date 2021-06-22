@@ -59,11 +59,6 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
           transactionValuesList: event.transactionValuesList);
     } else if (event is ChangeForm) {
       print(event.change);
-      //   if (event.change == true) {
-      //     yield MonitorState(changeTrue: event.change);
-      //   } else if (event.change == false) {
-      //     yield MonitorState(changeFalse: event.change);
-      //   }
       var remoteResponse =
           await DatabaseRemoteServer.helper.getTransactionValuesList();
           remoteTransactionValuesList = remoteResponse[0];
@@ -72,8 +67,6 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
           changeForm: event.change, //teste
           idList: List.from(remoteIdList),
           transactionValuesList: List.from(remoteTransactionValuesList));
-    //   yield MonitorState(
-    //       idList: [], transactionValuesList: [], changeForm: event.change);
     }
   }
 
@@ -89,12 +82,8 @@ class MonitorState {
   List<Transaction> transactionValuesList;
   List<int> idList;
   bool changeForm;
-//   bool changeTrue;
-//   bool changeFalse;
   MonitorState(
       {required this.transactionValuesList,
       required this.idList,
-      //   required this.changeTrue,
-      //   required this.changeFalse
       required this.changeForm});
 }

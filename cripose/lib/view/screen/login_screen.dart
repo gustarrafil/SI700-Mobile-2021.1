@@ -63,15 +63,6 @@ class _AuthenticationScreenStatex extends State<AuthenticationScreen> {
                 },
                 child: Text("LOGIN")),
           ),
-          // SizedBox(
-          //     width: double.infinity,
-          //   child: ElevatedButton(
-          //       style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-          //       onPressed: () {
-          //         BlocProvider.of<AuthBloc>(context).add(LoginAnon());
-          //       },
-          //       child: Text("ANONYMOUS")),
-          // ),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(

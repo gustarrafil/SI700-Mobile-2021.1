@@ -16,18 +16,15 @@ class TradeItemBox extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        // Text(transaction.fromCurrency),
                       ],
                     ),
                     Row(
                       children: [
-                        // Text(transaction.toCurrency),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        // Text(transaction.fromValue.toString()),
                       ],
                     ),
                   ]),

@@ -66,11 +66,6 @@ class DatabaseRemoteServer {
   }
 
   Future<int> updateTransaction(Transaction transactionValues) async {
-    // Response response = await _dio.request(this.databaseUrl,
-    //     options: Options(method: "GET", headers: {
-    //       "Accept": "application/json",
-    //     }));
-    // int transactionValuesId = response.data[response.data.length - 1]["id"];
     Response response = await _dio.request(this.databaseUrl,
         options: Options(method: "GET", headers: {
           "Accept": "application/json",

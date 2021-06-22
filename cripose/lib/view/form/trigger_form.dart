@@ -11,7 +11,6 @@ class TriggerForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MonitorBloc, MonitorState>(builder: (context, state) {
-      //   if (state is InsertState) {
       Transaction transactionValues = new Transaction();
       
       return BlocBuilder<ManageRemoteBloc, ManageState>(
@@ -33,7 +32,6 @@ class TriggerForm extends StatelessWidget {
           );
         },
       );
-      //   }
     });
   }
 
@@ -85,10 +83,6 @@ class TriggerForm extends StatelessWidget {
       keyboardType: TextInputType.name,
       decoration: InputDecoration(labelText: "Currency pair name to trigger"),
       validator: (value) {
-        // if (value!.length > 0) {
-        //   return "Insert trigger Name";
-        // }
-        // return null;
       },
       onSaved: (value) {
         transactionValues.triggerName = value!;
